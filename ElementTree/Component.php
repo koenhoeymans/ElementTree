@@ -57,7 +57,7 @@ interface Component
 	/**
 	 * @todo rename to `toString`
 	 */
-	public function saveXmlStyle();
+	public function toString();
 
 	/**
 	 * Iterates through this component and its children recursively. Each

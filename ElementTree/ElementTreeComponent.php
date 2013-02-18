@@ -57,9 +57,9 @@ abstract class ElementTreeComponent implements Component
 	}
 
 	/**
-	 * @see \ElementTree\Component::saveXmlStyle()
+	 * @see \ElementTree\Component::toString()
 	 */
-	abstract public function saveXmlStyle();
+	abstract public function toString();
 
 	/**
 	 * @see \ElementTree\Component::query()

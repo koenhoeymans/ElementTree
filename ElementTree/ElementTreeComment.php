@@ -36,9 +36,9 @@ class ElementTreeComment extends ElementTreeComponent implements Comment
 	/**
 	 * `<!-- comment -->`
 	 * 
-	 * @see ElementTree\Component::saveXmlStyle()
+	 * @see ElementTree\Component::toString()
 	 */
-	public function saveXmlStyle()
+	public function toString()
 	{
 		return '<!--' . $this->value . '-->';
 	}

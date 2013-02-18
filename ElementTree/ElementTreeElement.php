@@ -45,14 +45,14 @@ class ElementTreeElement extends ElementTree implements Element
 	}
 
 	/**
-	 * @see \ElementTree\Component::saveXmlStyle()
+	 * @see \ElementTree\Component::toString()
 	 */
-	public function saveXmlStyle()
+	public function toString()
 	{
 		$content = '';
 		foreach ($this->children as $child)
 		{
-			$content .= $child->saveXmlStyle();
+			$content .= $child->toString();
 		}
 
 		$xml = '<' . $this->name . $this->getAttributes();

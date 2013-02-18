@@ -114,7 +114,7 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 		$b = new \ElementTree\ElementTreeElement('b');
 		$a->append($b);
 
-		$this->assertEquals('<a><b /></a>', $a->saveXmlStyle());
+		$this->assertEquals('<a><b /></a>', $a->toString());
 	}
 
 	/**
@@ -125,6 +125,6 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 		$a = new \ElementTree\ElementTreeElement('a');
 		$a->setAttribute('name', 'value');
 
-		$this->assertEquals('<a name="value" />', $a->saveXmlStyle());
+		$this->assertEquals('<a name="value" />', $a->toString());
 	}
 }

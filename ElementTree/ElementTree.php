@@ -116,14 +116,14 @@ class ElementTree extends ElementTreeComponent implements ComponentFactory, Comp
 	}
 
 	/**
-	 * @see \ElementTree\Component::saveXmlStyle()
+	 * @see \ElementTree\Component::toString()
 	 */
-	public function saveXmlStyle()
+	public function toString()
 	{
 		$content = '';
 		foreach ($this->children as $child)
 		{
-			$content .= $child->saveXmlStyle();
+			$content .= $child->toString();
 		}
 
 		return $content;

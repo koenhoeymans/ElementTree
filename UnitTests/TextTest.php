@@ -21,6 +21,6 @@ class ElementTree_TextTest extends PHPUnit_Framework_TestCase
 	{
 		$text = new \ElementTree\ElementTreeText('foo');
 
-		$this->assertEquals('foo', $text->saveXmlStyle());
+		$this->assertEquals('foo', $text->toString());
 	}
 }

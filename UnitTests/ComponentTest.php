@@ -4,7 +4,7 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'TestHelper.php';
 
 class ComponentImp extends \ElementTree\ElementTreeComponent
 {
-	public function saveXmlStyle() {}
+	public function toString() {}
 }
 
 class ElementTree_ElementTreeComponentTest extends PHPUnit_Framework_TestCase

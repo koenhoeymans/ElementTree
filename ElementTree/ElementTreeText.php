@@ -34,9 +34,9 @@ class ElementTreeText extends ElementTreeComponent implements Text
 	}
 
 	/**
-	 * @see \ElementTree\Component::saveXmlStyle()
+	 * @see \ElementTree\Component::toString()
 	 */
-	public function saveXmlStyle()
+	public function toString()
 	{
 		return htmlentities($this->value, ENT_NOQUOTES, 'UTF-8', false);
 	}
