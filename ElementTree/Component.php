@@ -55,7 +55,14 @@ interface Component
 	public function getChildren();
 
 	/**
-	 * @todo rename to `toString`
+	 * Creates an XML-style string representation of the component
+	 * and its child components. Eg. if an ElementTree contains two
+	 * Elements named 'div' and 'hr', with the 'div' element containing
+	 * a text component, the  `toString` might return:
+	 * 
+	 *     <div>div content</div><hr />
+	 * 
+	 * Support for other output formats might be added later.
 	 */
 	public function toString();
 
