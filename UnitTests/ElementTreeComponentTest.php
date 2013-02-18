@@ -26,6 +26,14 @@ class ElementTree_ElementTreeComponentTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @test
 	 */
+	public function hasNoOwnerTreeByDefault()
+	{
+		$this->assertNull($this->component->getOwnerTree());
+	}
+
+	/**
+	 * @test
+	 */
 	public function elementsInWholcomponentCanBeSelectedWithCallback()
 	{
 		$callback = function(\ElementTree\Component $elementTree) {
@@ -36,13 +44,5 @@ class ElementTree_ElementTreeComponentTest extends PHPUnit_Framework_TestCase
 		};
 
 		$this->component->query($callback);
-	}
-
-	/**
-	 * @test
-	 */
-	public function hasNoOwnerTreeByDefault()
-	{
-		$this->assertNull($this->component->getOwnerTree());
 	}
 }
