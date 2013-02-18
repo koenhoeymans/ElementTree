@@ -15,7 +15,7 @@ class ElementTree_ElementTreeTest extends PHPUnit_Framework_TestCase
 	public function createsElement()
 	{
 		$this->assertTrue(
-			$this->tree->createElement('foo') instanceof \ElementTree\Element
+			$this->tree->createElement('foo') instanceof \ElementTree\ElementTreeElement
 		);
 	}
 	
@@ -25,7 +25,7 @@ class ElementTree_ElementTreeTest extends PHPUnit_Framework_TestCase
 	public function createsText()
 	{
 		$this->assertTrue(
-			$this->tree->createText('foo') instanceof \ElementTree\Text
+			$this->tree->createText('foo') instanceof \ElementTree\ElementTreeText
 		);
 	}
 
@@ -35,7 +35,7 @@ class ElementTree_ElementTreeTest extends PHPUnit_Framework_TestCase
 	public function createsComment()
 	{
 		$this->assertTrue(
-			$this->tree->createComment('foo') instanceof \ElementTree\Comment
+			$this->tree->createComment('foo') instanceof \ElementTree\ElementTreeComment
 		);
 	}
 
@@ -44,7 +44,7 @@ class ElementTree_ElementTreeTest extends PHPUnit_Framework_TestCase
 	 */
 	public function isNotParentOfAppended()
 	{
-		$element = new \ElementTree\Element('a');
+		$element = new \ElementTree\ElementTreeElement('a');
 		$this->tree->append($element);
 
 		$this->assertEquals(null, $element->getParent());
@@ -56,7 +56,7 @@ class ElementTree_ElementTreeTest extends PHPUnit_Framework_TestCase
 	public function appendsAllChildrenOfAppendedComponentTreeAndDiscardsTree()
 	{
 		$elementTree = new \ElementTree\ElementTree();
-		$element = new \ElementTree\Element('a');
+		$element = new \ElementTree\ElementTreeElement('a');
 		$elementTree->append($element);
 
 		$this->tree->append($elementTree);
@@ -79,7 +79,7 @@ class ElementTree_ElementTreeTest extends PHPUnit_Framework_TestCase
 	 */
 	public function addsOwnerTreeToAppendedComponent()
 	{
-		$element = new \ElementTree\Element('a');
+		$element = new \ElementTree\ElementTreeElement('a');
 		$this->tree->append($element);
 
 		$this->assertEquals($this->tree, $element->getOwnerTree());

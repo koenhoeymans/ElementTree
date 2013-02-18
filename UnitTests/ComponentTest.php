@@ -2,16 +2,16 @@
 
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'TestHelper.php';
 
-class ComponentImp extends \ElementTree\Component
+class ComponentImp extends \ElementTree\ElementTreeComponent
 {
 	public function saveXmlStyle() {}
 }
 
-class ElementTree_ComponentTest extends PHPUnit_Framework_TestCase
+class ElementTree_ElementTreeComponentTest extends PHPUnit_Framework_TestCase
 {
 	public function setup()
 	{
-		$this->eTree = new ComponentImp();
+		$this->component = new ComponentImp();
 	}
 
 	/**
@@ -19,23 +19,23 @@ class ElementTree_ComponentTest extends PHPUnit_Framework_TestCase
 	 */
 	public function hasNoParentElementIfNotAppended()
 	{
-		$this->assertEquals(null, $this->eTree->getParent());
-		$this->assertEquals(false, $this->eTree->hasParent());
+		$this->assertEquals(null, $this->component->getParent());
+		$this->assertEquals(false, $this->component->hasParent());
 	}
 
 	/**
 	 * @test
 	 */
-	public function elementsInWholeTreeCanBeSelectedWithCallback()
+	public function elementsInWholcomponentCanBeSelectedWithCallback()
 	{
 		$callback = function(\ElementTree\Component $elementTree) {
-			if ($elementTree !== $this->eTree)
+			if ($elementTree !== $this->component)
 			{
 				$this->assertFalse(true);
 			}
 		};
 
-		$this->eTree->query($callback);
+		$this->component->query($callback);
 	}
 
 	/**
@@ -43,6 +43,6 @@ class ElementTree_ComponentTest extends PHPUnit_Framework_TestCase
 	 */
 	public function hasNoOwnerTreeByDefault()
 	{
-		$this->assertNull($this->eTree->getOwnerTree());
+		$this->assertNull($this->component->getOwnerTree());
 	}
 }

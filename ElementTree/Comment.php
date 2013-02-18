@@ -8,34 +8,19 @@ namespace ElementTree;
 /**
  * @package ElementTree
  */
-class Comment extends Component
+interface Comment extends Component
 {
-	private $value;
-
-	public function __construct($value)
-	{
-		$this->value = (string) $value;
-	}
-
 	/**
+	 * The text of the comment.
+	 * 
 	 * @return string
 	 */
-	public function getValue()
-	{
-		return $this->value;
-	}
-
-	public function setValue($value)
-	{
-		$this->value = $value;
-	}
+	public function getValue();
 
 	/**
-	 * `<!-- comment -->`
-	 * @see ElementTree\ElementTreeComponent::saveXmlStyle()
+	 * Sets the text of the comment.
+	 * 
+	 * @param string $value
 	 */
-	public function saveXmlStyle()
-	{
-		return '<!--' . $this->value . '-->';
-	}
+	public function setValue($value);
 }

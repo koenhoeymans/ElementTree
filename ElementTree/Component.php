@@ -8,55 +8,56 @@ namespace ElementTree;
 /**
  * @package ElementTree
  */
-abstract class Component
+interface Component
 {
-	protected $ownerTree = null;
-
-	protected $parent = null;
-
-	protected $children = array();
-
 	/**
+	 * Returns the ElemenTree that created the component. If there
+	 * is no such ElementTree, e.i. the component was created by
+	 * other ways, this will return `null`.
+	 * 
 	 * @return \ElementTree\ElementTree|null
 	 */
-	public function getOwnerTree()
-	{
-		return $this->ownerTree;
-	}
+	public function getOwnerTree();
 
 	/**
-	 * @return \ElementTree\ElementTree\Component|null
+	 * Returns the parent component of this component. Eg. when an element
+	 * was appended to another element the first element is the parent
+	 * of the other one. Or if a text component was added to an element
+	 * this element is the parent of the text component. If there is no
+	 * parent element this will return `null`.
+	 * 
+	 * @return \ElementTree\Component|null
 	 */
-	public function getParent()
-	{
-		return $this->parent;
-	}
-
-	public function hasParent()
-	{
-		return $this->parent ? true : false;
-	}
+	public function getParent();
 
 	/**
+	 * Will return `true` or `false` depending on whether the component
+	 * has a parent or not.
+	 * 
 	 * @return boolean
 	 */
-	public function hasChildren()
-	{
-		return !empty($this->children);
-	}
+	public function hasParent();
 
 	/**
-	 * @return array:
+	 * Will return `true` or `false` depending on whether the component
+	 * has children or not (components added to it).
+	 * 
+	 * @return boolean
 	 */
-	public function getChildren()
-	{
-		return $this->children;
-	}
+	public function hasChildren();
 
 	/**
-	 * Save contents of the component compatible with XML.
+	 * An array of the child components that were appended to the current
+	 * component.
+	 * 
+	 * @return array
 	 */
-	abstract public function saveXmlStyle();
+	public function getChildren();
+
+	/**
+	 * @todo rename to `toString`
+	 */
+	public function saveXmlStyle();
 
 	/**
 	 * Iterates through this component and its children recursively. Each
@@ -64,12 +65,5 @@ abstract class Component
 	 * 
 	 * @param callable $callback
 	 */
-	public function query(callable $callback)
-	{
-		$callback($this);
-		foreach ($this->children as $child)
-		{
-			$child->query($callback);			
-		}
-	}
+	public function query(callable $callback);
 }

@@ -8,47 +8,43 @@ namespace ElementTree;
 /**
  * @package ElementTree
  */
-class ElementTree extends Component
+class ElementTree extends ElementTreeComponent implements ComponentFactory, Composable
 {
 	/**
-	 * @return \ElementTree\Element
+	 * @see \ElementTree\ComponentFactory::createElement()
 	 */
 	public function createElement($name)
 	{
-		$element = new Element($name);
+		$element = new ElementTreeElement($name);
 		$this->setOwnerTree($element);
 
 		return $element;
 	}
 
 	/**
-	 * @return \ElementTree\Text
+	 * @see \ElementTree\ComponentFactory::createText()
 	 */
 	public function createText($value)
 	{
-		$text = new Text($value);
+		$text = new ElementTreeText($value);
 		$this->setOwnerTree($text);
 
 		return $text;
 	}
 
 	/**
-	 * @return \ElementTree\Comment
+	 * @see \ElementTree\ComponentFactory::createComment()
 	 */
 	public function createComment($value)
 	{
-		$comment = new Comment($value);
+		$comment = new ElementTreeComment($value);
 		$this->setOwnerTree($comment);
 
 		return $comment;
 	}
 
 	/**
-	 * Append a Component as a child. Optionally specifying after which other
-	 * child component.
-	 * 
-	 * @param Component $elementTree
-	 * @param Component $after
+	 * @see \ElementTree\Composable::replace()
 	 */
 	public function append(Component $component, Component $after = null)
 	{
@@ -78,7 +74,7 @@ class ElementTree extends Component
 	}
 
 	/**
-	 * @param Component $elementTree
+	 * @see \ElementTree\Composable::replace()
 	 */
 	public function remove(Component $elementTree)
 	{
@@ -98,8 +94,7 @@ class ElementTree extends Component
 	}
 
 	/**
-	 * @param Component $newComponent
-	 * @param Component $oldComponent
+	 * @see \ElementTree\Composable::replace()
 	 */
 	public function replace(Component $newComponent, Component $oldComponent)
 	{

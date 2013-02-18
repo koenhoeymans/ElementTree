@@ -8,81 +8,31 @@ namespace ElementTree;
 /**
  * @package ElementTree
  */
-class Element extends ElementTree
+interface Element extends Component
 {
-	private $name;
-
-	private $attributes = array();
-
-	public function __construct($name)
-	{
-		$this->name = (string) $name;
-	}
-
 	/**
+	 * Return the name of the element. Eg, ofted used names for elements
+	 * in HTML are `div`, `p` and `blink`.
+	 * 
 	 * @return string
 	 */
-	public function getName()
-	{
-		return $this->name;
-	}
+	public function getName();
 
 	/**
+	 * Set an attribute with a name and a a value. Eg. in an HTML element
+	 * with the name `p` an attribute `class` with the value `important`
+	 * can be used to style this paragraph different from others.
+	 * 
 	 * @param string $name
 	 * @param string $value
 	 */
-	public function setAttribute($name, $value)
-	{
-		$this->attributes[$name] = $value;
-	}
+	public function setAttribute($name, $value);
 
 	/**
-	 * @param unknown $name
+	 * Returns the value of an attribute.
+	 * 
+	 * @param string $name
 	 * @return string
 	 */
-	public function getAttributeValue($name)
-	{
-		return isset($this->attributes[$name]) ? $this->attributes[$name] : null;
-	}
-
-	/**
-	 * @see \ElementTree\ElementTree\ElementTree::saveXmlStyle()
-	 */
-	public function saveXmlStyle()
-	{
-		$content = '';
-		foreach ($this->children as $child)
-		{
-			$content .= $child->saveXmlStyle();
-		}
-
-		$xml = '<' . $this->name . $this->getAttributes();
-
-		if ($content === '')
-		{
-			$xml .= ' />';
-		}
-		else
-		{
-			$xml .= '>' . $content . '</' . $this->name . '>';
-		}
-
-		return $xml;
-	}
-
-	private function getAttributes()
-	{
-		$attr = '';
-		foreach ($this->attributes as $name => $value)
-		{
-			$attr .= ' '
-				. $name
-				. '='
-				. '"'
-				. htmlentities($value, ENT_COMPAT, 'UTF-8', false)
-				. '"';
-		}
-
-		return $attr;
-	}
+	public function getAttributeValue($name);
 }

@@ -8,36 +8,19 @@ namespace ElementTree;
 /**
  * @package ElementTree
  */
-class Text extends Component
+interface Text extends Component
 {
-	private $value;
-
-	public function __construct($value)
-	{
-		$this->value = (string) $value;
-	}
-
 	/**
+	 * Returns the value, e.i. the content.
+	 * 
 	 * @return string
 	 */
-	public function getValue()
-	{
-		return $this->value;
-	}
+	public function getValue();
 
 	/**
+	 * Sets the value, e.i. the content.
+	 * 
 	 * @param string $value
 	 */
-	public function setValue($value)
-	{
-		$this->value = $value;
-	}
-
-	/**
-	 * @see \ElementTree\Component::saveXmlStyle()
-	 */
-	public function saveXmlStyle()
-	{
-		return htmlentities($this->value, ENT_NOQUOTES, 'UTF-8', false);
-	}
+	public function setValue($value);
 }

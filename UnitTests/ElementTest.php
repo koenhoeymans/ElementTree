@@ -9,7 +9,7 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 	 */
 	public function elementsHaveName()
 	{
-		$element = new \ElementTree\Element('a');
+		$element = new \ElementTree\ElementTreeElement('a');
 
 		$this->assertEquals('a', $element->getName());
 	}
@@ -19,7 +19,7 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 	 */
 	public function elementsHaveAttributes()
 	{
-		$element = new \ElementTree\Element('a');
+		$element = new \ElementTree\ElementTreeElement('a');
 		$element->setAttribute('name', 'value');
 
 		$this->assertEquals('value', $element->getAttributeValue('name'));		
@@ -30,8 +30,8 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 	 */
 	public function elementsCanHaveElements()
 	{
-		$a = new \ElementTree\Element('a');
-		$b = new \ElementTree\Element('b');
+		$a = new \ElementTree\ElementTreeElement('a');
+		$b = new \ElementTree\ElementTreeElement('b');
 		$a->append($b);
 
 		$this->assertEquals(array($b), $a->getChildren());
@@ -42,8 +42,8 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 	 */
 	public function elementsCanHaveText()
 	{
-		$a = new \ElementTree\Element('a');
-		$text = new \ElementTree\Text('text');
+		$a = new \ElementTree\ElementTreeElement('a');
+		$text = new \ElementTree\ElementTreeText('text');
 		$a->append($text);
 
 		$this->assertEquals(array($text), $a->getChildren());
@@ -54,8 +54,8 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 	 */
 	public function isParentOfAppended()
 	{
-		$parent = new \ElementTree\Element('parent');
-		$child = new \ElementTree\Element('child');
+		$parent = new \ElementTree\ElementTreeElement('parent');
+		$child = new \ElementTree\ElementTreeElement('child');
 		$parent->append($child);
 
 		$this->assertEquals($parent, $child->getParent());
@@ -66,10 +66,10 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 	 */
 	public function canAppendAfterComponent()
 	{
-		$a = new \ElementTree\Element('a');
-		$b = new \ElementTree\Element('b');
-		$c = new \ElementTree\Element('c');
-		$d = new \ElementTree\Element('d');
+		$a = new \ElementTree\ElementTreeElement('a');
+		$b = new \ElementTree\ElementTreeElement('b');
+		$c = new \ElementTree\ElementTreeElement('c');
+		$d = new \ElementTree\ElementTreeElement('d');
 		$a->append($b);
 		$a->append($c);
 		$a->append($d, $b);
@@ -82,8 +82,8 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 	 */
 	public function canRemoveChild()
 	{
-		$parent = new \ElementTree\Element('parent');
-		$child = new \ElementTree\Element('child');
+		$parent = new \ElementTree\ElementTreeElement('parent');
+		$child = new \ElementTree\ElementTreeElement('child');
 		$parent->append($child);
 		$parent->remove($child);
 
@@ -96,9 +96,9 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 	 */
 	public function canReplaceChild()
 	{
-		$a = new \ElementTree\Element('a');
-		$b = new \ElementTree\Element('b');
-		$c = new \ElementTree\Element('c');
+		$a = new \ElementTree\ElementTreeElement('a');
+		$b = new \ElementTree\ElementTreeElement('b');
+		$c = new \ElementTree\ElementTreeElement('c');
 		$a->append($b);
 		$a->replace($c, $b);
 
@@ -110,8 +110,8 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 	 */
 	public function wrapsChildXmlInOwnTags()
 	{
-		$a = new \ElementTree\Element('a');
-		$b = new \ElementTree\Element('b');
+		$a = new \ElementTree\ElementTreeElement('a');
+		$b = new \ElementTree\ElementTreeElement('b');
 		$a->append($b);
 
 		$this->assertEquals('<a><b /></a>', $a->saveXmlStyle());
@@ -122,7 +122,7 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 	 */
 	public function attributesAreInXmlStyleOutput()
 	{
-		$a = new \ElementTree\Element('a');
+		$a = new \ElementTree\ElementTreeElement('a');
 		$a->setAttribute('name', 'value');
 
 		$this->assertEquals('<a name="value" />', $a->saveXmlStyle());
