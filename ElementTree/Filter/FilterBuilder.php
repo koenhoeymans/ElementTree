@@ -30,9 +30,12 @@ class FilterBuilder
 
 	public function element($name)
 	{
-		return new self(
-			$this->callback, new \ElementTree\Filter\ElementByName($name)
-		);
+		return new self($this->callback, new \ElementTree\Filter\ElementByName($name));
+	}
+
+	public function allText()
+	{
+		return new self($this->callback, new \ElementTree\Filter\AllText());
 	}
 
 	public function __invoke(Component $component)
