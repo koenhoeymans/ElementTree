@@ -1,0 +1,19 @@
+{
+	"name": "elementtree/elementtree",
+	"description": "simple PHP XML-like tree",
+	"license": "BSD-2-Clause",
+	"authors": [{
+		"name": "Koen Hoeymans",
+		"email": "koenhoeymans@gmail.com",
+		"role": "lead"
+	}],
+	"require": {
+		"php": ">=5.4.6"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "3.7.*"
+	},
+	"autoload": {
+		"psr-0": { "ElementTree": "/" }
+	}
+}
