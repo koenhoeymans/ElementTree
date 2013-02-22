@@ -76,12 +76,12 @@ class ElementTree extends ElementTreeComponent implements ComponentFactory, Comp
 	/**
 	 * @see \ElementTree\Composable::replace()
 	 */
-	public function remove(Component $elementTree)
+	public function remove(Component $component)
 	{
 		$children = array();
 		foreach ($this->children as $child)
 		{
-			if ($elementTree !== $child)
+			if ($component !== $child)
 			{
 				$children[] = $child;
 			}
