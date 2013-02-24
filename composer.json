@@ -2,6 +2,7 @@
 	"name": "elementtree/elementtree",
 	"description": "simple PHP XML-like tree",
 	"license": "BSD-2-Clause",
+	"keywords": ["XML", "tree"],
 	"authors": [{
 		"name": "Koen Hoeymans",
 		"email": "koenhoeymans@gmail.com",
