@@ -146,5 +146,24 @@ class ElementTree_DocumentationTest extends PHPUnit_Framework_TestCase
 			)
 		);
 		$this->assertEquals('another header', $output);
+
+		/**
+		 * Another interesting one is the `NotSpecification`. It filters
+		 * by taking in a filter and allows the opposite of the passed
+		 * filter.
+		 */
+		$output = '';
+		$callback = function(\ElementTree\Text $text) use (&$output)
+		{
+			$output .= $text->toString();
+		};
+		$filter = $elementTree->createFilter($callback);
+		$elementTree->query(
+			$filter->lAnd(
+				$filter->allText(),
+				$filter->not($filter->hasParentElement('h2'))
+			)
+		);
+		$this->assertEquals('a header', $output);
 	}
 }

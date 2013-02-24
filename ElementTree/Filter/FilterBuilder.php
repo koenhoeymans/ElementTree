@@ -61,6 +61,13 @@ class FilterBuilder implements ComponentSpecification
 		return new self($this->callback, $andSpec->newInstanceArgs($args));
 	}
 
+	public function not(ComponentSpecification $specification)
+	{
+		return new self(
+			$this->callback, new \ElementTree\Filter\NotSpecification($specification)
+		);
+	}
+
 	/**
 	 * Searches for elements with a given name.
 	 * 
