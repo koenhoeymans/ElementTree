@@ -105,7 +105,7 @@ class FilterBuilder implements ComponentSpecification
 	 * @param string $name
 	 * @return \ElementTree\Filter\FilterBuilder
 	 */
-	public function hasParentElement($name)
+	public function hasParentElement($name = null)
 	{
 		return new self($this->callback, new \ElementTree\Filter\HasParentElement($name));
 	}
