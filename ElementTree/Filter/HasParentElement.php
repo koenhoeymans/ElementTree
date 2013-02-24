@@ -14,7 +14,7 @@ Class HasParentElement implements ComponentSpecification
 {
 	private $name;
 
-	public function __construct($name)
+	public function __construct($name = null)
 	{
 		$this->name = $name;
 	}
@@ -29,6 +29,10 @@ Class HasParentElement implements ComponentSpecification
 		if (!($parent instanceof \ElementTree\Element))
 		{
 			return false;
+		}
+		if (!$this->name)
+		{
+			return true;
 		}
 		if ($parent->getName() === $this->name)
 		{

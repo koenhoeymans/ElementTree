@@ -49,4 +49,15 @@ class ElementTree_Filter_HasParentElementTest extends PHPUnit_Framework_TestCase
 
 		$this->assertFalse($this->parentElNameA->isSatisfiedBy($element));
 	}
+
+	/**
+	 * @test
+	 */
+	public function isSatisfiedWhenComponentHasAnyParentElementWhenNameNotSpecified()
+	{
+		$anyParentEl = new \ElementTree\Filter\HasParentElement();
+		$element = $this->createElement('a');
+		
+		$this->assertFalse($anyParentEl->isSatisfiedBy($element));
+	}
 }
