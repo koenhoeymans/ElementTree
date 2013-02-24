@@ -122,5 +122,29 @@ class ElementTree_DocumentationTest extends PHPUnit_Framework_TestCase
 		$filter = $elementTree->createFilter($callback);
 		$elementTree->query($filter->allText());
 		$this->assertEquals('a header', $output);
+
+		/**
+		 * There are a variety of filters available. You can also combine
+		 * them. In the next example the filter combines two other filters
+		 * (all text components and all components that have a parent element
+		 * with the name 'h2').
+		 */
+		$h2 = $elementTree->createElement('h2');
+		$h2->append($elementTree->createText('another header'));
+		$elementTree->append($h2);
+
+		$output = '';
+		$callback = function(\ElementTree\Text $text) use (&$output)
+		{
+			$output .= $text->toString();
+		};
+		$filter = $elementTree->createFilter($callback);
+		$elementTree->query(
+			$filter->lAnd(
+				$filter->allText(),
+				$filter->hasParentElement('h2')
+			)
+		);
+		$this->assertEquals('another header', $output);
 	}
 }

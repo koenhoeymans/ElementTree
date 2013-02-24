@@ -13,7 +13,7 @@ use ElementTree\Component;
  * 
  * @package ElementTree
  */
-class FilterBuilder
+class FilterBuilder implements ComponentSpecification
 {
 	private $callback;
 
@@ -109,5 +109,15 @@ class FilterBuilder
 		{
 			call_user_func($this->callback, $component);
 		}
+	}
+
+	public function isSatisfiedBy(Component $component)
+	{
+		if (!isset($this->specification))
+		{
+			return false;
+		}
+
+		return $this->specification->isSatisfiedBy($component);
 	}
 }
