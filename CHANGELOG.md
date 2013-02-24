@@ -1,6 +1,11 @@
 ElementTree Changelog
 =====================
 
+*	0.1.4
+
+	*	`HasParentElement` does not need to specify a name to select any parent element.
+	*	Created not-filter for inverse of containing filter.
+
 *	0.1.3
 
 	*	Composite specifications now accept a `FilterBuilder` which provides a
