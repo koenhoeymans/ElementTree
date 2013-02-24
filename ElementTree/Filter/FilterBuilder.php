@@ -59,7 +59,7 @@ class FilterBuilder
 	 */
 	public function allElements()
 	{
-		return new self($this->callback, new \ElementTree\Filter\AllText());
+		return new self($this->callback, new \ElementTree\Filter\AllElements());
 	}
 
 	public function __invoke(Component $component)
