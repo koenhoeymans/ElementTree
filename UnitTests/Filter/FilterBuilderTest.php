@@ -26,4 +26,36 @@ class ElementTree_Filter_FilterBuilderTest extends PHPUnit_Framework_TestCase
 		$filter(new \ElementTree\ElementTreeElement('a'));
 		$filter(new \ElementTree\ElementTreeElement('b'));
 	}
+
+	/**
+	 * @test
+	 */
+	public function createsLogicalOr()
+	{
+		$spec1 = new \ElementTree\Filter\AllText();
+		$spec2 = new \ElementTree\Filter\AllText();
+		$filter = new \ElementTree\Filter\FilterBuilder(function () {});
+		$lOr = $filter->lOr($spec1, $spec2);
+
+		$this->assertEquals(
+			new \ElementTree\Filter\FilterBuilder(function () {}, new \ElementTree\Filter\OrSpecification($spec1, $spec2)),
+			$lOr
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createsLogicalAnd()
+	{
+		$spec1 = new \ElementTree\Filter\AllText();
+		$spec2 = new \ElementTree\Filter\AllText();
+		$filter = new \ElementTree\Filter\FilterBuilder(function () {});
+		$lAnd = $filter->lAnd($spec1, $spec2);
+
+		$this->assertEquals(
+			new \ElementTree\Filter\FilterBuilder(function () {}, new \ElementTree\Filter\AndSpecification($spec1, $spec2)),
+			$lAnd
+		);
+	}
 }
