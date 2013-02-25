@@ -8,7 +8,7 @@ namespace ElementTree;
 /**
  * @package ElementTree
  */
-class ElementTreeElement extends ElementTree implements Element
+class ElementTreeElement extends ElementTree implements Element, Composable
 {
 	private $name;
 
