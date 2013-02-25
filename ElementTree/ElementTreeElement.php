@@ -9,7 +9,6 @@ namespace ElementTree;
  * @package ElementTree
  */
 class ElementTreeElement extends ElementTree implements Element
-
 {
 	private $name;
 
