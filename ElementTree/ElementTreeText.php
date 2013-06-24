@@ -38,6 +38,6 @@ class ElementTreeText extends ElementTreeComponent implements Text
 	 */
 	public function toString()
 	{
-		return htmlentities($this->value, ENT_NOQUOTES, 'UTF-8', false);
+		return $this->value;
 	}
 }
