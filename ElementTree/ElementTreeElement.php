@@ -32,7 +32,12 @@ class ElementTreeElement extends ElementTree implements Element, Composable
 	 */
 	public function setAttribute($name, $value)
 	{
-		$this->attributes[$name] = $value;
+		$attr = new ElementTreeAttribute($name, $value);
+		$attr->parent = $this;
+		$this->setOwnerTree($attr);
+		$this->attributes[$name] = $attr;
+
+		return $attr;
 	}
 
 	/**
@@ -40,7 +45,9 @@ class ElementTreeElement extends ElementTree implements Element, Composable
 	 */
 	public function getAttributeValue($name)
 	{
-		return isset($this->attributes[$name]) ? $this->attributes[$name] : null;
+		return isset($this->attributes[$name])
+			? $this->attributes[$name]->getValue()
+			: null;
 	}
 
 	/**
@@ -54,7 +61,7 @@ class ElementTreeElement extends ElementTree implements Element, Composable
 			$content .= $child->toString();
 		}
 
-		$xml = '<' . $this->name . $this->getAttributes();
+		$xml = '<' . $this->name . $this->getAttributesAsString();
 
 		if ($content === '')
 		{
@@ -68,17 +75,12 @@ class ElementTreeElement extends ElementTree implements Element, Composable
 		return $xml;
 	}
 
-	private function getAttributes()
+	private function getAttributesAsString()
 	{
 		$attr = '';
-		foreach ($this->attributes as $name => $value)
+		foreach ($this->attributes as $name => $attribute)
 		{
-			$attr .= ' '
-				. $name
-				. '='
-				. '"'
-				. htmlentities($value, ENT_COMPAT, 'UTF-8', false)
-				. '"';
+			$attr .= ' ' . $attribute->toString();
 		}
 
 		return $attr;

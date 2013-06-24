@@ -25,6 +25,7 @@ interface Element extends Component
 	 * 
 	 * @param string $name
 	 * @param string $value
+	 * @return Attribute
 	 */
 	public function setAttribute($name, $value);
 

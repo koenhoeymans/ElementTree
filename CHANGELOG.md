@@ -1,6 +1,11 @@
 ElementTree Changelog
 =====================
 
+*	0.1.5
+
+	*	Introduces attributes as objects.
+	*	Values of attributes can be singe/double/unquoted when stringified.
+
 *	0.1.4
 
 	*	`HasParentElement` does not need to specify a name to select any parent element.

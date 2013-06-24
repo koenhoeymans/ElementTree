@@ -165,5 +165,21 @@ class ElementTree_DocumentationTest extends PHPUnit_Framework_TestCase
 			)
 		);
 		$this->assertEquals('a header', $output);
+
+		/**
+		 * Attributes
+		 * ----------
+		 * 
+		 * Attribute values are quoted in double quotes by default. You can change
+		 * this on the attribute by using one of the following methods:
+		 * `noQuotes`, `singleQuotes` or `doubleQuotes`.
+		 * 
+		 */
+
+		$div = $elementTree->createElement('div');
+		$id = $div->setAttribute('id', 'foo');
+		$id->singleQuotes();
+
+		$this->assertEquals("<div id='foo' />", $div->toString());
 	}
 }
