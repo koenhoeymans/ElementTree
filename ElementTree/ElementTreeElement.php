@@ -51,6 +51,14 @@ class ElementTreeElement extends ElementTree implements Element, Composable
 	}
 
 	/**
+	 * @see \ElementTree\Element::getAttributes()
+	 */
+	public function getAttributes()
+	{
+		return array_values($this->attributes);
+	}
+
+	/**
 	 * @see \ElementTree\Component::toString()
 	 */
 	public function toString()

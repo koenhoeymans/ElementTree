@@ -36,4 +36,11 @@ interface Element extends Component
 	 * @return string
 	 */
 	public function getAttributeValue($name);
+
+	/**
+	 * Get the list of attributes.
+	 * 
+	 * @return array
+	 */
+	public function getAttributes();
 }

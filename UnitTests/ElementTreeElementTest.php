@@ -29,6 +29,18 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @test
 	 */
+	public function providesListOfAttributes()
+	{
+		$element = new \ElementTree\ElementTreeElement('a');
+		$class = $element->setAttribute('class', 'foo');
+		$id = $element->setAttribute('id', 'bar');
+
+		$this->assertEquals(array($class, $id), $element->getAttributes());
+	}
+
+	/**
+	 * @test
+	 */
 	public function elementsCanHaveElements()
 	{
 		$a = new \ElementTree\ElementTreeElement('a');

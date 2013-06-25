@@ -1,6 +1,10 @@
 ElementTree Changelog
 =====================
 
+*	0.2.1
+
+	*	`Element` provides a list of attributes.
+
 *	0.2.0
 
 	*	Text doesn't stringify using htmlentities anymore but uses the raw value.
