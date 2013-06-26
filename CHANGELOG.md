@@ -1,6 +1,11 @@
 ElementTree Changelog
 =====================
 
+*	0.2.2
+
+	*	Attributes are included in queries.
+	*	FilterBuilder can make use of `allAttributes`.
+
 *	0.2.1
 
 	*	`Element` provides a list of attributes.

@@ -93,4 +93,13 @@ class ElementTreeElement extends ElementTree implements Element, Composable
 
 		return $attr;
 	}
+
+	public function query(callable $callback)
+	{
+		parent::query($callback);
+		foreach ($this->attributes as $attr)
+		{
+			$attr->query($callback);
+		}
+	}
 }

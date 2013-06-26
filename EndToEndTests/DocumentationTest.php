@@ -181,5 +181,23 @@ class ElementTree_DocumentationTest extends PHPUnit_Framework_TestCase
 		$id->singleQuotes();
 
 		$this->assertEquals("<div id='foo' />", $div->toString());
+
+		/**
+		 * You can find all attributes in a tree by using the `allAttributes`
+		 * method when filtering.
+		 */
+		$elementTree = new \ElementTree\ElementTree();
+		$div = $elementTree->createElement('div');
+		$div->setAttribute('foo', 'bar');
+		$elementTree->append($div);
+		$output = '';
+		$callback = function(\ElementTree\Attribute $attr) use (&$output)
+		{
+			$output .= $attr->toString();
+		};
+		$filter = $elementTree->createFilter($callback);
+		$elementTree->query($filter->allAttributes());
+
+		$this->assertEquals('foo="bar"', $output);
 	}
 }

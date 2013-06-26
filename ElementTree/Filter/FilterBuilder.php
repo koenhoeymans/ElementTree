@@ -100,6 +100,16 @@ class FilterBuilder implements ComponentSpecification
 	}
 
 	/**
+	 * Searches for all `Attribute` components.
+	 * 
+	 * @return \ElementTree\Filter\FilterBuilder
+	 */
+	public function allAttributes()
+	{
+		return new self($this->callback, new \ElementTree\Filter\AllAttributes());
+	}
+
+	/**
 	 * Searches for all components that have a parent `Element` with a given name.
 	 * 
 	 * @param string $name
