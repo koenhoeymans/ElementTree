@@ -133,18 +133,4 @@ class ElementTree extends ElementTreeComponent implements ComponentFactory, Comp
 	{
 		$component->ownerTree = $this->ownerTree ?: $this;
 	}
-
-	/**
-	 * Creates a filter that can be used to filter the components
-	 * passed to the callback. This filter in itself is `callable`
-	 * and prefilters all components before it passes them to your
-	 * callback.
-	 *
-	 * @param Callable $callback
-	 * @return \ElementTree\Filter\FilterBuilder
-	 */
-	public function createFilter(Callable $callback)
-	{
-		return new \ElementTree\Filter\FilterBuilder($callback);
-	}
 }

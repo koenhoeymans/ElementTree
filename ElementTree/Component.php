@@ -65,12 +65,4 @@ interface Component
 	 * Support for other output formats might be added later.
 	 */
 	public function toString();
-
-	/**
-	 * Iterates through this component and its children recursively. Each
-	 * is passed as a paramater into the callback.
-	 * 
-	 * @param callable $callback
-	 */
-	public function query(callable $callback);
 }

@@ -30,19 +30,4 @@ class ElementTree_ElementTreeComponentTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertNull($this->component->getOwnerTree());
 	}
-
-	/**
-	 * @test
-	 */
-	public function elementsInWholcomponentCanBeSelectedWithCallback()
-	{
-		$callback = function(\ElementTree\Component $elementTree) {
-			if ($elementTree !== $this->component)
-			{
-				$this->assertFalse(true);
-			}
-		};
-
-		$this->component->query($callback);
-	}
 }

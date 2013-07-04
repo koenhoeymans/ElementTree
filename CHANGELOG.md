@@ -1,6 +1,10 @@
 ElementTree Changelog
 =====================
 
+*	0.3.1
+
+	*	Abstracted querying and creating query objects behind an interface.
+
 *	0.3.0
 
 	*	Changed querying explicit to specification instead of filters.

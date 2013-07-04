@@ -163,29 +163,4 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals('<a name="value" />', $a->toString());
 	}
-
-	/**
-	 * @test
-	 */
-	public function providesAlsoAttributesToQuery()
-	{
-		$a = new \ElementTree\ElementTreeElement('a');
-		$a->setAttribute('b', 'c');
-
-		$success = false;
-		$a->query(function(\ElementTree\ElementTreeComponent $comp) use (&$success) {
-			if ($comp instanceof \ElementTree\Attribute)
-			{
-				if ($comp->getValue() === 'c')
-				{
-					$success = true;
-				}
-			}
-		});
-
-		if (!$success)
-		{
-			$this->fail();
-		}
-	}
 }

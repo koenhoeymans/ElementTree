@@ -122,12 +122,12 @@ class ElementTree_DocumentationTest extends PHPUnit_Framework_TestCase
 		$elementTree->append($span);
 
 		/**
-		 * A query object can be created passing a `Component`
-		 * in the constructor. It is this component that will be queried.
-		 * This can be an `ElementTree` but may be limited to eg an
+		 * A query object can be created by using the `createQuery` method
+		 * on a component. It is this component that will be queried.
+		 * This can be an `ElementTree` but may also be limited to eg an
 		 * `Element`.
 		 */
-		$query = new \ElementTree\ElementTreeQuery($elementTree);
+		$query = $elementTree->createQuery();
 
 		/**
 		 * Finding all elements in the tree with `allElements`.

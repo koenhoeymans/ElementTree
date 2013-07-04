@@ -50,10 +50,7 @@ class ElementTreeQuery implements Query
 	}
 
 	/**
-	 * Matches all `Element` components.
-	 * 
-	 * @param ComponentSpecification $specification
-	 * @return \ElementTree\Specification\AllElements
+	 * @see \ElementTree\Query::allElements()
 	 */
 	public function allElements(ComponentSpecification $specification = null)
 	{
@@ -61,10 +58,7 @@ class ElementTreeQuery implements Query
 	}
 
 	/**
-	 * Matches an element when it has an attribute (with given specification).
-	 * 
-	 * @param ComponentSpecification $specification
-	 * @return \ElementTree\Specification\WithAttribute
+	 * @see \ElementTree\Query::withAttribute()
 	 */
 	public function withAttribute(ComponentSpecification $specification = null)
 	{
@@ -72,10 +66,7 @@ class ElementTreeQuery implements Query
 	}
 
 	/**
-	 * Matches when the name of the element or attribute is the same.
-	 * 
-	 * @param string $name
-	 * @return \ElementTree\Specification\WithName
+	 * @see \ElementTree\Query::withName()
 	 */
 	public function withName($name)
 	{
@@ -83,10 +74,7 @@ class ElementTreeQuery implements Query
 	}
 
 	/**
-	 * Matches all `Attribute` components.
-	 * 
-	 * @param ComponentSpecification $specification
-	 * @return \ElementTree\Specification\AllAttributes
+	 * @see \ElementTree\Query::allAttributes()
 	 */
 	public function allAttributes(ComponentSpecification $specification = null)
 	{
@@ -94,10 +82,7 @@ class ElementTreeQuery implements Query
 	}
 
 	/**
-	 * Selects all text components.
-	 * 
-	 * @param ComponentSpecification $specification
-	 * @return \ElementTree\Specification\AllText
+	 * @see \ElementTree\Query::allText()
 	 */
 	public function allText(ComponentSpecification $specification = null)
 	{
@@ -105,10 +90,7 @@ class ElementTreeQuery implements Query
 	}
 
 	/**
-	 * Selects components that have a parent element.
-	 * 
-	 * @param ComponentSpecification $specification
-	 * @return \ElementTree\Specification\WithParentElement
+	 * @see \ElementTree\Query::withParentElement()
 	 */
 	public function withParentElement(ComponentSpecification $specification = null)
 	{
@@ -116,12 +98,7 @@ class ElementTreeQuery implements Query
 	}
 
 	/**
-	 * Combines specifications. All must succeed for the component to be
-	 * selected.
-	 * 
-	 * @param ComponentSpecification $specification1
-	 * @param ComponentSpecification $specification2
-	 * @return \ElementTree\Specification\AndSpecification
+	 * @see \ElementTree\Query::lAnd()
 	 */
 	public function lAnd(
 		ComponentSpecification $specification1, ComponentSpecification $specification2
@@ -133,12 +110,7 @@ class ElementTreeQuery implements Query
 	}
 
 	/**
-	 * Combines specifications. At least one must succeed for the component to be
-	 * selected.
-	 *
-	 * @param ComponentSpecification $specification1
-	 * @param ComponentSpecification $specification2
-	 * @return \ElementTree\Specification\OrSpecification
+	 * @see \ElementTree\Query::lOr()
 	 */
 	public function lOr(
 		ComponentSpecification $specification1, ComponentSpecification $specification2
@@ -150,11 +122,7 @@ class ElementTreeQuery implements Query
 	}
 
 	/**
-	 * The negation another specification. Selects a component if a specification
-	 * does not apply.
-	 * 
-	 * @param ComponentSpecification $specification
-	 * @return \ElementTree\Specification\NotSpecification
+	 * @see \ElementTree\Query::not()
 	 */
 	public function not(ComponentSpecification $specification)
 	{
