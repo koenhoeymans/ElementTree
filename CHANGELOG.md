@@ -1,6 +1,12 @@
 ElementTree Changelog
 =====================
 
+*	0.3.0
+
+	*	Changed querying explicit to specification instead of filters.
+	*	Querying now returns a list of matching components instead of using
+		callbacks.
+
 *	0.2.2
 
 	*	Attributes are included in queries.

@@ -10,6 +10,11 @@ class ElementTree_DocumentationTest extends PHPUnit_Framework_TestCase
 	public function elementTreeUsage()
 	{
 		/**
+		 * The components
+		 * --------------
+		 */
+
+		/**
 		 * The ElementTree package contains a tree of components that resemble
 		 * a very basis XML layout. 
 		 */
@@ -44,6 +49,17 @@ class ElementTree_DocumentationTest extends PHPUnit_Framework_TestCase
 		 * An `Element` can also have attributes.
 		 */
 		$element->setAttribute('class', 'sidebar');
+
+		/**
+		 * Attribute values are quoted in double quotes by default. You can change
+		 * this on the attribute by using one of the following methods:
+		 * `noQuotes`, `singleQuotes` or `doubleQuotes`.
+		 */		
+		$div = $elementTree->createElement('div');
+		$id = $div->setAttribute('id', 'foo');
+		$id->singleQuotes();
+
+		$this->assertEquals("<div id='foo' />", $div->toString());
 
 		/**
 		 * The name of elements can be found with `getName()`.
@@ -93,111 +109,115 @@ class ElementTree_DocumentationTest extends PHPUnit_Framework_TestCase
 			$elementTree->toString()
 		);
 
-		/**
-		 * Searching the tree can be done with a callback and `ElementTree::query()`.
-		 * It will pass all components to your callback.
-		 */
-		$output = '';
-		$callback = function(\ElementTree\Component $component) use (&$output)
-		{
-			if ($component instanceof \ElementTree\Text)
-			{
-				$output .= $component->toString();
-			}
-		};
-		$elementTree->query($callback);
-		$this->assertEquals('a header', $output);
 
 		/**
-		 * The `instanceof` in the previous example looks rather ugly. We can
-		 * do away with it by using the inbuild filtering system. This creates
-		 * a callback taking your callback as an argument, and filters the
-		 * elements so you get only the one you actually need.
-		 */
-		$output = '';
-		$callback = function(\ElementTree\Text $text) use (&$output)
-		{
-			$output .= $text->toString();
-		};
-		$filter = $elementTree->createFilter($callback);
-		$elementTree->query($filter->allText());
-		$this->assertEquals('a header', $output);
-
-		/**
-		 * There are a variety of filters available. You can also combine
-		 * them. In the next example the filter combines two other filters
-		 * (all text components and all components that have a parent element
-		 * with the name 'h2').
-		 */
-		$h2 = $elementTree->createElement('h2');
-		$h2->append($elementTree->createText('another header'));
-		$elementTree->append($h2);
-
-		$output = '';
-		$callback = function(\ElementTree\Text $text) use (&$output)
-		{
-			$output .= $text->toString();
-		};
-		$filter = $elementTree->createFilter($callback);
-		$elementTree->query(
-			$filter->lAnd(
-				$filter->allText(),
-				$filter->hasParentElement('h2')
-			)
-		);
-		$this->assertEquals('another header', $output);
-
-		/**
-		 * Another interesting one is the `NotSpecification`. It filters
-		 * by taking in a filter and allows the opposite of the passed
-		 * filter.
-		 */
-		$output = '';
-		$callback = function(\ElementTree\Text $text) use (&$output)
-		{
-			$output .= $text->toString();
-		};
-		$filter = $elementTree->createFilter($callback);
-		$elementTree->query(
-			$filter->lAnd(
-				$filter->allText(),
-				$filter->not($filter->hasParentElement('h2'))
-			)
-		);
-		$this->assertEquals('a header', $output);
-
-		/**
-		 * Attributes
-		 * ----------
-		 * 
-		 * Attribute values are quoted in double quotes by default. You can change
-		 * this on the attribute by using one of the following methods:
-		 * `noQuotes`, `singleQuotes` or `doubleQuotes`.
-		 * 
+		 * Queries
+		 * -------
 		 */
 
-		$div = $elementTree->createElement('div');
-		$id = $div->setAttribute('id', 'foo');
-		$id->singleQuotes();
-
-		$this->assertEquals("<div id='foo' />", $div->toString());
-
-		/**
-		 * You can find all attributes in a tree by using the `allAttributes`
-		 * method when filtering.
-		 */
 		$elementTree = new \ElementTree\ElementTree();
 		$div = $elementTree->createElement('div');
-		$div->setAttribute('foo', 'bar');
+		$span = $elementTree->createElement('span');
 		$elementTree->append($div);
-		$output = '';
-		$callback = function(\ElementTree\Attribute $attr) use (&$output)
-		{
-			$output .= $attr->toString();
-		};
-		$filter = $elementTree->createFilter($callback);
-		$elementTree->query($filter->allAttributes());
+		$elementTree->append($span);
 
-		$this->assertEquals('foo="bar"', $output);
+		/**
+		 * A query object can be created passing a `Component`
+		 * in the constructor. It is this component that will be queried.
+		 * This can be an `ElementTree` but may be limited to eg an
+		 * `Element`.
+		 */
+		$query = new \ElementTree\ElementTreeQuery($elementTree);
+
+		/**
+		 * Finding all elements in the tree with `allElements`.
+		 */
+		$entries = $query->find($query->allElements());
+		$this->assertEquals(array($div, $span), $entries);
+
+		/**
+		 * Elements can be further specified by name with `withName`.
+		 */
+		$query = new \ElementTree\ElementTreeQuery($elementTree);
+		$entries = $query->find($query->allElements($query->withName('span')));
+		$this->assertEquals(array($span), $entries);
+
+		/**
+		 * Another specification for elements is `withAttribute`.
+		 */
+		$id = $div->setAttribute('id', 'footer');
+		$query = new \ElementTree\ElementTreeQuery($elementTree);
+		$entries = $query->find($query->allElements($query->withAttribute()));
+		$this->assertEquals(array($div), $entries);
+
+		/**
+		 * Finding all attributes.
+		 */
+		$entries = $query->find($query->allAttributes());
+		$this->assertEquals(array($id), $entries);
+
+		/**
+		 * Attributes can also be further specified by name.
+		 */
+		$class = $div->setAttribute('class', 'static');
+		$entries = $query->find($query->allAttributes($query->withName('class')));
+		$this->assertEquals(array($class), $entries);
+
+		/**
+		 * Using `withParentElement` allows to query for attributes (and other
+		 * components) that have a parent element.
+		 */
+		$entries = $query->find($query->allAttributes($query->withParentElement()));
+		$this->assertEquals(array($id, $class), $entries);
+
+		$highlight = $span->setAttribute('highlight', 'true');
+		$entries = $query->find($query->allAttributes(
+			$query->withParentElement($query->withName('span'))
+		));
+		$this->assertEquals(array($highlight), $entries);
+
+		/**
+		 * Finding all text components.
+		 */
+		$text = $elementTree->createText('some text');
+		$div->append($text);
+		$entries = $query->find($query->allText());
+		$this->assertEquals(array($text), $entries);
+
+		/**
+		 * Also text queries can contain further specifications.
+		 */
+		$spanText = $elementTree->createText('other text');
+		$span->append($spanText);
+		$entries = $query->find($query->allText(
+			$query->withParentElement($query->withName('span'))
+		));
+		$this->assertEquals(array($spanText), $entries);
+
+		/**
+		 * Queries can be combined with `lAnd`, the logical and, so that components
+		 * need to satisfy all criteria.
+		 */
+		$entries = $query->find($query->lAnd(
+			$query->allAttributes(), $query->withName('class')
+		));
+		$this->assertEquals(array($class), $entries);
+
+		/**
+		 * Another combinations is with `lOr`, the logical or. A component satisfies
+		 * the conditions if one of the conditions is satisfied.
+		 */
+		$entries = $query->find($query->lOr(
+			$query->withName('div'), $query->withName('class')
+		));
+		$this->assertEquals(array($div, $class), $entries);
+
+		/**
+		 * There's also the possibility to have the denial of a specification
+		 * with `not`. The following query searches for all elements that do not
+		 * have the name 'div'.
+		 */
+		$entries = $query->find($query->allElements($query->not($query->withName('div'))));
+		$this->assertEquals(array($span), $entries);
 	}
 }

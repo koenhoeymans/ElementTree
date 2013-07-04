@@ -23,4 +23,14 @@ class ElementTree_TextTest extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals('foo', $text->toString());
 	}
+
+	/**
+	 * @test
+	 */
+	public function hasNoChildren()
+	{
+		$text = new \ElementTree\ElementTreeText('foo');
+
+		$this->assertFalse($text->hasChildren());
+	}
 }

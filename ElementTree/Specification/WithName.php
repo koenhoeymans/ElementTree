@@ -3,14 +3,14 @@
 /**
  * @package ElementTree
  */
-namespace ElementTree\Filter;
+namespace ElementTree\Specification;
 
 use ElementTree\Component;
 
 /**
  * @package ElementTree
  */
-Class ElementByName implements ComponentSpecification
+Class WithName implements ComponentSpecification
 {
 	private $name;
 
@@ -21,12 +21,10 @@ Class ElementByName implements ComponentSpecification
 
 	public function isSatisfiedBy(Component $component)
 	{
-		if ($component instanceof \ElementTree\ElementTreeElement)
+		if ($component instanceof \ElementTree\Element
+			|| $component instanceof \ElementTree\Attribute)
 		{
-			if ($component->getName() === $this->name)
-			{
-				return true;
-			}
+			return $component->getName() == $this->name;
 		}
 
 		return false;

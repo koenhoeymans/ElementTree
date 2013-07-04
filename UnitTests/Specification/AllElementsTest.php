@@ -4,16 +4,16 @@ require_once dirname(__FILE__)
 	. DIRECTORY_SEPARATOR . '..'
 	. DIRECTORY_SEPARATOR . 'TestHelper.php';
 
-class ElementTree_Filter_AllAttributesTest extends PHPUnit_Framework_TestCase
+class ElementTree_Specification_AllElementsTest extends PHPUnit_Framework_TestCase
 {
 	/**
 	 * @test
 	 */
-	public function isSatisfiedWhenGivenAttributeComponent()
+	public function isSatisfiedWhenGivenElementComponent()
 	{
-		$allText = new \ElementTree\Filter\AllAttributes();
+		$allText = new \ElementTree\Specification\AllElements();
 		$this->assertTrue(
-			$allText->isSatisfiedBy(new \ElementTree\ElementTreeAttribute('foo', 'bar'))
+			$allText->isSatisfiedBy(new \ElementTree\ElementTreeElement('a'))
 		);
 	}
 
@@ -22,7 +22,7 @@ class ElementTree_Filter_AllAttributesTest extends PHPUnit_Framework_TestCase
 	 */
 	public function isNotSatisfiedWhenGivenElementComponent()
 	{
-		$allText = new \ElementTree\Filter\AllAttributes();
+		$allText = new \ElementTree\Specification\AllElements();
 		$this->assertFalse(
 			$allText->isSatisfiedBy(new \ElementTree\ElementTreeText('a'))
 		);

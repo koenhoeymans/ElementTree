@@ -3,7 +3,7 @@
 /**
  * @package ElementTree
  */
-namespace ElementTree\Filter;
+namespace ElementTree\Specification;
 
 use ElementTree\Component;
 
