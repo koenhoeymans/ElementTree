@@ -1,6 +1,10 @@
 ElementTree Changelog
 =====================
 
+*	0.3.2
+
+	*	Added `Element::removeAttribute`.
+
 *	0.3.1
 
 	*	Abstracted querying and creating query objects behind an interface.

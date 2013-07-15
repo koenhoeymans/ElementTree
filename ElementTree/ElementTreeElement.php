@@ -41,6 +41,17 @@ class ElementTreeElement extends ElementTree implements Element, Composable
 	}
 
 	/**
+	 * @see \ElementTree\Element::removeAttribute()
+	 */
+	public function removeAttribute($name)
+	{
+		if (isset($this->attributes[$name]))
+		{
+			unset($this->attributes[$name]);
+		}
+	}
+
+	/**
 	 * @see \ElementTree\Element::getAttributeValue()
 	 */
 	public function getAttributeValue($name)

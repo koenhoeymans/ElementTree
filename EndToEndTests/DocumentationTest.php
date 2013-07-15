@@ -62,6 +62,13 @@ class ElementTree_DocumentationTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals("<div id='foo' />", $div->toString());
 
 		/**
+		 * Attributes can be removed from elements with `removeAttribute`.
+		 */
+		$div->removeAttribute('id');
+
+		$this->assertEquals(array(), $div->getAttributes());
+
+		/**
 		 * The name of elements can be found with `getName()`.
 		 */
 		$this->assertEquals('div', $element->getName());

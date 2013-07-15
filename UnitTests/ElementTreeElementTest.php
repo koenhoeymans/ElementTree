@@ -29,6 +29,19 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @test
 	 */
+	public function attributesCanBeRemoved()
+	{
+		$element = new \ElementTree\ElementTreeElement('b');
+		$attr = $element->setAttribute('foo', 'bar');
+		$this->assertEquals(array($attr), $element->getAttributes());
+
+		$element->removeAttribute('foo');
+		$this->assertEquals(array(), $element->getAttributes());
+	}
+
+	/**
+	 * @test
+	 */
 	public function providesListOfAttributes()
 	{
 		$element = new \ElementTree\ElementTreeElement('a');

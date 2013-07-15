@@ -30,6 +30,13 @@ interface Element extends Component
 	public function setAttribute($name, $value);
 
 	/**
+	 * Remove an attribute, specified by name.
+	 * 
+	 * @param string $name
+	 */
+	public function removeAttribute($name);
+
+	/**
 	 * Returns the value of an attribute.
 	 * 
 	 * @param string $name
