@@ -78,6 +78,7 @@ class ElementTree extends ElementTreeComponent implements ComponentFactory, Comp
 	 */
 	public function remove(Component $component)
 	{
+		$removed = false;
 		$children = array();
 		foreach ($this->children as $child)
 		{
@@ -87,10 +88,19 @@ class ElementTree extends ElementTreeComponent implements ComponentFactory, Comp
 			}
 			else
 			{
+				$removed = true;
 				$child->parent = null;
 			}
 		}
 		$this->children = $children;
+
+		if (!$removed)
+		{
+			foreach ($this->children as $child)
+			{
+				$child->remove($component);
+			}
+		}
 	}
 
 	/**

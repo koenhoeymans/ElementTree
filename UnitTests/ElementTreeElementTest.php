@@ -143,6 +143,24 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @test
 	 */
+	public function canRemoveSubChildren()
+	{
+		$parent = new \ElementTree\ElementTreeElement('parent');
+		$child = new \ElementTree\ElementTreeElement('child');
+		$subchild = new \ElementTree\ElementTreeElement('subchild');
+		$parent->append($child);
+		$child->append($subchild);
+		$parent->remove($subchild);
+
+		$this->assertEquals(array($child), $parent->getChildren());
+		$this->assertEquals($parent, $child->getParent());
+		$this->assertEquals(array(), $child->getChildren());
+		$this->assertEquals(null, $subchild->getParent());
+	}
+
+	/**
+	 * @test
+	 */
 	public function canReplaceChild()
 	{
 		$a = new \ElementTree\ElementTreeElement('a');

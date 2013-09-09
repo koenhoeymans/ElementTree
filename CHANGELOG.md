@@ -1,6 +1,10 @@
 ElementTree Changelog
 =====================
 
+*	0.3.3
+
+	*	Removes elements anywhere in the subtree.
+
 *	0.3.2
 
 	*	Added `Element::removeAttribute`.
