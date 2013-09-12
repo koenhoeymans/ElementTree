@@ -1,6 +1,10 @@
 ElementTree Changelog
 =====================
 
+*	0.3.4
+
+	*	Bugfixes.
+
 *	0.3.3
 
 	*	Removes elements anywhere in the subtree.

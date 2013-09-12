@@ -78,26 +78,36 @@ class ElementTree extends ElementTreeComponent implements ComponentFactory, Comp
 	 */
 	public function remove(Component $component)
 	{
-		$removed = false;
-		$children = array();
-		foreach ($this->children as $child)
+		if (!$this->removeChild($component))
 		{
-			if ($component !== $child)
+			$this->removeChildInChildren($component);
+		}
+	}
+
+	private function removeChild(Component $component)
+	{
+		foreach ($this->children as $key => $child)
+		{
+			if ($component === $child)
 			{
-				$children[] = $child;
-			}
-			else
-			{
-				$removed = true;
+				unset($this->children[$key]);
+				$this->children = array_values($this->children);
 				$child->parent = null;
+				$child->ownerTree = null;
+				return true;
 			}
 		}
-		$this->children = $children;
 
-		if (!$removed)
+		return false;
+	}
+
+	private function removeChildInChildren(Component $component)
+	{
+		foreach ($this->children as $child)
 		{
-			foreach ($this->children as $child)
-			{
+			if (get_class($child) === get_class()
+					|| in_array(get_class(), class_parents(get_class($child)))
+			) {
 				$child->remove($component);
 			}
 		}
