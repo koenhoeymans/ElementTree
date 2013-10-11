@@ -64,7 +64,7 @@ class ElementTree extends ElementTreeComponent implements ComponentFactory, Comp
 		$this->setOwnerTree($component);
 		if ($after)
 		{
-			$key = array_search($after, $this->children);
+			$key = array_search($after, $this->children, true);
 			array_splice($this->children, $key+1, 0, array($component));
 		}
 		else

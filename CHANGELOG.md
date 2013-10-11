@@ -1,6 +1,10 @@
 ElementTree Changelog
 =====================
 
+*	0.3.5
+
+	*	Another bugfix.
+
 *	0.3.4
 
 	*	Bugfixes.
