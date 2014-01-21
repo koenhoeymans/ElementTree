@@ -74,7 +74,7 @@ class ElementTree extends ElementTreeComponent implements ComponentFactory, Comp
 	}
 
 	/**
-	 * @see \ElementTree\Composable::replace()
+	 * @see \ElementTree\Composable::remove()
 	 */
 	public function remove(Component $component)
 	{
