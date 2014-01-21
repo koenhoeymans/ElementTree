@@ -44,7 +44,7 @@ class ElementTree extends ElementTreeComponent implements ComponentFactory, Comp
 	}
 
 	/**
-	 * @see \ElementTree\Composable::replace()
+	 * @see \ElementTree\Composable::append()
 	 */
 	public function append(Component $component, Component $after = null)
 	{
