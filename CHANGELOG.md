@@ -1,6 +1,11 @@
 ElementTree Changelog
 =====================
 
+*	0.3.6
+
+	*	Changed copyright to Koen Hoeymans.
+	*	Added `Element::hasAttribute($name)`.
+
 *	0.3.5
 
 	*	Another bugfix.

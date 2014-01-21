@@ -29,6 +29,18 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @test
 	 */
+	public function canAskElementsIfTheyHaveAttributeWithName()
+	{
+		$element = new \ElementTree\ElementTreeElement('a');
+		$attr = $element->setAttribute('name', 'value');
+
+		$this->assertFalse($element->hasAttribute('foo'));
+		$this->assertTrue($element->hasAttribute('name'));		
+	}
+
+	/**
+	 * @test
+	 */
 	public function attributesCanBeRemoved()
 	{
 		$element = new \ElementTree\ElementTreeElement('b');

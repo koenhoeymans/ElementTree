@@ -79,6 +79,13 @@ class ElementTree_DocumentationTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals('sidebar', $element->getAttributeValue('class'));
 
 		/**
+		 * Asking whether an element has a certain attribute is done with
+		 * `hasAttribute`.
+		 */
+		$this->assertTrue($element->hasAttribute('class'));
+		$this->assertFalse($element->hasAttribute('style'));
+
+		/**
 		 * An `Element` can be composed of others.
 		 */
 		$p = $elementTree->createElement('p');

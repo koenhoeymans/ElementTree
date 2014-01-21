@@ -45,6 +45,14 @@ interface Element extends Component
 	public function getAttributeValue($name);
 
 	/**
+	 * Whether the element has an attribute with a given name or not.
+	 * 
+	 * @param unknown $name
+	 * @return bool
+	 */
+	public function hasAttribute($name);
+
+	/**
 	 * Get the list of attributes.
 	 * 
 	 * @return array
