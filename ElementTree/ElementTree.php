@@ -51,17 +51,22 @@ class ElementTree extends ElementTreeComponent implements ComponentFactory, Comp
 		$componentIsElementTree = (get_class($component) === get_class());
 		$thisIsElementTree = (get_class($this) === get_class());
 
+		# append elements of component if component is ElementTree
 		if ($componentIsElementTree)
 		{
 			foreach (array_reverse($component->getChildren()) as $child)
 			{
 				$this->append($child, $after);
 			}
+
 			return;
 		}
 
+		# set parent
 		$component->parent = $thisIsElementTree ? null : $this;
 		$this->setOwnerTree($component);
+
+		# append at correct place
 		if ($after)
 		{
 			$key = array_search($after, $this->children, true);
