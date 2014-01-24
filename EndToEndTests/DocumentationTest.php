@@ -137,9 +137,9 @@ class ElementTree_DocumentationTest extends PHPUnit_Framework_TestCase
 
 		/**
 		 * A query object can be created by using the `createQuery` method
-		 * on a component. It is this component that will be queried.
-		 * This can be an `ElementTree` but may also be limited to eg an
-		 * `Element`.
+		 * on a component. It is this component that will be queried using
+		 * the query object. This can be an `ElementTree` but may also
+		 * be eg an `Element`.
 		 */
 		$query = $elementTree->createQuery();
 

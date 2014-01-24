@@ -1,6 +1,12 @@
 ElementTree Changelog
 =====================
 
+*	0.4.0
+
+	*	Introduced interface `Appendable`. An `ElementTree` object is not appendable.
+		`ElementTreeElement`, `ElementTreeText`, `ElementTreeComment`,
+		`ElementTreeAttribute` are appendable (to a `Composable`). 
+
 *	0.3.6
 
 	*	Changed copyright to Koen Hoeymans.
