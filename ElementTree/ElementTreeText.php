@@ -8,13 +8,18 @@ namespace ElementTree;
 /**
  * @package ElementTree
  */
-class ElementTreeText extends ElementTreeComponent implements Text
+class ElementTreeText extends ElementTreeComponent implements Text, Appendable
 {
 	private $value;
 
 	public function __construct($value)
 	{
 		$this->value = (string) $value;
+	}
+
+	public function appendTo(Composable $composable)
+	{
+		$composable->append($this);
 	}
 
 	/**

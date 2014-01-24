@@ -8,7 +8,9 @@ namespace ElementTree;
 /**
  * @package ElementTree
  */
-class ElementTreeElement extends ElementTree implements Element, Composable
+class ElementTreeElement
+	extends ComposableElementTreeComponent
+	implements Element, Appendable
 {
 	private $name;
 
@@ -17,6 +19,11 @@ class ElementTreeElement extends ElementTree implements Element, Composable
 	public function __construct($name)
 	{
 		$this->name = (string) $name;
+	}
+
+	public function appendTo(Composable $composable)
+	{
+		$composable->append($this);
 	}
 
 	/**
@@ -113,6 +120,10 @@ class ElementTreeElement extends ElementTree implements Element, Composable
 		return $attr;
 	}
 
+	/**
+	 * 
+	 * @param callable $callback
+	 */
 	public function query(callable $callback)
 	{
 		parent::query($callback);

@@ -42,26 +42,12 @@ class ElementTree_ElementTreeTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @test
 	 */
-	public function isNotParentOfAppended()
+	public function isParentOfAppended()
 	{
 		$element = new \ElementTree\ElementTreeElement('a');
 		$this->tree->append($element);
 
-		$this->assertEquals(null, $element->getParent());
-	}
-
-	/**
-	 * @test
-	 */
-	public function appendsAllChildrenOfAppendedComponentTreeAndDiscardsTree()
-	{
-		$elementTree = new \ElementTree\ElementTree();
-		$element = new \ElementTree\ElementTreeElement('a');
-		$elementTree->append($element);
-
-		$this->tree->append($elementTree);
-
-		$this->assertEquals(array($element), $this->tree->getChildren());
+		$this->assertEquals($this->tree, $element->getParent());
 	}
 
 	/**
@@ -83,17 +69,6 @@ class ElementTree_ElementTreeTest extends PHPUnit_Framework_TestCase
 		$this->tree->append($element);
 
 		$this->assertEquals($this->tree, $element->getOwnerTree());
-	}
-
-	/**
-	 * @test
-	 */
-	public function doesntAddAppendedTreeToComponentAsOwnerTree()
-	{
-		$tree = new \ElementTree\ElementTree();
-		$this->tree->append($tree);
-
-		$this->assertEquals(null, $tree->getOwnerTree());
 	}
 
 	/**
@@ -153,7 +128,7 @@ class ElementTree_ElementTreeTest extends PHPUnit_Framework_TestCase
 		$text = new \ElementTree\ElementTreeText('text');
 		$tree->append($text);
 
-		$tree->remove(new \ElementTree\ElementTree('b'));
+		$tree->remove(new \ElementTree\ElementTreeElement('b'));
 
 		$this->assertEquals(array($text), $tree->getChildren());
 		$this->assertEquals($tree, $text->getOwnerTree());

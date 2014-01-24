@@ -11,26 +11,26 @@ namespace ElementTree;
 interface Composable
 {
 	/**
-	 * Appends a Component as a child. Optionally specifying after which other
-	 * child component.
+	 * Appends an appendable component as a child. Optionally specifying
+	 * after which other child component.
 	 *
-	 * @param Component $component
-	 * @param Component $after
+	 * @param Appendable $component
+	 * @param Appendable $after
 	 */
-	public function append(Component $component, Component $after = null);
+	public function append(Appendable $component, Appendable $after = null);
 
 	/**
 	 * Removes a subcomponent.
 	 * 
-	 * @param Component $component
+	 * @param Appendable $component
 	 */
-	public function remove(Component $component);
+	public function remove(Appendable $component);
 
 	/**
 	 * Replaces a subcomponent by another one.
 	 * 
-	 * @param Component $newComponent
-	 * @param Component $oldComponent
+	 * @param Appendable $newComponent
+	 * @param Appendable $oldComponent
 	 */
-	public function replace(Component $newComponent, Component $oldComponent);
+	public function replace(Appendable $newComponent, Appendable $oldComponent);
 }

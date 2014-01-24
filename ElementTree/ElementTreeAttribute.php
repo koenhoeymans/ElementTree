@@ -8,7 +8,7 @@ namespace ElementTree;
 /**
  * @package ElementTree
  */
-class ElementTreeAttribute extends ElementTreeComponent implements Attribute
+class ElementTreeAttribute extends ElementTreeComponent implements Attribute, Appendable
 {
 	const NO_QUOTES = '';
 
@@ -26,6 +26,11 @@ class ElementTreeAttribute extends ElementTreeComponent implements Attribute
 	{
 		$this->name = (string) $name;
 		$this->value = (string) $value;
+	}
+
+	public function appendTo(Composable $composable)
+	{
+		$composable->append($this);
 	}
 
 	/**
