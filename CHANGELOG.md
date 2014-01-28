@@ -1,6 +1,10 @@
 ElementTree Changelog
 =====================
 
+*	0.5.0
+
+	*	`ElementTreeAttribute` is not `Appendable`.
+
 *	0.4.0
 
 	*	Introduced interface `Appendable`. An `ElementTree` object is not appendable.
