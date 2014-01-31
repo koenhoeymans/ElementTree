@@ -41,7 +41,6 @@ class ElementTreeElement
 	{
 		$attr = new ElementTreeAttribute($name, $value);
 		$attr->parent = $this;
-		$this->setOwnerTree($attr);
 		$this->attributes[$name] = $attr;
 
 		return $attr;

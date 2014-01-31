@@ -53,11 +53,19 @@ class ElementTree_ElementTreeTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @test
 	 */
-	public function addsOwnerTreeToCreatedComponent()
+	public function isNotOwnerTreeOfCreatedComponent()
 	{
 		$element = $this->tree->createElement('a');
 
-		$this->assertEquals($this->tree, $element->getOwnerTree());
+		$this->assertNull($element->getOwnerTree());
+	}
+
+	/**
+	 * @test
+	 */
+	public function isOwnerTreeOfItself()
+	{
+		$this->assertEquals($this->tree, $this->tree->getOwnerTree());
 	}
 
 	/**

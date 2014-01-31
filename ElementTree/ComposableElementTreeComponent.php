@@ -18,7 +18,6 @@ abstract class ComposableElementTreeComponent
 	public function append(Appendable $component, Appendable $after = null)
 	{
 		$component->parent = $this;
-		$this->setOwnerTree($component);
 
 		if ($after)
 		{
@@ -92,10 +91,5 @@ abstract class ComposableElementTreeComponent
 				$child->remove($component);
 			}
 		}
-	}
-
-	protected function setOwnerTree(Component $component)
-	{
-		$component->ownerTree = $this->ownerTree ?: $this;
 	}
 }

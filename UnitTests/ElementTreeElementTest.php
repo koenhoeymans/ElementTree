@@ -113,13 +113,51 @@ class ElementTree_ElementTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @test
 	 */
-	public function setsOwnerTreeOfAttribute()
+	public function isNotOwnerTreeOfAppendedElement()
+	{
+		$parent = new \ElementTree\ElementTreeElement('parent');
+		$child = new \ElementTree\ElementTreeElement('child');
+		$parent->append($child);
+
+		$this->assertNull($child->getOwnerTree());
+	}
+
+	/**
+	 * @test
+	 */
+	public function isNotOwnerTreeOfAppendedAttribute()
 	{
 		$parent = new \ElementTree\ElementTreeElement('parent');
 		$attr = $parent->setAttribute('child', 'true');
 
-		$this->assertEquals($parent, $attr->getOwnerTree());
-		
+		$this->assertEquals(null, $attr->getOwnerTree());
+	}
+
+	/**
+	 * @test
+	 */
+	public function setsOwnerTreeOfAppendedElement()
+	{
+		$elementTree = new \ElementTree\ElementTree();
+		$parent = new \ElementTree\ElementTreeElement('parent');
+		$child = new \ElementTree\ElementTreeElement('child');
+		$parent->append($child);
+		$elementTree->append($parent);
+	
+		$this->assertEquals($elementTree, $child->getOwnerTree());
+	}
+
+	/**
+	 * @test
+	 */
+	public function setsOwnerTreeOfAttribute()
+	{
+		$elementTree = new \ElementTree\ElementTree();
+		$parent = new \ElementTree\ElementTreeElement('parent');
+		$attr = $parent->setAttribute('child', 'true');
+		$elementTree->append($parent);
+
+		$this->assertEquals($elementTree, $attr->getOwnerTree());
 	}
 
 	/**

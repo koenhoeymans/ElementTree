@@ -1,6 +1,11 @@
 ElementTree Changelog
 =====================
 
+*	0.6.0
+
+	*	OwnerTrees are only OwnerTrees of components when they are added,
+		not upon creation or after removal (another difference with DOM).
+
 *	0.5.0
 
 	*	`ElementTreeAttribute` is not `Appendable`.

@@ -21,7 +21,12 @@ abstract class ElementTreeComponent implements Component, Queryable
 	 */
 	public function getOwnerTree()
 	{
-		return $this->ownerTree;
+		if ($this->hasParent())
+		{
+			return $this->getParent()->getOwnerTree();
+		}
+
+		return null;
 	}
 
 	/**
