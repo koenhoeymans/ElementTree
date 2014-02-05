@@ -43,6 +43,15 @@ class ElementTree extends ComposableElementTreeComponent implements ComponentFac
 	}
 
 	/**
+	 * @param Component $component
+	 * @return \ElementTree\ElementTreeQuery
+	 */
+	public function createQuery(Component $component)
+	{
+		return new \ElementTree\ElementTreeQuery($component);
+	}
+
+	/**
 	 * @see \ElementTree\Component::toString()
 	 */
 	public function toString()

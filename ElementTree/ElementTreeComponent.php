@@ -8,7 +8,7 @@ namespace ElementTree;
 /**
  * @package ElementTree
  */
-abstract class ElementTreeComponent implements Component, Queryable
+abstract class ElementTreeComponent implements Component
 {
 	protected $ownerTree = null;
 
@@ -65,12 +65,4 @@ abstract class ElementTreeComponent implements Component, Queryable
 	 * @see \ElementTree\Component::toString()
 	 */
 	abstract public function toString();
-
-	/**
-	 * @see \ElementTree\Queryable::createQuery()
-	 */
-	public function createQuery()
-	{
-		return new \ElementTree\ElementTreeQuery($this);
-	}
 }
