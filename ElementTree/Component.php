@@ -55,6 +55,14 @@ interface Component
 	public function getChildren();
 
 	/**
+	 * Will return the next child of the parent compoment or null if there
+	 * is none.
+	 *
+	 * @return \ElementTree\Component|null
+	 */
+	public function getNextSibling();
+
+	/**
 	 * Creates an XML-style string representation of the component
 	 * and its child components. Eg. if an ElementTree contains two
 	 * Elements named 'div' and 'hr', with the 'div' element containing

@@ -25,13 +25,17 @@ class ElementTree_DocumentationTest extends PHPUnit_Framework_TestCase
 		$comment = $elementTree->createComment('a comment');
 
 		/**
-		 * Elements and comments can be added to the tree. As this is not a pure XML
-		 * implementation there does not need to be only one root element.
+		 * Elements and comments can be added to the tree and to eachother.
+		 * As this is not a pure XML implementation there does not need
+		 * to be only one root element.
 		 */
 		$elementTree->append($element);
 		$elementTree->append($comment);
 		$h1 = $elementTree->createElement('h1');
 		$elementTree->append($h1);
+		$h1->append($text);
+
+		$this->assertSame($comment, $element->getNextSibling());
 
 		/**
 		 * For each component you can get back to the `ElementTree` that

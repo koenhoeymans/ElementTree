@@ -21,13 +21,23 @@ abstract class ComposableElementTreeComponent
 
 		if ($after)
 		{
-			$key = array_search($after, $this->children, true);
-			array_splice($this->children, $key+1, 0, array($component));
+			$key = array_search($after, $this->children, true)+1;
 		}
 		else
 		{
-			$this->children[] = $component;
+			$key = count($this->children);
 		}
+
+		$this->insert($component, $key);
+	}
+
+	private function insert(Appendable $component, $position)
+	{
+		if (isset($this->children[$position-1]))
+		{
+			$this->children[$position-1]->nextSibling = $component;
+		}
+		array_splice($this->children, $position, 0, array($component));
 	}
 
 	/**
@@ -65,10 +75,22 @@ abstract class ComposableElementTreeComponent
 
 	private function removeChild(Component $component)
 	{
+		$numberOfChildren = count($this->children);
 		foreach ($this->children as $key => $child)
 		{
 			if ($component === $child)
 			{
+				if ($key !== 0)
+				{
+					if ($key === $numberOfChildren-1)
+					{
+						$this->children[$key-1]->nextSibling = null;
+					}
+					else
+					{
+						$this->children[$key-1]->nextSibling = $this->children[$key+1];
+					}
+				}
 				unset($this->children[$key]);
 				$this->children = array_values($this->children);
 				$child->parent = null;

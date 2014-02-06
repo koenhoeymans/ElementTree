@@ -16,6 +16,8 @@ abstract class ElementTreeComponent implements Component
 
 	protected $children = array();
 
+	protected $nextSibling = null;
+
 	/**
 	 * @see \ElementTree\Component::getOwnerTree()
 	 */
@@ -59,6 +61,11 @@ abstract class ElementTreeComponent implements Component
 	public function getChildren()
 	{
 		return $this->children;
+	}
+
+	public function getNextSibling()
+	{
+		return $this->nextSibling;
 	}
 
 	/**
