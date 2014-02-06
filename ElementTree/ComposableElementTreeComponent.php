@@ -37,6 +37,10 @@ abstract class ComposableElementTreeComponent
 		{
 			$this->children[$position-1]->nextSibling = $component;
 		}
+		if ($position !== 0)
+		{
+			$component->previousSibling = $this->children[$position-1];
+		}
 		array_splice($this->children, $position, 0, array($component));
 	}
 
@@ -90,7 +94,16 @@ abstract class ComposableElementTreeComponent
 					{
 						$this->children[$key-1]->nextSibling = $this->children[$key+1];
 					}
+					if (isset($this->children[$key+1]))
+					{
+						$this->children[$key+1]->previousSibling = $this->children[$key-1];
+					}
 				}
+				elseif ($numberOfChildren > 1)
+				{
+					$this->children[1]->previousSibling = null;
+				}
+
 				unset($this->children[$key]);
 				$this->children = array_values($this->children);
 				$child->parent = null;

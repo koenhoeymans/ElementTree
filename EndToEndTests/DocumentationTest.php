@@ -36,6 +36,7 @@ class ElementTree_DocumentationTest extends PHPUnit_Framework_TestCase
 		$h1->append($text);
 
 		$this->assertSame($comment, $element->getNextSibling());
+		$this->assertSame($element, $comment->getPreviousSibling());
 
 		/**
 		 * For each component you can get back to the `ElementTree` that

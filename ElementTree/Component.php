@@ -55,12 +55,20 @@ interface Component
 	public function getChildren();
 
 	/**
-	 * Will return the next child of the parent compoment or null if there
+	 * Will return the next child of the parent component or null if there
 	 * is none.
 	 *
 	 * @return \ElementTree\Component|null
 	 */
 	public function getNextSibling();
+
+	/**
+	 * Will return the previous child of the parent component or null if there
+	 * is none.
+	 * 
+	 * @return \ElementTree\Component|null
+	 */
+	public function getPreviousSibling();
 
 	/**
 	 * Creates an XML-style string representation of the component

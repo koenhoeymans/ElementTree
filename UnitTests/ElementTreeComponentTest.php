@@ -38,4 +38,12 @@ class ElementTree_ElementTreeComponentTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertNull($this->component->getNextSibling());
 	}
+
+	/**
+	 * @test
+	 */
+	public function hasNoPreviousSiblingByDefault()
+	{
+		$this->assertNull($this->component->getPreviousSibling());
+	}
 }

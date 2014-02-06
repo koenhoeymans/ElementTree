@@ -57,4 +57,48 @@ class ElementTree_ComposableElementTreeComponentTest extends PHPUnit_Framework_T
 
 		$this->assertSame($h2, $div->getNextSibling());
 	}
+
+	/**
+	 * @test
+	 */
+	public function addsPreviousSiblingToAppendable()
+	{
+		$div = new \ElementTree\ElementTreeElement('div');
+		$h1 = new \ElementTree\ElementTreeElement('h1');
+		$this->composable->append($div);
+		$this->composable->append($h1);
+
+		$this->assertSame($div, $h1->getPreviousSibling());
+		$this->assertNull($div->getPreviousSibling());
+	}
+
+	/**
+	 * @test
+	 */
+	public function removesPreviousSiblingAfterRemoveFirstChild()
+	{
+		$div = new \ElementTree\ElementTreeElement('div');
+		$h1 = new \ElementTree\ElementTreeElement('h1');
+		$this->composable->append($div);
+		$this->composable->append($h1);
+		$this->composable->remove($div);
+
+		$this->assertNull($h1->getNextSibling());
+	}
+
+	/**
+	 * @test
+	 */
+	public function adjustsPreviousSiblingAfterRemovingNotFirstChild()
+	{
+		$div = new \ElementTree\ElementTreeElement('div');
+		$h1 = new \ElementTree\ElementTreeElement('h1');
+		$h2 = new \ElementTree\ElementTreeElement('h2');
+		$this->composable->append($div);
+		$this->composable->append($h1);
+		$this->composable->append($h2);
+		$this->composable->remove($h1);
+
+		$this->assertSame($div, $h1->getPreviousSibling());
+	}
 }
