@@ -17,7 +17,6 @@ abstract class ComposableElementTreeComponent
 	 */
 	public function append(Appendable $component)
 	{
-		$component->parent = $this;
 		$this->insert($component, count($this->children));
 	}
 
@@ -26,7 +25,6 @@ abstract class ComposableElementTreeComponent
 	 */
 	public function insertAfter(Appendable $component, Appendable $after)
 	{
-		$component->parent = $this;
 		$key = array_search($after, $this->children, true)+1;
 		$this->insert($component, $key);
 	}
@@ -36,13 +34,14 @@ abstract class ComposableElementTreeComponent
 	 */
 	public function insertBefore(Appendable $component, Appendable $before)
 	{
-		$component->parent = $this;
 		$key = array_search($before, $this->children, true);
 		$this->insert($component, $key);
 	}
 
 	private function insert(Appendable $component, $position)
 	{
+		$component->parent = $this;
+
 		array_splice($this->children, $position, 0, array($component));
 
 		if (isset($this->children[$position-1]))
