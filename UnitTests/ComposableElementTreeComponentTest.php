@@ -69,6 +69,16 @@ class ElementTree_ComposableElementTreeComponentTest extends PHPUnit_Framework_T
 		$this->composable->append($h1);
 
 		$this->assertSame($div, $h1->getPreviousSibling());
+	}
+
+	/**
+	 * @test
+	 */
+	public function previousSiblingIsNullWhenThereIsNone()
+	{
+		$div = new \ElementTree\ElementTreeElement('div');
+		$this->composable->append($div);
+
 		$this->assertNull($div->getPreviousSibling());
 	}
 
@@ -99,6 +109,68 @@ class ElementTree_ComposableElementTreeComponentTest extends PHPUnit_Framework_T
 		$this->composable->append($h2);
 		$this->composable->remove($h1);
 
-		$this->assertSame($div, $h1->getPreviousSibling());
+		$this->assertSame($div, $h2->getPreviousSibling());
+	}
+
+	/**
+	 * @test
+	 */
+	public function insertsComponentAfterOtherComponent()
+	{
+		$div = new \ElementTree\ElementTreeElement('div');
+		$h1 = new \ElementTree\ElementTreeElement('h1');
+		$h2 = new \ElementTree\ElementTreeElement('h2');
+		$this->composable->append($div);
+		$this->composable->append($h1);
+		$this->composable->insertAfter($h2, $div);
+
+		$this->assertEquals(array($div, $h2, $h1), $this->composable->getChildren());
+	}
+
+	/**
+	 * @test
+	 */
+	public function addsInsertedComponentAsPreviousSibling()
+	{
+		$div = new \ElementTree\ElementTreeElement('div');
+		$h1 = new \ElementTree\ElementTreeElement('h1');
+		$h2 = new \ElementTree\ElementTreeElement('h2');
+		$this->composable->append($div);
+		$this->composable->append($h1);
+		$this->composable->insertAfter($h2, $div);
+
+		$this->assertEquals($h2, $h1->getPreviousSibling());		
+	}
+
+	/**
+	 * @test
+	 */
+	public function insertsComponentBeforeOtherComponent()
+	{
+		$div = new \ElementTree\ElementTreeElement('div');
+		$h1 = new \ElementTree\ElementTreeElement('h1');
+		$h2 = new \ElementTree\ElementTreeElement('h2');
+		$this->composable->append($div);
+		$this->composable->append($h1);
+		$this->composable->insertBefore($h2, $h1);
+
+		$this->assertEquals(array($div, $h2, $h1), $this->composable->getChildren());
+	}
+
+	/**
+	 * @test
+	 */
+	public function removesSiblingsFromRemovedComponent()
+	{
+		$div = new \ElementTree\ElementTreeElement('div');
+		$h1 = new \ElementTree\ElementTreeElement('h1');
+		$h2 = new \ElementTree\ElementTreeElement('h2');
+		$this->composable->append($div);
+		$this->composable->append($h1);
+		$this->composable->append($h2);
+		$this->composable->remove($h1);
+
+		$this->assertNull($h1->getPreviousSibling());
+		$this->assertNull($h1->getNextSibling());
 	}
 }

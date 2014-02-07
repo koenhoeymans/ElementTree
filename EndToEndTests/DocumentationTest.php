@@ -39,10 +39,48 @@ class ElementTree_DocumentationTest extends PHPUnit_Framework_TestCase
 		$this->assertSame($element, $comment->getPreviousSibling());
 
 		/**
+		 * Components can also be removed from its parent.
+		 */
+		$element->remove($comment);
+		$element->remove($h1);
+
+		$this->assertFalse($element->hasChildren());
+
+		/**
+		 * Elements and comments can be inserted after others.
+		 */
+		$elementTree = new \ElementTree\ElementTree();
+		$h1 = $elementTree->createElement('h1');
+		$h2 = $elementTree->createElement('h2');
+		$h3 = $elementTree->createElement('h3');
+		$elementTree->append($h1);
+		$elementTree->append($h3);
+		$elementTree->insertAfter($h2, $h1);
+
+		$this->assertSame($h2, $h1->getNextSibling());
+
+		/**
+		 * Or they can be inserted before another component.
+		 */
+		$elementTree = new \ElementTree\ElementTree();
+		$h1 = $elementTree->createElement('h1');
+		$h2 = $elementTree->createElement('h2');
+		$h3 = $elementTree->createElement('h3');
+		$elementTree->append($h1);
+		$elementTree->append($h3);
+		$elementTree->insertBefore($h2, $h3);
+
+		$this->assertSame($h2, $h3->getPreviousSibling());
+
+		/**
 		 * For each component you can get back to the `ElementTree` that
 		 * created it:
 		 */
-		$this->assertSame($elementTree, $element->getOwnerTree());
+		$elementTree = new \ElementTree\ElementTree();
+		$div = $elementTree->createElement('div');
+		$elementTree->append($div);
+
+		$this->assertSame($elementTree, $div->getOwnerTree());
 
 		/**
 		 * `Text` can be appended to `Elements`.
@@ -103,13 +141,6 @@ class ElementTree_DocumentationTest extends PHPUnit_Framework_TestCase
 		$this->assertTrue($element->hasChildren());
 
 		/**
-		 * Components can also be removed from its parent.
-		 */
-		$element->remove($text);
-		$element->remove($p);
-		$this->assertFalse($element->hasChildren());
-
-		/**
 		 * Comments and Text components have the `getValue` and `setValue`
 		 * methods to manipulate them.
 		 */
@@ -122,11 +153,14 @@ class ElementTree_DocumentationTest extends PHPUnit_Framework_TestCase
 		/**
 		 * The whole tree can be xmlified to string. Empty tags will be closed.
 		 */
-		$h1->append($elementTree->createText('a header'));
-		$this->assertEquals(
-			'<div class="sidebar" /><!--comment changed--><h1>a header</h1>',
-			$elementTree->toString()
-		);
+		$elementTree = new \ElementTree\ElementTree();
+		$h1 = $elementTree->createElement('h1');
+		$text = $elementTree->createText('a header');
+		$elementTree->append($h1);
+		$h1->append($text);
+		$elementTree->append($elementTree->createElement('div'));
+
+		$this->assertEquals('<h1>a header</h1><div />', $elementTree->toString());
 
 
 		/**

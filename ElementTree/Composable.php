@@ -20,6 +20,22 @@ interface Composable
 	public function append(Appendable $component, Appendable $after = null);
 
 	/**
+	 * Inserts an appendable component as a child after another component. 
+	 * 
+	 * @param Appendable $component
+	 * @param Appendable $after
+	 */
+	public function insertAfter(Appendable $component, Appendable $after);
+
+	/**
+	 * Inserts an appendable component as a child before another component.
+	 * 
+	 * @param Appendable $component
+	 * @param Appendable $before
+	 */
+	public function insertBefore(Appendable $component, Appendable $before);
+
+	/**
 	 * Removes a subcomponent.
 	 * 
 	 * @param Appendable $component

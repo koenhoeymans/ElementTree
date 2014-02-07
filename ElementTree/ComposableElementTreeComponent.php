@@ -31,17 +31,40 @@ abstract class ComposableElementTreeComponent
 		$this->insert($component, $key);
 	}
 
+	/**
+	 * @see \ElementTree\Composable::insertAfter()
+	 */
+	public function insertAfter(Appendable $component, Appendable $after)
+	{
+		$component->parent = $this;
+		$key = array_search($after, $this->children, true)+1;
+		$this->insert($component, $key);
+	}
+
+	/**
+	 * @see \ElementTree\Composable::insertBefore()
+	 */
+	public function insertBefore(Appendable $component, Appendable $before)
+	{
+		$component->parent = $this;
+		$key = array_search($before, $this->children, true);
+		$this->insert($component, $key);
+	}
+
 	private function insert(Appendable $component, $position)
 	{
+		array_splice($this->children, $position, 0, array($component));
+
 		if (isset($this->children[$position-1]))
 		{
 			$this->children[$position-1]->nextSibling = $component;
-		}
-		if ($position !== 0)
-		{
 			$component->previousSibling = $this->children[$position-1];
 		}
-		array_splice($this->children, $position, 0, array($component));
+		if (isset($this->children[$position+1]))
+		{
+			$this->children[$position+1]->previousSibling = $component;
+			$component->nextSibling = $this->children[$position+1];
+		}
 	}
 
 	/**
@@ -108,6 +131,9 @@ abstract class ComposableElementTreeComponent
 				$this->children = array_values($this->children);
 				$child->parent = null;
 				$child->ownerTree = null;
+				$child->previousSibling = null;
+				$child->nextSibling = null;
+
 				return true;
 			}
 		}
