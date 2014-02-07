@@ -11,13 +11,12 @@ namespace ElementTree;
 interface Composable
 {
 	/**
-	 * Appends an appendable component as a child. Optionally specifying
-	 * after which other child component.
+	 * Appends an appendable component as a (last) child.
 	 *
 	 * @param Appendable $component
 	 * @param Appendable $after
 	 */
-	public function append(Appendable $component, Appendable $after = null);
+	public function append(Appendable $component);
 
 	/**
 	 * Inserts an appendable component as a child after another component. 

@@ -15,20 +15,10 @@ abstract class ComposableElementTreeComponent
 	/**
 	 * @see \ElementTree\Composable::append()
 	 */
-	public function append(Appendable $component, Appendable $after = null)
+	public function append(Appendable $component)
 	{
 		$component->parent = $this;
-
-		if ($after)
-		{
-			$key = array_search($after, $this->children, true)+1;
-		}
-		else
-		{
-			$key = count($this->children);
-		}
-
-		$this->insert($component, $key);
+		$this->insert($component, count($this->children));
 	}
 
 	/**

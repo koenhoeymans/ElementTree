@@ -82,22 +82,6 @@ class ElementTree_ElementTreeTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @test
 	 */
-	public function canAppendAfterComponent()
-	{
-		$a = new \ElementTree\ElementTree();
-		$b = new \ElementTree\ElementTreeElement('b');
-		$c = new \ElementTree\ElementTreeElement('c');
-		$d = new \ElementTree\ElementTreeElement('d');
-		$a->append($b);
-		$a->append($c);
-		$a->append($d, $b);
-
-		$this->assertEquals(array($b, $d, $c), $a->getChildren());
-	}
-
-	/**
-	 * @test
-	 */
 	public function canRemoveChildElement()
 	{
 		$parent = new \ElementTree\ElementTree();
