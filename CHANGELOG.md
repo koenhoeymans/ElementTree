@@ -1,6 +1,16 @@
 ElementTree Changelog
 =====================
 
+*	0.7.0
+
+	*	Only `ElementTree` has utility method for creating query. Other
+		components don't implement `Queryable` anymore and this interface
+		is removed.
+	*	Added `Component::getNextSibling` and `Component::getPreviousSibling`.
+	*	Added `Composable::insertAfter` and `Composable::insertBefore`.
+	*	Removed option to append after other component. One can use `insertAfter`
+		for that.
+
 *	0.6.0
 
 	*	OwnerTrees are only OwnerTrees of components when they are added,
