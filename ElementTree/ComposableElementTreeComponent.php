@@ -40,6 +40,8 @@ abstract class ComposableElementTreeComponent
 
 	private function insert(Appendable $component, $position)
 	{
+		$this->removeFromPreviousOwner($component);
+
 		$component->parent = $this;
 
 		array_splice($this->children, $position, 0, array($component));
@@ -133,6 +135,14 @@ abstract class ComposableElementTreeComponent
 			) {
 				$child->remove($component);
 			}
+		}
+	}
+
+	private function removeFromPreviousOwner(Component $component)
+	{
+		if ($component->hasParent())
+		{
+			$component->getParent()->remove($component);
 		}
 	}
 }

@@ -173,4 +173,32 @@ class ElementTree_ComposableElementTreeComponentTest extends PHPUnit_Framework_T
 		$this->assertNull($h1->getPreviousSibling());
 		$this->assertNull($h1->getNextSibling());
 	}
+
+	/**
+	 * @test
+	 */
+	public function removesComponentFromPreviousPositionBeforeAppending()
+	{
+		$h1 = new \ElementTree\ElementTreeElement('h1');
+		$h2 = new \ElementTree\ElementTreeElement('h2');
+		$this->composable->append($h1);
+		$this->composable->append($h2);
+		$this->composable->append($h1);
+
+		$this->assertEquals(array($h2, $h1), $this->composable->getChildren());
+	}
+
+	/**
+	 * @test
+	 */
+	public function removesComponentFromPreviousPositionBeforeInserting()
+	{
+		$h1 = new \ElementTree\ElementTreeElement('h1');
+		$h2 = new \ElementTree\ElementTreeElement('h2');
+		$this->composable->append($h1);
+		$this->composable->append($h2);
+		$this->composable->insertAfter($h1, $h2);
+
+		$this->assertEquals(array($h2, $h1), $this->composable->getChildren());
+	}
 }
