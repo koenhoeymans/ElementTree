@@ -96,32 +96,25 @@ abstract class ComposableElementTreeComponent
 		{
 			if ($component === $child)
 			{
-				if ($key !== 0)
-				{
-					if ($key === $numberOfChildren-1)
-					{
-						$this->children[$key-1]->nextSibling = null;
-					}
-					else
-					{
-						$this->children[$key-1]->nextSibling = $this->children[$key+1];
-					}
-					if (isset($this->children[$key+1]))
-					{
-						$this->children[$key+1]->previousSibling = $this->children[$key-1];
-					}
-				}
-				elseif ($numberOfChildren > 1)
-				{
-					$this->children[1]->previousSibling = null;
-				}
-
 				unset($this->children[$key]);
 				$this->children = array_values($this->children);
 				$child->parent = null;
 				$child->ownerTree = null;
 				$child->previousSibling = null;
 				$child->nextSibling = null;
+
+				if (isset($this->children[$key]))
+				{
+					$this->children[$key]->previousSibling = isset($this->children[$key-1])
+						? $this->children[$key-1]
+						: null;
+				}
+				if (isset($this->children[$key-1]))
+				{
+					$this->children[$key-1]->nextSibling = isset($this->children[$key])
+						? $this->children[$key]
+						: null;
+				}
 
 				return true;
 			}
