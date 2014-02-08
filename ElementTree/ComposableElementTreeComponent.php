@@ -85,7 +85,6 @@ abstract class ComposableElementTreeComponent
 
 	private function removeChild(Component $component)
 	{
-		$numberOfChildren = count($this->children);
 		foreach ($this->children as $key => $child)
 		{
 			if ($component === $child)
