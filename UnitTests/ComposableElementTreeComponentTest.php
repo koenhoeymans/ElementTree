@@ -265,4 +265,19 @@ class ElementTree_ComposableElementTreeComponentTest extends PHPUnit_Framework_T
 
 		$this->assertEquals(array($h3), $h1->getChildren());
 	}
+
+	/**
+	 * @test
+	 */
+	public function replacingComponentIsRemovedFromOldParent()
+	{
+		$tree = new \ElementTree\ElementTree();
+		$h1 = new \ElementTree\ElementTreeElement('h1');
+		$tree->append($h1);
+		$h2 = new \ElementTree\ElementTreeElement('h2');
+		$this->composable->append($h2);
+		$this->composable->replace($h1, $h2);
+
+		$this->assertEquals(array(), $tree->getChildren());
+	}
 }
