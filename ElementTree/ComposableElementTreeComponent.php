@@ -63,9 +63,10 @@ abstract class ComposableElementTreeComponent
 	 */
 	public function remove(Appendable $component)
 	{
-		if (!$this->removeChild($component))
+		$parent = $component->getParent();
+		if ($parent)
 		{
-			$this->removeChildInChildren($component);
+			$parent->removeChild($component);
 		}
 	}
 
@@ -114,19 +115,6 @@ abstract class ComposableElementTreeComponent
 		}
 
 		return false;
-	}
-
-
-	private function removeChildInChildren(Component $component)
-	{
-		foreach ($this->children as $child)
-		{
-			if (get_class($child) === get_class()
-				|| in_array(get_class(), class_parents(get_class($child)))
-			) {
-				$child->remove($component);
-			}
-		}
 	}
 
 	private function removeFromPreviousOwner(Component $component)
