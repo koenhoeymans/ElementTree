@@ -110,11 +110,9 @@ abstract class ComposableElementTreeComponent
 						: null;
 				}
 
-				return true;
+				break;
 			}
 		}
-
-		return false;
 	}
 
 	private function removeFromPreviousOwner(Component $component)
