@@ -1,6 +1,10 @@
 ElementTree Changelog
 =====================
 
+*	0.7.1
+
+	*	Bug fixes for replacing components.
+
 *	0.7.0
 
 	*	Only `ElementTree` has utility method for creating query. Other
