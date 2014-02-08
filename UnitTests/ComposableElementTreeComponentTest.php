@@ -201,4 +201,68 @@ class ElementTree_ComposableElementTreeComponentTest extends PHPUnit_Framework_T
 
 		$this->assertEquals(array($h2, $h1), $this->composable->getChildren());
 	}
+
+	/**
+	 * @test
+	 */
+	public function replacesComponents()
+	{
+		$h1 = new \ElementTree\ElementTreeElement('h1');
+		$h2 = new \ElementTree\ElementTreeElement('h2');
+		$h3 = new \ElementTree\ElementTreeElement('h3');
+		$h4 = new \ElementTree\ElementTreeElement('h4');
+		$this->composable->append($h1);
+		$this->composable->append($h4);
+		$this->composable->append($h3);
+		$this->composable->replace($h2, $h4);
+
+		$this->assertEquals(array($h1, $h2, $h3), $this->composable->getChildren());
+	}
+
+	/**
+	 * @test
+	 */
+	public function replaceUpdatesPreviousSibling()
+	{
+		$h1 = new \ElementTree\ElementTreeElement('h1');
+		$h2 = new \ElementTree\ElementTreeElement('h2');
+		$h3 = new \ElementTree\ElementTreeElement('h3');
+		$this->composable->append($h1);
+		$this->composable->append($h2);
+		$this->composable->replace($h3, $h2);
+
+		$this->assertSame($h1, $h3->getPreviousSibling());
+		$this->assertNull($h2->getPreviousSibling());
+	}
+
+	/**
+	 * @test
+	 */
+	public function replaceUpdatesNextSibling()
+	{
+		$h1 = new \ElementTree\ElementTreeElement('h1');
+		$h2 = new \ElementTree\ElementTreeElement('h2');
+		$h3 = new \ElementTree\ElementTreeElement('h3');
+		$this->composable->append($h1);
+		$this->composable->append($h2);
+		$this->composable->replace($h3, $h1);
+
+		$this->assertSame($h2, $h3->getNextSibling());
+		$this->assertNull($h2->getNextSibling());
+	}
+
+	/**
+	 * @test
+	 */
+	public function replacesWithinSubChildren()
+	{
+		$h1 = new \ElementTree\ElementTreeElement('h1');
+		$h2 = new \ElementTree\ElementTreeElement('h2');
+		$h3 = new \ElementTree\ElementTreeElement('h3');
+		$this->composable->append($h1);
+		$h1->append($h2);
+		$this->composable->replace($h3, $h2);
+
+		$this->assertEquals(array($h3), $h1->getChildren());
+	}
 }

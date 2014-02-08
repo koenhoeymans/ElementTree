@@ -74,21 +74,13 @@ abstract class ComposableElementTreeComponent
 	 */
 	public function replace(Appendable $newComponent, Appendable $oldComponent)
 	{
-		if (get_class($newComponent) === __CLASS__)
+		$parent = $oldComponent->getParent();
+		if (!$parent)
 		{
-			$newComponents = $newComponent->getChildren();
+			return;
 		}
-		else
-		{
-			$newComponents = array($newComponent);
-		}
-
-		foreach ($newComponents as $component)
-		{
-			$this->append($component, $oldComponent);
-		}
-
-		$this->remove($oldComponent);
+		$parent->insertAfter($newComponent, $oldComponent);
+		$parent->remove($oldComponent);
 	}
 
 	private function removeChild(Component $component)
