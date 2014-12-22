@@ -4,139 +4,139 @@ namespace ElementTree;
 
 class ElementTreeTest extends \PHPUnit_Framework_TestCase
 {
-	public function setup()
-	{
-		$this->tree = new \ElementTree\ElementTree();
-	}
+    public function setup()
+    {
+        $this->tree = new \ElementTree\ElementTree();
+    }
 
-	/**
-	 * @test
-	 */
-	public function createsElement()
-	{
-		$this->assertTrue(
-			$this->tree->createElement('foo') instanceof \ElementTree\ElementTreeElement
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function createsText()
-	{
-		$this->assertTrue(
-			$this->tree->createText('foo') instanceof \ElementTree\ElementTreeText
-		);
-	}
+    /**
+     * @test
+     */
+    public function createsElement()
+    {
+        $this->assertTrue(
+            $this->tree->createElement('foo') instanceof \ElementTree\ElementTreeElement
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function createsComment()
-	{
-		$this->assertTrue(
-			$this->tree->createComment('foo') instanceof \ElementTree\ElementTreeComment
-		);
-	}
+    /**
+     * @test
+     */
+    public function createsText()
+    {
+        $this->assertTrue(
+            $this->tree->createText('foo') instanceof \ElementTree\ElementTreeText
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function isParentOfAppended()
-	{
-		$element = new \ElementTree\ElementTreeElement('a');
-		$this->tree->append($element);
+    /**
+     * @test
+     */
+    public function createsComment()
+    {
+        $this->assertTrue(
+            $this->tree->createComment('foo') instanceof \ElementTree\ElementTreeComment
+        );
+    }
 
-		$this->assertEquals($this->tree, $element->getParent());
-	}
+    /**
+     * @test
+     */
+    public function isParentOfAppended()
+    {
+        $element = new \ElementTree\ElementTreeElement('a');
+        $this->tree->append($element);
 
-	/**
-	 * @test
-	 */
-	public function isNotOwnerTreeOfCreatedComponent()
-	{
-		$element = $this->tree->createElement('a');
+        $this->assertEquals($this->tree, $element->getParent());
+    }
 
-		$this->assertNull($element->getOwnerTree());
-	}
+    /**
+     * @test
+     */
+    public function isNotOwnerTreeOfCreatedComponent()
+    {
+        $element = $this->tree->createElement('a');
 
-	/**
-	 * @test
-	 */
-	public function isOwnerTreeOfItself()
-	{
-		$this->assertEquals($this->tree, $this->tree->getOwnerTree());
-	}
+        $this->assertNull($element->getOwnerTree());
+    }
 
-	/**
-	 * @test
-	 */
-	public function addsOwnerTreeToAppendedElement()
-	{
-		$element = new \ElementTree\ElementTreeElement('p');
-		$this->tree->append($element);
+    /**
+     * @test
+     */
+    public function isOwnerTreeOfItself()
+    {
+        $this->assertEquals($this->tree, $this->tree->getOwnerTree());
+    }
 
-		$this->assertEquals($this->tree, $element->getOwnerTree());
-	}
+    /**
+     * @test
+     */
+    public function addsOwnerTreeToAppendedElement()
+    {
+        $element = new \ElementTree\ElementTreeElement('p');
+        $this->tree->append($element);
 
-	/**
-	 * @test
-	 */
-	public function canRemoveChildElement()
-	{
-		$parent = new \ElementTree\ElementTree();
-		$child = new \ElementTree\ElementTreeElement('a');
-		$parent->append($child);
-		$parent->remove($child);
+        $this->assertEquals($this->tree, $element->getOwnerTree());
+    }
 
-		$this->assertEquals(array(), $parent->getChildren());
-		$this->assertEquals(null, $child->getOwnerTree());
-	}
+    /**
+     * @test
+     */
+    public function canRemoveChildElement()
+    {
+        $parent = new \ElementTree\ElementTree();
+        $child = new \ElementTree\ElementTreeElement('a');
+        $parent->append($child);
+        $parent->remove($child);
 
-	/**
-	 * @test
-	 */
-	public function canRemoveSubChildrenElements()
-	{
-		$parent = new \ElementTree\ElementTree();
-		$child = new \ElementTree\ElementTreeElement('a');
-		$subchild = new \ElementTree\ElementTreeElement('b');
-		$parent->append($child);
-		$child->append($subchild);
-		$parent->remove($subchild);
+        $this->assertEquals(array(), $parent->getChildren());
+        $this->assertEquals(null, $child->getOwnerTree());
+    }
 
-		$this->assertEquals(array($child), $parent->getChildren());
-		$this->assertEquals($parent, $child->getOwnerTree());
-		$this->assertEquals(array(), $child->getChildren());
-		$this->assertEquals(null, $subchild->getParent());
-	}
+    /**
+     * @test
+     */
+    public function canRemoveSubChildrenElements()
+    {
+        $parent = new \ElementTree\ElementTree();
+        $child = new \ElementTree\ElementTreeElement('a');
+        $subchild = new \ElementTree\ElementTreeElement('b');
+        $parent->append($child);
+        $child->append($subchild);
+        $parent->remove($subchild);
 
-	/**
-	 * @test
-	 */
-	public function doesNotAskTextToRemoveChild()
-	{
-		$tree = new \ElementTree\ElementTree();
-		$text = new \ElementTree\ElementTreeText('text');
-		$tree->append($text);
+        $this->assertEquals(array($child), $parent->getChildren());
+        $this->assertEquals($parent, $child->getOwnerTree());
+        $this->assertEquals(array(), $child->getChildren());
+        $this->assertEquals(null, $subchild->getParent());
+    }
 
-		$tree->remove(new \ElementTree\ElementTreeElement('b'));
+    /**
+     * @test
+     */
+    public function doesNotAskTextToRemoveChild()
+    {
+        $tree = new \ElementTree\ElementTree();
+        $text = new \ElementTree\ElementTreeText('text');
+        $tree->append($text);
 
-		$this->assertEquals(array($text), $tree->getChildren());
-		$this->assertEquals($tree, $text->getOwnerTree());
-	}
+        $tree->remove(new \ElementTree\ElementTreeElement('b'));
 
-	/**
-	 * @test
-	 */
-	public function canReplaceChild()
-	{
-		$a = new \ElementTree\ElementTree();
-		$b = new \ElementTree\ElementTreeElement('b');
-		$c = new \ElementTree\ElementTreeElement('c');
-		$a->append($b);
-		$a->replace($c, $b);
+        $this->assertEquals(array($text), $tree->getChildren());
+        $this->assertEquals($tree, $text->getOwnerTree());
+    }
 
-		$this->assertEquals(array($c), $a->getChildren());
-	}
+    /**
+     * @test
+     */
+    public function canReplaceChild()
+    {
+        $a = new \ElementTree\ElementTree();
+        $b = new \ElementTree\ElementTreeElement('b');
+        $c = new \ElementTree\ElementTreeElement('c');
+        $a->append($b);
+        $a->replace($c, $b);
+
+        $this->assertEquals(array($c), $a->getChildren());
+    }
 }

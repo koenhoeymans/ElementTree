@@ -10,27 +10,25 @@ use ElementTree\Component;
 /**
  * @package ElementTree
  */
-Class AllAttributes implements ComponentSpecification
+class AllAttributes implements ComponentSpecification
 {
-	private $specification;
+    private $specification;
 
-	public function __construct(ComponentSpecification $specification = null)
-	{
-		$this->specification = $specification;
-	}
+    public function __construct(ComponentSpecification $specification = null)
+    {
+        $this->specification = $specification;
+    }
 
-	public function isSatisfiedBy(Component $component)
-	{
-		if (!($component instanceof \ElementTree\Attribute))
-		{
-			return false;
-		}
+    public function isSatisfiedBy(Component $component)
+    {
+        if (!($component instanceof \ElementTree\Attribute)) {
+            return false;
+        }
 
-		if ($this->specification)
-		{
-			return $this->specification->isSatisfiedBy($component);
-		}
+        if ($this->specification) {
+            return $this->specification->isSatisfiedBy($component);
+        }
 
-		return true;
-	}
+        return true;
+    }
 }

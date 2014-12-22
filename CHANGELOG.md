@@ -5,6 +5,8 @@ ElementTree Changelog
 
     *   Changed project directory structure, moving to PSR4.
     *   Added PhpUnit xml configuration.
+    *   Added QualityCheck library tools.
+    *   Fix PSR2 coding violations.
 
 *	0.7.1
 

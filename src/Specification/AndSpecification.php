@@ -10,25 +10,23 @@ use ElementTree\Component;
 /**
  * @package ElementTree
  */
-Class AndSpecification implements ComponentSpecification
+class AndSpecification implements ComponentSpecification
 {
-	private $specifications;
+    private $specifications;
 
-	public function __construct(ComponentSpecification $a, ComponentSpecification $b)
-	{
-		$this->specifications = func_get_args();
-	}
+    public function __construct(ComponentSpecification $a, ComponentSpecification $b)
+    {
+        $this->specifications = func_get_args();
+    }
 
-	public function isSatisfiedBy(Component $component)
-	{
-		foreach ($this->specifications as $specification)
-		{
-			if (!$specification->isSatisfiedBy($component))
-			{
-				return false;
-			}
-		}
+    public function isSatisfiedBy(Component $component)
+    {
+        foreach ($this->specifications as $specification) {
+            if (!$specification->isSatisfiedBy($component)) {
+                return false;
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 }

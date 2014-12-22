@@ -10,18 +10,18 @@ namespace ElementTree;
  */
 interface ComponentFactory
 {
-	/**
-	 * @return \ElementTree\Element
-	 */
-	public function createElement($name);
+    /**
+     * @return \ElementTree\Element
+     */
+    public function createElement($name);
 
-	/**
-	 * @return \ElementTree\Text
-	 */
-	public function createText($value);
+    /**
+     * @return \ElementTree\Text
+     */
+    public function createText($value);
 
-	/**
-	 * @return \ElementTree\Comment
-	 */
-	public function createComment($value);
+    /**
+     * @return \ElementTree\Comment
+     */
+    public function createComment($value);
 }

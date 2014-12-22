@@ -10,41 +10,36 @@ use ElementTree\Component;
 /**
  * @package ElementTree
  */
-Class WithAttribute implements ComponentSpecification
+class WithAttribute implements ComponentSpecification
 {
-	private $specification;
+    private $specification;
 
-	public function __construct(ComponentSpecification $specification = null)
-	{
-		$this->specification = $specification;
-	}
+    public function __construct(ComponentSpecification $specification = null)
+    {
+        $this->specification = $specification;
+    }
 
-	public function isSatisfiedBy(Component $component)
-	{
-		if (!($component instanceof \ElementTree\Element))
-		{
-			return false;
-		}
+    public function isSatisfiedBy(Component $component)
+    {
+        if (!($component instanceof \ElementTree\Element)) {
+            return false;
+        }
 
-		$attributes = $component->getAttributes();
-		if (empty($attributes))
-		{
-			return false;
-		}
+        $attributes = $component->getAttributes();
+        if (empty($attributes)) {
+            return false;
+        }
 
-		if (!$this->specification)
-		{
-			return true;
-		}
+        if (!$this->specification) {
+            return true;
+        }
 
-		foreach ($component->getAttributes() as $attr)
-		{
-			if ($this->specification->isSatisfiedBy($attr))
-			{
-				return true;
-			}
-		}
+        foreach ($component->getAttributes() as $attr) {
+            if ($this->specification->isSatisfiedBy($attr)) {
+                return true;
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 }

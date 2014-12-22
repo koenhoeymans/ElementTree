@@ -4,29 +4,29 @@ namespace ElementTree\Specification;
 
 class AndSpecificationTest extends \PHPUnit_Framework_TestCase
 {
-	/**
-	 * @test
-	 */
-	public function isSatisfiedWhenAllSubspecificationsAreSatisfied()
-	{
-		$andSpec = new \ElementTree\Specification\AndSpecification(
-			new \ElementTree\Specification\AllElements(),
-			new \ElementTree\Specification\WithName('a')
-		);
+    /**
+     * @test
+     */
+    public function isSatisfiedWhenAllSubspecificationsAreSatisfied()
+    {
+        $andSpec = new \ElementTree\Specification\AndSpecification(
+            new \ElementTree\Specification\AllElements(),
+            new \ElementTree\Specification\WithName('a')
+        );
 
-		$this->assertTrue($andSpec->isSatisfiedBy(new \ElementTree\ElementTreeElement('a')));
-	}
+        $this->assertTrue($andSpec->isSatisfiedBy(new \ElementTree\ElementTreeElement('a')));
+    }
 
-	/**
-	 * @test
-	 */
-	public function isNotSatisfiedWhenNotAllSubspecificationsAreSatisfied()
-	{
-		$andSpec = new \ElementTree\Specification\AndSpecification(
-			new \ElementTree\Specification\AllElements(),
-			new \ElementTree\Specification\WithName('b')
-		);
+    /**
+     * @test
+     */
+    public function isNotSatisfiedWhenNotAllSubspecificationsAreSatisfied()
+    {
+        $andSpec = new \ElementTree\Specification\AndSpecification(
+            new \ElementTree\Specification\AllElements(),
+            new \ElementTree\Specification\WithName('b')
+        );
 
-		$this->assertFalse($andSpec->isSatisfiedBy(new \ElementTree\ElementTreeElement('a')));
-	}
+        $this->assertFalse($andSpec->isSatisfiedBy(new \ElementTree\ElementTreeElement('a')));
+    }
 }

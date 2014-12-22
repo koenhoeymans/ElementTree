@@ -10,23 +10,22 @@ use ElementTree\Component;
 /**
  * @package ElementTree
  */
-Class WithName implements ComponentSpecification
+class WithName implements ComponentSpecification
 {
-	private $name;
+    private $name;
 
-	public function __construct($name)
-	{
-		$this->name = $name;
-	}
+    public function __construct($name)
+    {
+        $this->name = $name;
+    }
 
-	public function isSatisfiedBy(Component $component)
-	{
-		if ($component instanceof \ElementTree\Element
-			|| $component instanceof \ElementTree\Attribute)
-		{
-			return $component->getName() == $this->name;
-		}
+    public function isSatisfiedBy(Component $component)
+    {
+        if ($component instanceof \ElementTree\Element
+            || $component instanceof \ElementTree\Attribute) {
+            return $component->getName() == $this->name;
+        }
 
-		return false;
-	}
+        return false;
+    }
 }

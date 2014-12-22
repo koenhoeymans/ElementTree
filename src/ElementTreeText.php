@@ -10,39 +10,39 @@ namespace ElementTree;
  */
 class ElementTreeText extends ElementTreeComponent implements Text, Appendable
 {
-	private $value;
+    private $value;
 
-	public function __construct($value)
-	{
-		$this->value = (string) $value;
-	}
+    public function __construct($value)
+    {
+        $this->value = (string) $value;
+    }
 
-	public function appendTo(Composable $composable)
-	{
-		$composable->append($this);
-	}
+    public function appendTo(Composable $composable)
+    {
+        $composable->append($this);
+    }
 
-	/**
-	 * @see \ElementTree\Text::getValue()
-	 */
-	public function getValue()
-	{
-		return $this->value;
-	}
+    /**
+     * @see \ElementTree\Text::getValue()
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
 
-	/**
-	 * @see \ElementTree\Text::setValue()
-	 */
-	public function setValue($value)
-	{
-		$this->value = $value;
-	}
+    /**
+     * @see \ElementTree\Text::setValue()
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
 
-	/**
-	 * @see \ElementTree\Component::toString()
-	 */
-	public function toString()
-	{
-		return $this->value;
-	}
+    /**
+     * @see \ElementTree\Component::toString()
+     */
+    public function toString()
+    {
+        return $this->value;
+    }
 }

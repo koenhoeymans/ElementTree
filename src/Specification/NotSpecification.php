@@ -10,17 +10,17 @@ use ElementTree\Component;
 /**
  * @package ElementTree
  */
-Class NotSpecification implements ComponentSpecification
+class NotSpecification implements ComponentSpecification
 {
-	private $specification;
+    private $specification;
 
-	public function __construct(ComponentSpecification $specification)
-	{
-		$this->specification = $specification;
-	}
+    public function __construct(ComponentSpecification $specification)
+    {
+        $this->specification = $specification;
+    }
 
-	public function isSatisfiedBy(Component $component)
-	{
-		return !$this->specification->isSatisfiedBy($component);
-	}
+    public function isSatisfiedBy(Component $component)
+    {
+        return !$this->specification->isSatisfiedBy($component);
+    }
 }
