@@ -1,10 +1,8 @@
 <?php
 
-require_once dirname(__FILE__)
-	. DIRECTORY_SEPARATOR . '..'
-	. DIRECTORY_SEPARATOR . 'TestHelper.php';
+namespace ElementTree\Specification;
 
-class ElementTree_Specification_WithParentElementTest extends PHPUnit_Framework_TestCase
+class WithParentElementTest extends \PHPUnit_Framework_TestCase
 {
 	/**
 	 * @test

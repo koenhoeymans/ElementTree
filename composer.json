@@ -15,6 +15,6 @@
 		"phpunit/phpunit": "*"
 	},
 	"autoload": {
-		"psr-0": { "ElementTree": "/" }
+	   "psr-4": { "ElementTree\\": ["src/", "tests/unit", "tests/e2e"] }
 	}
 }

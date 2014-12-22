@@ -1,10 +1,10 @@
 <?php
 
+namespace ElementTree;
+
 use ElementTree\ElementTreeAttribute;
 
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'TestHelper.php';
-
-class ElementTree_ElementTreeAttributeTest extends PHPUnit_Framework_TestCase
+class ElementTreeAttributeTest extends \PHPUnit_Framework_TestCase
 {
 	public function setup()
 	{

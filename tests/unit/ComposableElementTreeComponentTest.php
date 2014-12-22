@@ -1,13 +1,13 @@
 <?php
 
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'TestHelper.php';
+namespace ElementTree;
 
 class ComposableImp extends \ElementTree\ComposableElementTreeComponent
 {
 	public function toString() {}
 }
 
-class ElementTree_ComposableElementTreeComponentTest extends PHPUnit_Framework_TestCase
+class ComposableElementTreeComponentTest extends \PHPUnit_Framework_TestCase
 {
 	public function setup()
 	{

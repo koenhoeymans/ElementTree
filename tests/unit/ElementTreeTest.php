@@ -1,8 +1,8 @@
 <?php
 
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'TestHelper.php';
+namespace ElementTree;
 
-class ElementTree_ElementTreeTest extends PHPUnit_Framework_TestCase
+class ElementTreeTest extends \PHPUnit_Framework_TestCase
 {
 	public function setup()
 	{

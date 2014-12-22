@@ -3,6 +3,9 @@ ElementTree Changelog
 
 *   0.8.0
 
+    *   Changed project directory structure, moving to PSR4.
+    *   Added PhpUnit xml configuration.
+
 *	0.7.1
 
 	*	Bug fixes for replacing components.
