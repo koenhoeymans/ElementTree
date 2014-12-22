@@ -16,6 +16,6 @@
 		"qualitycheck/qualitycheck": "*"
 	},
 	"autoload": {
-	   "psr-4": { "ElementTree\\": ["src/", "tests/unit", "tests/e2e"] }
+	   "psr-4": { "ElementTree\\": ["src/", "tests/unit", "tests/e2e", "tests/support"] }
 	}
 }
