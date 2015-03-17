@@ -1,6 +1,10 @@
 ElementTree Changelog
 =====================
 
+*   0.8.1
+
+    *   Fix possible autoload problems with composer.
+
 *   0.8.0
 
     *   Changed project directory structure, moving to PSR4.
