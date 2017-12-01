@@ -9,11 +9,10 @@
 		"role": "lead"
 	}],
 	"require": {
-		"php": ">=5.4.6"
+		"php": ">=7.1"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "*",
-		"qualitycheck/qualitycheck": "*"
+		"phpunit/phpunit": "6.*"
 	},
 	"autoload": {
 	   "psr-4": { "ElementTree\\": ["src/", "tests/unit", "tests/e2e", "tests/support"] }

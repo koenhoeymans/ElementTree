@@ -4,6 +4,7 @@
 ### Changed
 - Changelog format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Minimum requirement is PHP 7.1.
+- PHPUnit version 6.* required.
 
 ### Removed
 - Dev dependency on the QualityCheck library.
