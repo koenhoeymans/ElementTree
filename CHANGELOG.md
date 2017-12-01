@@ -1,5 +1,15 @@
-ElementTree Changelog
-=====================
+# Changelog
+
+## [Unreleased]
+### Changed
+- Changelog format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
+- Minimum requirement is PHP 7.1.
+
+### Removed
+- Dev dependency on the QualityCheck library.
+
+
+## older versions
 
 *   0.8.1
 
