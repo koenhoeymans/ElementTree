@@ -12,5 +12,4 @@ features. It is not XML however:
 Documentation can be found in the form of [this](https://github.com/koenhoeymans/ElementTree/blob/master/tests/e2e/DocumentationTest.php)
 end-to-end test.
 
-Installation can be done by the [packagist repository](https://packagist.org/) of
-[composer](http://getcomposer.org/). 
+Installation can be done with [composer](http://getcomposer.org/). 
