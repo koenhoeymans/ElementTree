@@ -9,7 +9,7 @@ features. It is not XML however:
 	* No single root element necessary.
 	* Querying with fluent interface.
 
-Documentation can be found in the form of [this](https://github.com/koenhoeymans/ElementTree/blob/master/EndToEndTests/DocumentationTest.php)
+Documentation can be found in the form of [this](https://github.com/koenhoeymans/ElementTree/blob/master/Tests/e2e/DocumentationTest.php)
 end-to-end test.
 
 Installation can be done by the [packagist repository](https://packagist.org/) of
