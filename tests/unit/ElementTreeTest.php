@@ -2,7 +2,7 @@
 
 namespace ElementTree;
 
-class ElementTreeTest extends \PHPUnit_Framework_TestCase
+class ElementTreeTest extends \PHPUnit\Framework\TestCase
 {
     public function setup()
     {

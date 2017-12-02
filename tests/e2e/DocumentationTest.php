@@ -2,7 +2,7 @@
 
 namespace ElementTree;
 
-class DocumentationTest extends \PHPUnit_Framework_TestCase
+class DocumentationTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test

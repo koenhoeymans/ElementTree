@@ -2,20 +2,20 @@
 
 namespace ElementTree;
 
-class ElementTreeQueryTest extends \PHPUnit_Framework_TestCase
+class ElementTreeQueryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test
      */
     public function queriesComponentsAgainstSpecification()
     {
-        $elementTree = $this->getMock('\\ElementTree\\Component');
+        $elementTree = $this->createMock('\\ElementTree\\Component');
         $elementTree
             ->expects($this->atLeastOnce())
             ->method('getChildren')
             ->will($this->returnValue(array()));
 
-        $specification = $this->getMock('\\ElementTree\\Specification\\ComponentSpecification');
+        $specification = $this->createMock('\\ElementTree\\Specification\\ComponentSpecification');
         $specification
             ->expects($this->atLeastOnce())
             ->method('isSatisfiedBy')
@@ -31,7 +31,7 @@ class ElementTreeQueryTest extends \PHPUnit_Framework_TestCase
      */
     public function queriesElementsAlsoForAttributes()
     {
-        $elementTree = $this->getMock('\\ElementTree\\Element');
+        $elementTree = $this->createMock('\\ElementTree\\Element');
         $elementTree
             ->expects($this->atLeastOnce())
             ->method('getChildren')
@@ -41,7 +41,7 @@ class ElementTreeQueryTest extends \PHPUnit_Framework_TestCase
             ->method('getAttributes')
             ->will($this->returnValue(array()));
 
-        $specification = $this->getMock('\\ElementTree\\Specification\\ComponentSpecification');
+        $specification = $this->createMock('\\ElementTree\\Specification\\ComponentSpecification');
         $specification
             ->expects($this->atLeastOnce())
             ->method('isSatisfiedBy')

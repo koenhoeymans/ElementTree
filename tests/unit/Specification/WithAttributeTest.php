@@ -2,7 +2,7 @@
 
 namespace ElementTree\Specification;
 
-class WithAttributeTest extends \PHPUnit_Framework_TestCase
+class WithAttributeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test
@@ -38,7 +38,7 @@ class WithAttributeTest extends \PHPUnit_Framework_TestCase
         $div->setAttribute('id', 'foo');
         $div->setAttribute('class', 'bar');
 
-        $subSpec = $this->getMock('\\ElementTree\\Specification\\ComponentSpecification');
+        $subSpec = $this->createMock('\\ElementTree\\Specification\\ComponentSpecification');
         $subSpec
             ->expects($this->atLeastOnce())
             ->method('isSatisfiedBy')
@@ -58,7 +58,7 @@ class WithAttributeTest extends \PHPUnit_Framework_TestCase
         $div->setAttribute('id', 'foo');
         $div->setAttribute('class', 'bar');
 
-        $subSpec = $this->getMock('\\ElementTree\\Specification\\ComponentSpecification');
+        $subSpec = $this->createMock('\\ElementTree\\Specification\\ComponentSpecification');
         $subSpec
             ->expects($this->atLeastOnce())
             ->method('isSatisfiedBy')

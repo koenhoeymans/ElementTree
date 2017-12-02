@@ -2,7 +2,7 @@
 
 namespace ElementTree\Specification;
 
-class WithParentElementTest extends \PHPUnit_Framework_TestCase
+class WithParentElementTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test
@@ -53,7 +53,7 @@ class WithParentElementTest extends \PHPUnit_Framework_TestCase
         $text = new \ElementTree\ElementTreeText('bar');
         $element->append($text);
 
-        $subSpec = $this->getMock('\\ElementTree\\Specification\\ComponentSpecification');
+        $subSpec = $this->createMock('\\ElementTree\\Specification\\ComponentSpecification');
         $withParentEl = new \ElementTree\Specification\WithParentElement($subSpec);
 
         $subSpec

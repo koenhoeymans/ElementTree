@@ -2,7 +2,7 @@
 
 namespace ElementTree\Specification;
 
-class NotSpecificationTest extends \PHPUnit_Framework_TestCase
+class NotSpecificationTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test

@@ -2,7 +2,7 @@
 
 namespace ElementTree\Specification;
 
-class WithNameTest extends \PHPUnit_Framework_TestCase
+class WithNameTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test
