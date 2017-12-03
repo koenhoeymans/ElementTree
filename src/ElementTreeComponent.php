@@ -1,13 +1,7 @@
 <?php
 
-/**
- * @package ElementTree
- */
 namespace ElementTree;
 
-/**
- * @package ElementTree
- */
 abstract class ElementTreeComponent implements Component
 {
     protected $ownerTree = null;

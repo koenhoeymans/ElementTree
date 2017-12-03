@@ -1,13 +1,7 @@
 <?php
 
-/**
- * @package ElementTree
- */
 namespace ElementTree;
 
-/**
- * @package ElementTree
- */
 class ElementTreeAttribute extends ElementTreeComponent implements Attribute
 {
     const NO_QUOTES = '';

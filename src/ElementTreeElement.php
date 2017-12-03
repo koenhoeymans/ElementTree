@@ -1,13 +1,7 @@
 <?php
 
-/**
- * @package ElementTree
- */
 namespace ElementTree;
 
-/**
- * @package ElementTree
- */
 class ElementTreeElement extends ComposableElementTreeComponent implements
     Element,
     Appendable

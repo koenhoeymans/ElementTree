@@ -1,15 +1,9 @@
 <?php
 
-/**
- * @package ElementTree
- */
 namespace ElementTree\Specification;
 
 use ElementTree\Component;
 
-/**
- * @package ElementTree
- */
 class OrSpecification implements ComponentSpecification
 {
     private $specifications;

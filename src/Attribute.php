@@ -1,13 +1,7 @@
 <?php
 
-/**
- * @package ElementTree
- */
 namespace ElementTree;
 
-/**
- * @package ElementTree
- */
 interface Attribute extends Component
 {
     /**

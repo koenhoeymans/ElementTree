@@ -1,15 +1,9 @@
 <?php
 
-/**
- * @package ElementTree
- */
 namespace ElementTree\Specification;
 
 use ElementTree\Component;
 
-/**
- * @package ElementTree
- */
 class WithAttribute implements ComponentSpecification
 {
     private $specification;

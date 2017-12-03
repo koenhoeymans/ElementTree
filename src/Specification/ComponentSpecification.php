@@ -1,8 +1,5 @@
 <?php
 
-/**
- * @package ElementTree
- */
 namespace ElementTree\Specification;
 
 use ElementTree\Component;
@@ -16,8 +13,6 @@ use ElementTree\Component;
  * could check wheter an `ElementTree\Element` has a name `p`
  * and an attribute `class` with value of `hidden`. If that is the
  * case the specification is satisfied by this component.
- *
- * @package ElementTree
  */
 interface ComponentSpecification
 {

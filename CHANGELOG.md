@@ -8,6 +8,7 @@
 
 ### Removed
 - Dev dependency on the QualityCheck library.
+- No more `@package ElementTree` in dockblocks.
 
 
 ## older versions

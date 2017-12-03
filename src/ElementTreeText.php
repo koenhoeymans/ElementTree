@@ -1,13 +1,7 @@
 <?php
 
-/**
- * @package ElementTree
- */
 namespace ElementTree;
 
-/**
- * @package ElementTree
- */
 class ElementTreeText extends ElementTreeComponent implements Text, Appendable
 {
     private $value;

@@ -1,15 +1,9 @@
 <?php
 
-/**
- * @package ElementTree
- */
 namespace ElementTree;
 
 use ElementTree\Specification\ComponentSpecification;
 
-/**
- * @package ElementTree
- */
 class ElementTreeQuery implements Query
 {
     private $component;
