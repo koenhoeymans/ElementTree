@@ -6,8 +6,6 @@ interface Attribute extends Component
 {
     /**
      * The attribute name.
-     *
-     * @return string
      */
     public function getName() : string;
 
