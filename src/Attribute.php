@@ -16,8 +16,6 @@ interface Attribute extends Component
 
     /**
      * Sets the attribute value.
-     *
-     * @param string $value
      */
     public function setValue(string $value);
 
