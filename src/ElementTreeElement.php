@@ -15,7 +15,7 @@ class ElementTreeElement extends ComposableElementTreeComponent implements
         $this->name = (string) $name;
     }
 
-    public function appendTo(Composable $composable)
+    public function appendTo(Composable $composable) : void
     {
         $composable->append($this);
     }

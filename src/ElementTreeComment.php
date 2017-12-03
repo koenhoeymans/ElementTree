@@ -11,7 +11,7 @@ class ElementTreeComment extends ElementTreeComponent implements Comment, Append
         $this->value = (string) $value;
     }
 
-    public function appendTo(Composable $composable)
+    public function appendTo(Composable $composable) : void
     {
         $composable->append($this);
     }

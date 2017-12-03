@@ -7,5 +7,5 @@ interface Appendable
     /**
      * Append object to a composable object.
      */
-    public function appendTo(Composable $composable);
+    public function appendTo(Composable $composable): void;
 }

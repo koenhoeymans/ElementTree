@@ -11,7 +11,7 @@ class ElementTreeText extends ElementTreeComponent implements Text, Appendable
         $this->value = (string) $value;
     }
 
-    public function appendTo(Composable $composable)
+    public function appendTo(Composable $composable) : void
     {
         $composable->append($this);
     }
