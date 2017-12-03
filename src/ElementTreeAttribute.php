@@ -49,7 +49,7 @@ class ElementTreeAttribute extends ElementTreeComponent implements Attribute
     /**
      * @see \ElementTree\Attribute::noQuotes()
      */
-    public function noQuotes()
+    public function noQuotes() : void
     {
         $this->quoteStyle = self::NO_QUOTES;
     }

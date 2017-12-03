@@ -24,7 +24,7 @@ interface Attribute extends Component
      *
      *     checked=true
      */
-    public function noQuotes();
+    public function noQuotes() : void;
 
     /**
      * Put the attribute value in single quotes when stringified.
