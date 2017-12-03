@@ -19,7 +19,7 @@ interface Attribute extends Component
      *
      * @param string $value
      */
-    public function setValue($value);
+    public function setValue(string $value);
 
     /**
      * Don't quote the attribute value when stringified.
