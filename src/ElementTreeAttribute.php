@@ -33,7 +33,7 @@ class ElementTreeAttribute extends ElementTreeComponent implements Attribute
     /**
      * @see \ElementTree\Attribute::getValue()
      */
-    public function getValue()
+    public function getValue() : string
     {
         return $this->value;
     }
