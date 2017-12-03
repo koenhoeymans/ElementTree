@@ -11,8 +11,6 @@ interface Attribute extends Component
 
     /**
      * The attribute value.
-     *
-     * @return string
      */
     public function getValue() : string;
 
