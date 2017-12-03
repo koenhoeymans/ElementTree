@@ -13,7 +13,7 @@ class AllText implements ComponentSpecification
         $this->specification = $specification;
     }
 
-    public function isSatisfiedBy(Component $component)
+    public function isSatisfiedBy(Component $component) : bool
     {
         if (!($component instanceof \ElementTree\Text)) {
             return false;

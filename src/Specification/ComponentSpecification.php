@@ -25,5 +25,5 @@ interface ComponentSpecification
      * @param  Component $component
      * @return boolean
      */
-    public function isSatisfiedBy(Component $component);
+    public function isSatisfiedBy(Component $component) : bool;
 }

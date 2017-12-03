@@ -13,7 +13,7 @@ class WithParentElement implements ComponentSpecification
         $this->specification = $specification;
     }
 
-    public function isSatisfiedBy(Component $component)
+    public function isSatisfiedBy(Component $component) : bool
     {
         if (!$component->hasParent()) {
             return false;

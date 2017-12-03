@@ -13,7 +13,7 @@ class AllElements implements ComponentSpecification
         $this->specification = $specification;
     }
 
-    public function isSatisfiedBy(Component $component)
+    public function isSatisfiedBy(Component $component) : bool
     {
         if (!($component instanceof \ElementTree\Element)) {
             return false;

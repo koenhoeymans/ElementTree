@@ -13,7 +13,7 @@ class AndSpecification implements ComponentSpecification
         $this->specifications = func_get_args();
     }
 
-    public function isSatisfiedBy(Component $component)
+    public function isSatisfiedBy(Component $component) : bool
     {
         foreach ($this->specifications as $specification) {
             if (!$specification->isSatisfiedBy($component)) {
