@@ -41,7 +41,7 @@ class ElementTreeAttribute extends ElementTreeComponent implements Attribute
     /**
      * @see \ElementTree\Attribute::setValue()
      */
-    public function setValue($value)
+    public function setValue(string $value)
     {
         $this->value = $value;
     }
