@@ -54,11 +54,17 @@ class ElementTreeAttribute extends ElementTreeComponent implements Attribute
         $this->quoteStyle = self::NO_QUOTES;
     }
 
+    /**
+     * @see \ElementTree\Attribute:singleQuotes()
+     */
     public function singleQuotes() : void
     {
         $this->quoteStyle = self::SINGLE_QUOTES;
     }
 
+    /**
+     * @see \ElementTree\Attribute:doubleQuotes()
+     */
     public function doubleQuotes() : void
     {
         $this->quoteStyle = self::DOUBLE_QUOTES;
