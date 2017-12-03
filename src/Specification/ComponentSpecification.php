@@ -21,9 +21,6 @@ interface ComponentSpecification
      * the given component. Eg. a specification can test for elements
      * to have a certain name. If the component is an `Element` with
      * the given name it will return true.
-     *
-     * @param  Component $component
-     * @return boolean
      */
     public function isSatisfiedBy(Component $component) : bool;
 }
