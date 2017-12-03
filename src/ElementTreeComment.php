@@ -19,7 +19,7 @@ class ElementTreeComment extends ElementTreeComponent implements Comment, Append
     /**
      * @see \ElementTree\Comment::getValue()
      */
-    public function getValue()
+    public function getValue() : string
     {
         return $this->value;
     }
@@ -27,7 +27,7 @@ class ElementTreeComment extends ElementTreeComponent implements Comment, Append
     /**
      * @see \ElementTree\Comment::setValue()
      */
-    public function setValue($value)
+    public function setValue(string $value) : void
     {
         $this->value = $value;
     }

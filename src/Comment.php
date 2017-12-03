@@ -9,12 +9,12 @@ interface Comment extends Component
      *
      * @return string
      */
-    public function getValue();
+    public function getValue() : string;
 
     /**
      * Sets the text of the comment.
      *
      * @param string $value
      */
-    public function setValue($value);
+    public function setValue(string $value) : void;
 }
