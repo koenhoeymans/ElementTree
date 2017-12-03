@@ -9,7 +9,7 @@ interface Attribute extends Component
      *
      * @return string
      */
-    public function getName();
+    public function getName() : string;
 
     /**
      * The attribute value.

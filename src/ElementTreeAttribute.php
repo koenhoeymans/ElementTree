@@ -25,7 +25,7 @@ class ElementTreeAttribute extends ElementTreeComponent implements Attribute
     /**
      * @see \ElementTree\Attribute::getName()
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
