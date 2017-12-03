@@ -31,12 +31,12 @@ interface Attribute extends Component
      *
      *     foo='bar'
      */
-    public function singleQuotes();
+    public function singleQuotes() : void;
 
     /**
      * Put the attribute value in double quotes when stringified.
      *
      *     foo="bar"
      */
-    public function doubleQuotes();
+    public function doubleQuotes() : void;
 }
