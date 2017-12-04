@@ -11,7 +11,7 @@ interface Component
      *
      * @return \ElementTree\ElementTree|null
      */
-    public function getOwnerTree();
+    public function getOwnerTree() : ?\ElementTree\ElementTree;
 
     /**
      * Returns the parent component of this component. Eg. when an element

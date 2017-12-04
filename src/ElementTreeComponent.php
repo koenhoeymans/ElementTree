@@ -17,13 +17,13 @@ abstract class ElementTreeComponent implements Component
     /**
      * @see \ElementTree\Component::getOwnerTree()
      */
-    public function getOwnerTree()
+    public function getOwnerTree() : ?\ElementTree\ElementTree
     {
         if ($this->hasParent()) {
             return $this->getParent()->getOwnerTree();
         }
 
-        return;
+        return null;
     }
 
     /**

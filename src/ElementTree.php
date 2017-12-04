@@ -7,7 +7,7 @@ class ElementTree extends ComposableElementTreeComponent implements ComponentFac
     /**
      * @see \ElementTree\ElementTreeComponent::getOwnerTree()
      */
-    public function getOwnerTree()
+    public function getOwnerTree() : ?\ElementTree\ElementTree
     {
         return $this;
     }
