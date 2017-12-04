@@ -8,8 +8,6 @@ interface Component
      * Returns the ElemenTree that created the component. If there
      * is no such ElementTree, e.i. the component was created by
      * other ways, this will return `null`.
-     *
-     * @return \ElementTree\ElementTree|null
      */
     public function getOwnerTree() : ?\ElementTree\ElementTree;
 
