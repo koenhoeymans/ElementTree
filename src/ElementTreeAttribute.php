@@ -4,11 +4,11 @@ namespace ElementTree;
 
 class ElementTreeAttribute extends ElementTreeComponent implements Attribute
 {
-    const NO_QUOTES = '';
+    private const NO_QUOTES = '';
 
-    const SINGLE_QUOTES = "'";
+    private const SINGLE_QUOTES = "'";
 
-    const DOUBLE_QUOTES = '"';
+    private const DOUBLE_QUOTES = '"';
 
     private $name;
 
