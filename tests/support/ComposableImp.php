@@ -2,9 +2,9 @@
 
 namespace ElementTree;
 
-class ComposableImp extends \ElementTree\ComposableElementTreeComponent
+class ComposableImp extends ComposableElementTreeComponent
 {
-    public function toString()
+    public function toString(): string
     {
     }
 }

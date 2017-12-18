@@ -7,7 +7,7 @@ class ElementTree extends ComposableElementTreeComponent implements ComponentFac
     /**
      * @see \ElementTree\ElementTreeComponent::getOwnerTree()
      */
-    public function getOwnerTree() : ?\ElementTree\ElementTree
+    public function getOwnerTree() : ?ElementTree
     {
         return $this;
     }
@@ -15,7 +15,7 @@ class ElementTree extends ComposableElementTreeComponent implements ComponentFac
     /**
      * @see \ElementTree\ComponentFactory::createElement()
      */
-    public function createElement($name)
+    public function createElement($name) : Element
     {
         return new ElementTreeElement($name);
     }
@@ -23,7 +23,7 @@ class ElementTree extends ComposableElementTreeComponent implements ComponentFac
     /**
      * @see \ElementTree\ComponentFactory::createText()
      */
-    public function createText($value)
+    public function createText($value) : Text
     {
         return new ElementTreeText($value);
     }
@@ -31,24 +31,17 @@ class ElementTree extends ComposableElementTreeComponent implements ComponentFac
     /**
      * @see \ElementTree\ComponentFactory::createComment()
      */
-    public function createComment($value)
+    public function createComment($value) : Comment
     {
         return new ElementTreeComment($value);
     }
 
-    /**
-     * @param  Component                     $component
-     * @return \ElementTree\ElementTreeQuery
-     */
-    public function createQuery(Component $component)
+    public function createQuery(Component $component) : ElementTreeQuery
     {
         return new \ElementTree\ElementTreeQuery($component);
     }
 
-    /**
-     * @see \ElementTree\Component::toString()
-     */
-    public function toString()
+    public function toString() : string
     {
         $content = '';
         foreach ($this->children as $child) {

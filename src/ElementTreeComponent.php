@@ -17,7 +17,7 @@ abstract class ElementTreeComponent implements Component
     /**
      * @see \ElementTree\Component::getOwnerTree()
      */
-    public function getOwnerTree() : ?\ElementTree\ElementTree
+    public function getOwnerTree() : ?ElementTree
     {
         if ($this->hasParent()) {
             return $this->getParent()->getOwnerTree();
@@ -29,7 +29,7 @@ abstract class ElementTreeComponent implements Component
     /**
      * @see \ElementTree\Component::getParent()
      */
-    public function getParent()
+    public function getParent() : ?Component
     {
         return $this->parent;
     }
@@ -37,7 +37,7 @@ abstract class ElementTreeComponent implements Component
     /**
      * @see \ElementTree\Component::hasParent()
      */
-    public function hasParent()
+    public function hasParent() : bool
     {
         return $this->parent ? true : false;
     }
@@ -45,7 +45,7 @@ abstract class ElementTreeComponent implements Component
     /**
      * @see \ElementTree\Component::hasChildren()
      */
-    public function hasChildren()
+    public function hasChildren() : bool
     {
         return !empty($this->children);
     }
@@ -53,7 +53,7 @@ abstract class ElementTreeComponent implements Component
     /**
      * @see \ElementTree\Component::getChildren()
      */
-    public function getChildren()
+    public function getChildren() : array
     {
         return $this->children;
     }
@@ -61,7 +61,7 @@ abstract class ElementTreeComponent implements Component
     /**
      * @see \ElementTree\Component::getNextSibling()
      */
-    public function getNextSibling()
+    public function getNextSibling() : ?Component
     {
         return $this->nextSibling;
     }
@@ -69,7 +69,7 @@ abstract class ElementTreeComponent implements Component
     /**
      * @see \ElementTree\Component::getPreviousSibling()
      */
-    public function getPreviousSibling()
+    public function getPreviousSibling() : ?Component
     {
         return $this->previousSibling;
     }
@@ -77,5 +77,5 @@ abstract class ElementTreeComponent implements Component
     /**
      * @see \ElementTree\Component::toString()
      */
-    abstract public function toString();
+    abstract public function toString() : string;
 }

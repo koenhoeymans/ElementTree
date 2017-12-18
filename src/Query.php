@@ -8,92 +8,60 @@ interface Query
 {
     /**
      * Find all components that satisfy a given specification.
-     *
-     * @param  ComponentSpecification $specification
-     * @return array
      */
-    public function find(ComponentSpecification $specification);
+    public function find(ComponentSpecification $specification) : array;
 
     /**
      * Matches all `Element` components.
-     *
-     * @param  ComponentSpecification                 $specification
-     * @return \ElementTree\Specification\AllElements
      */
-    public function allElements(ComponentSpecification $specification = null);
+    public function allElements(ComponentSpecification $specification = null) : Specification\AllElements;
 
     /**
      * Matches an element when it has an attribute (with given specification).
-     *
-     * @param  ComponentSpecification                   $specification
-     * @return \ElementTree\Specification\WithAttribute
      */
-    public function withAttribute(ComponentSpecification $specification = null);
+    public function withAttribute(ComponentSpecification $specification = null) : Specification\WithAttribute;
 
     /**
      * Matches when the name of the element or attribute is the same.
-     *
-     * @param  string                              $name
-     * @return \ElementTree\Specification\WithName
      */
-    public function withName($name);
+    public function withName(string $name) : \ElementTree\Specification\WithName;
 
     /**
      * Matches all `Attribute` components.
-     *
-     * @param  ComponentSpecification                   $specification
-     * @return \ElementTree\Specification\AllAttributes
      */
-    public function allAttributes(ComponentSpecification $specification = null);
+    public function allAttributes(ComponentSpecification $specification = null) : Specification\AllAttributes;
 
     /**
      * Selects all text components.
-     *
-     * @param  ComponentSpecification             $specification
-     * @return \ElementTree\Specification\AllText
      */
-    public function allText(ComponentSpecification $specification = null);
+    public function allText(ComponentSpecification $specification = null) : Specification\AllText;
 
     /**
      * Selects components that have a parent element.
-     *
-     * @param  ComponentSpecification                       $specification
-     * @return \ElementTree\Specification\WithParentElement
      */
-    public function withParentElement(ComponentSpecification $specification = null);
+    public function withParentElement(ComponentSpecification $specification = null) : Specification\WithParentElement;
 
     /**
      * Combines specifications. All must succeed for the component to be
      * selected.
-     *
-     * @param  ComponentSpecification                      $specification1
-     * @param  ComponentSpecification                      $specification2
-     * @return \ElementTree\Specification\AndSpecification
      */
     public function lAnd(
         ComponentSpecification $specification1,
         ComponentSpecification $specification2
-    );
+    ) : Specification\AndSpecification;
 
     /**
      * Combines specifications. At least one must succeed for the component to be
      * selected.
-     *
-     * @param  ComponentSpecification                     $specification1
-     * @param  ComponentSpecification                     $specification2
-     * @return \ElementTree\Specification\OrSpecification
      */
     public function lOr(
         ComponentSpecification $specification1,
         ComponentSpecification $specification2
-    );
+    ) : Specification\OrSpecification;
 
     /**
      * The negation another specification. Selects a component if a specification
      * does not apply.
-     *
-     * @param  ComponentSpecification                      $specification
-     * @return \ElementTree\Specification\NotSpecification
      */
-    public function not(ComponentSpecification $specification);
+    public function not(ComponentSpecification $specification) : Specification\NotSpecification;
 }

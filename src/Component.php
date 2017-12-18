@@ -9,7 +9,7 @@ interface Component
      * is no such ElementTree, e.i. the component was created by
      * other ways, this will return `null`.
      */
-    public function getOwnerTree() : ?\ElementTree\ElementTree;
+    public function getOwnerTree() : ?ElementTree;
 
     /**
      * Returns the parent component of this component. Eg. when an element
@@ -17,50 +17,38 @@ interface Component
      * of the other one. Or if a text component was added to an element
      * this element is the parent of the text component. If there is no
      * parent element this will return `null`.
-     *
-     * @return \ElementTree\Component|null
      */
-    public function getParent();
+    public function getParent() : ?Component;
 
     /**
      * Will return `true` or `false` depending on whether the component
      * has a parent or not.
-     *
-     * @return boolean
      */
-    public function hasParent();
+    public function hasParent() : bool;
 
     /**
      * Will return `true` or `false` depending on whether the component
      * has children or not (components added to it).
-     *
-     * @return boolean
      */
-    public function hasChildren();
+    public function hasChildren() : bool;
 
     /**
      * An array of the child components that were appended to the current
      * component.
-     *
-     * @return array
      */
-    public function getChildren();
+    public function getChildren() : array;
 
     /**
      * Will return the next child of the parent component or null if there
      * is none.
-     *
-     * @return \ElementTree\Component|null
      */
-    public function getNextSibling();
+    public function getNextSibling() : ?Component;
 
     /**
      * Will return the previous child of the parent component or null if there
      * is none.
-     *
-     * @return \ElementTree\Component|null
      */
-    public function getPreviousSibling();
+    public function getPreviousSibling() : ?Component;
 
     /**
      * Creates an XML-style string representation of the component
@@ -69,8 +57,6 @@ interface Component
      * a text component, the  `toString` might return:
      *
      *     <div>div content</div><hr />
-     *
-     * Support for other output formats might be added later.
      */
-    public function toString();
+    public function toString() : string;
 }

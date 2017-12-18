@@ -7,7 +7,7 @@ abstract class ComposableElementTreeComponent extends ElementTreeComponent imple
     /**
      * @see \ElementTree\Composable::append()
      */
-    public function append(Appendable $component)
+    public function append(Appendable $component) : void
     {
         $this->insert($component, count($this->children));
     }
@@ -15,7 +15,7 @@ abstract class ComposableElementTreeComponent extends ElementTreeComponent imple
     /**
      * @see \ElementTree\Composable::insertAfter()
      */
-    public function insertAfter(Appendable $component, Appendable $after)
+    public function insertAfter(Appendable $component, Appendable $after) : void
     {
         $key = array_search($after, $this->children, true)+1;
         $this->insert($component, $key);
@@ -24,13 +24,13 @@ abstract class ComposableElementTreeComponent extends ElementTreeComponent imple
     /**
      * @see \ElementTree\Composable::insertBefore()
      */
-    public function insertBefore(Appendable $component, Appendable $before)
+    public function insertBefore(Appendable $component, Appendable $before) : void
     {
         $key = array_search($before, $this->children, true);
         $this->insert($component, $key);
     }
 
-    private function insert(Appendable $component, $position)
+    private function insert(Appendable $component, $position) : void
     {
         $this->removeFromPreviousOwner($component);
 
@@ -51,7 +51,7 @@ abstract class ComposableElementTreeComponent extends ElementTreeComponent imple
     /**
      * @see \ElementTree\Composable::remove()
      */
-    public function remove(Appendable $component)
+    public function remove(Appendable $component) : void
     {
         $parent = $component->getParent();
         if ($parent) {
@@ -62,7 +62,7 @@ abstract class ComposableElementTreeComponent extends ElementTreeComponent imple
     /**
      * @see \ElementTree\Composable::replace()
      */
-    public function replace(Appendable $newComponent, Appendable $oldComponent)
+    public function replace(Appendable $newComponent, Appendable $oldComponent) : void
     {
         $parent = $oldComponent->getParent();
         if (!$parent) {

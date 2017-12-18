@@ -16,10 +16,10 @@ class ElementTreeAttribute extends ElementTreeComponent implements Attribute
 
     private $quoteStyle = self::DOUBLE_QUOTES;
 
-    public function __construct($name, $value)
+    public function __construct(string $name, string $value)
     {
-        $this->name = (string) $name;
-        $this->value = (string) $value;
+        $this->name = $name;
+        $this->value = $value;
     }
 
     /**
@@ -75,7 +75,7 @@ class ElementTreeAttribute extends ElementTreeComponent implements Attribute
      *
      * @see ElementTree\Component::toString()
      */
-    public function toString()
+    public function toString() : string
     {
         return $this->name.'='.$this->quoteStyle.$this->value.$this->quoteStyle;
     }

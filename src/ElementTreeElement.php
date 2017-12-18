@@ -10,9 +10,9 @@ class ElementTreeElement extends ComposableElementTreeComponent implements
 
     private $attributes = array();
 
-    public function __construct($name)
+    public function __construct(string $name)
     {
-        $this->name = (string) $name;
+        $this->name = $name;
     }
 
     public function appendTo(Composable $composable) : void
@@ -23,7 +23,7 @@ class ElementTreeElement extends ComposableElementTreeComponent implements
     /**
      * @see \ElementTree\Element::getName()
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
@@ -31,7 +31,7 @@ class ElementTreeElement extends ComposableElementTreeComponent implements
     /**
      * @see \ElementTree\Element::setAttribute()
      */
-    public function setAttribute($name, $value)
+    public function setAttribute($name, $value) : Attribute
     {
         $attr = new ElementTreeAttribute($name, $value);
         $attr->parent = $this;
@@ -43,7 +43,7 @@ class ElementTreeElement extends ComposableElementTreeComponent implements
     /**
      * @see \ElementTree\Element::removeAttribute()
      */
-    public function removeAttribute($name)
+    public function removeAttribute($name) : void
     {
         if (isset($this->attributes[$name])) {
             unset($this->attributes[$name]);
@@ -53,7 +53,7 @@ class ElementTreeElement extends ComposableElementTreeComponent implements
     /**
      * @see \ElementTree\Element::getAttributeValue()
      */
-    public function getAttributeValue($name)
+    public function getAttributeValue($name) : string
     {
         return isset($this->attributes[$name])
             ? $this->attributes[$name]->getValue()
@@ -63,7 +63,7 @@ class ElementTreeElement extends ComposableElementTreeComponent implements
     /**
      * @see \ElementTree\Element::hasAttribute()
      */
-    public function hasAttribute($name)
+    public function hasAttribute(string $name) : bool
     {
         return isset($this->attributes[$name]);
     }
@@ -71,7 +71,7 @@ class ElementTreeElement extends ComposableElementTreeComponent implements
     /**
      * @see \ElementTree\Element::getAttributes()
      */
-    public function getAttributes()
+    public function getAttributes() : array
     {
         return array_values($this->attributes);
     }
@@ -79,7 +79,7 @@ class ElementTreeElement extends ComposableElementTreeComponent implements
     /**
      * @see \ElementTree\Component::toString()
      */
-    public function toString()
+    public function toString() : string
     {
         $content = '';
         foreach ($this->children as $child) {
@@ -97,7 +97,7 @@ class ElementTreeElement extends ComposableElementTreeComponent implements
         return $xml;
     }
 
-    private function getAttributesAsString()
+    private function getAttributesAsString() : string
     {
         $attr = '';
         foreach ($this->attributes as $name => $attribute) {

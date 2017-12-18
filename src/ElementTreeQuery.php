@@ -16,7 +16,7 @@ class ElementTreeQuery implements Query
     /**
      * @see \ElementTree\Query::find()
      */
-    public function find(ComponentSpecification $specification)
+    public function find(ComponentSpecification $specification) : array
     {
         $matches = array();
         $this->component->getChildren();
@@ -42,7 +42,7 @@ class ElementTreeQuery implements Query
     /**
      * @see \ElementTree\Query::allElements()
      */
-    public function allElements(ComponentSpecification $specification = null)
+    public function allElements(ComponentSpecification $specification = null) : Specification\AllElements
     {
         return new \ElementTree\Specification\AllElements($specification);
     }
@@ -50,7 +50,8 @@ class ElementTreeQuery implements Query
     /**
      * @see \ElementTree\Query::withAttribute()
      */
-    public function withAttribute(ComponentSpecification $specification = null)
+    public function withAttribute(ComponentSpecification $specification = null) : Specification\WithAttribute
+
     {
         return new \ElementTree\Specification\WithAttribute($specification);
     }
@@ -58,7 +59,7 @@ class ElementTreeQuery implements Query
     /**
      * @see \ElementTree\Query::withName()
      */
-    public function withName($name)
+    public function withName($name) : Specification\WithName
     {
         return new \ElementTree\Specification\WithName($name);
     }
@@ -66,7 +67,7 @@ class ElementTreeQuery implements Query
     /**
      * @see \ElementTree\Query::allAttributes()
      */
-    public function allAttributes(ComponentSpecification $specification = null)
+    public function allAttributes(ComponentSpecification $specification = null) : Specification\AllAttributes
     {
         return new \ElementTree\Specification\AllAttributes($specification);
     }
@@ -74,7 +75,7 @@ class ElementTreeQuery implements Query
     /**
      * @see \ElementTree\Query::allText()
      */
-    public function allText(ComponentSpecification $specification = null)
+    public function allText(ComponentSpecification $specification = null) : Specification\AllText
     {
         return new \ElementTree\Specification\AllText($specification);
     }
@@ -82,7 +83,7 @@ class ElementTreeQuery implements Query
     /**
      * @see \ElementTree\Query::withParentElement()
      */
-    public function withParentElement(ComponentSpecification $specification = null)
+    public function withParentElement(ComponentSpecification $specification = null) : Specification\WithParentElement
     {
         return new \ElementTree\Specification\WithParentElement($specification);
     }
@@ -93,7 +94,7 @@ class ElementTreeQuery implements Query
     public function lAnd(
         ComponentSpecification $specification1,
         ComponentSpecification $specification2
-    ) {
+    ) : Specification\AndSpecification {
         $args = func_get_args();
         $andSpec = new \ReflectionClass('\\ElementTree\\Specification\\AndSpecification');
 
@@ -106,7 +107,7 @@ class ElementTreeQuery implements Query
     public function lOr(
         ComponentSpecification $specification1,
         ComponentSpecification $specification2
-    ) {
+    ) : Specification\OrSpecification {
         $args = func_get_args();
         $andSpec = new \ReflectionClass('\\ElementTree\\Specification\\OrSpecification');
 
@@ -116,7 +117,7 @@ class ElementTreeQuery implements Query
     /**
      * @see \ElementTree\Query::not()
      */
-    public function not(ComponentSpecification $specification)
+    public function not(ComponentSpecification $specification) : Specification\NotSpecification
     {
         return new \ElementTree\Specification\NotSpecification($specification);
     }

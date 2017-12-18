@@ -2,9 +2,9 @@
 
 namespace ElementTree;
 
-class ComponentImp extends \ElementTree\ElementTreeComponent
+class ComponentImp extends ElementTreeComponent
 {
-    public function toString()
+    public function toString() : string
     {
     }
 }

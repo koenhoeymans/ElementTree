@@ -6,9 +6,9 @@ class ElementTreeComment extends ElementTreeComponent implements Comment, Append
 {
     private $value;
 
-    public function __construct($value)
+    public function __construct(string $value)
     {
-        $this->value = (string) $value;
+        $this->value = $value;
     }
 
     public function appendTo(Composable $composable) : void
@@ -37,7 +37,7 @@ class ElementTreeComment extends ElementTreeComponent implements Comment, Append
      *
      * @see ElementTree\Component::toString()
      */
-    public function toString()
+    public function toString() : string
     {
         return '<!--'.$this->value.'-->';
     }
