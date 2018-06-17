@@ -51,7 +51,6 @@ class ElementTreeQuery implements Query
      * @see \ElementTree\Query::withAttribute()
      */
     public function withAttribute(ComponentSpecification $specification = null) : Specification\WithAttribute
-
     {
         return new \ElementTree\Specification\WithAttribute($specification);
     }
