@@ -17,7 +17,7 @@ abstract class ComposableElementTreeComponent extends ElementTreeComponent imple
      */
     public function insertAfter(Appendable $component, Appendable $after) : void
     {
-        $key = array_search($after, $this->children, true)+1;
+        $key = array_search($after, $this->children, true) + 1;
         $this->insert($component, $key);
     }
 
@@ -38,13 +38,13 @@ abstract class ComposableElementTreeComponent extends ElementTreeComponent imple
 
         array_splice($this->children, $position, 0, array($component));
 
-        if (isset($this->children[$position-1])) {
-            $this->children[$position-1]->nextSibling = $component;
-            $component->previousSibling = $this->children[$position-1];
+        if (isset($this->children[$position - 1])) {
+            $this->children[$position - 1]->nextSibling = $component;
+            $component->previousSibling = $this->children[$position - 1];
         }
-        if (isset($this->children[$position+1])) {
-            $this->children[$position+1]->previousSibling = $component;
-            $component->nextSibling = $this->children[$position+1];
+        if (isset($this->children[$position + 1])) {
+            $this->children[$position + 1]->previousSibling = $component;
+            $component->nextSibling = $this->children[$position + 1];
         }
     }
 
@@ -84,12 +84,12 @@ abstract class ComposableElementTreeComponent extends ElementTreeComponent imple
                 $child->nextSibling = null;
 
                 if (isset($this->children[$key])) {
-                    $this->children[$key]->previousSibling = isset($this->children[$key-1])
-                        ? $this->children[$key-1]
+                    $this->children[$key]->previousSibling = isset($this->children[$key - 1])
+                        ? $this->children[$key - 1]
                         : null;
                 }
-                if (isset($this->children[$key-1])) {
-                    $this->children[$key-1]->nextSibling = isset($this->children[$key])
+                if (isset($this->children[$key - 1])) {
+                    $this->children[$key - 1]->nextSibling = isset($this->children[$key])
                         ? $this->children[$key]
                         : null;
                 }

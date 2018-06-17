@@ -39,6 +39,6 @@ class ElementTreeComment extends ElementTreeComponent implements Comment, Append
      */
     public function toString() : string
     {
-        return '<!--'.$this->value.'-->';
+        return '<!--' . $this->value . '-->';
     }
 }

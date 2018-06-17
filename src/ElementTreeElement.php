@@ -86,12 +86,12 @@ class ElementTreeElement extends ComposableElementTreeComponent implements
             $content .= $child->toString();
         }
 
-        $xml = '<'.$this->name.$this->getAttributesAsString();
+        $xml = '<' . $this->name . $this->getAttributesAsString();
 
         if ($content === '') {
             $xml .= ' />';
         } else {
-            $xml .= '>'.$content.'</'.$this->name.'>';
+            $xml .= '>' . $content . '</' . $this->name . '>';
         }
 
         return $xml;
@@ -101,7 +101,7 @@ class ElementTreeElement extends ComposableElementTreeComponent implements
     {
         $attr = '';
         foreach ($this->attributes as $name => $attribute) {
-            $attr .= ' '.$attribute->toString();
+            $attr .= ' ' . $attribute->toString();
         }
 
         return $attr;

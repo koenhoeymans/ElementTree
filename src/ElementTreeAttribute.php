@@ -77,6 +77,6 @@ class ElementTreeAttribute extends ElementTreeComponent implements Attribute
      */
     public function toString() : string
     {
-        return $this->name.'='.$this->quoteStyle.$this->value.$this->quoteStyle;
+        return $this->name . '=' . $this->quoteStyle . $this->value . $this->quoteStyle;
     }
 }
