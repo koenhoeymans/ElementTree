@@ -83,6 +83,18 @@ class DocumentationTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($elementTree, $div->getOwnerTree());
 
         /**
+         * If a comment, element, or text component is appended to another tree,
+         * it is removed from the original tree.
+         */
+        $header = $elementTree->createElement('h1');
+        $elementTree->append($header);
+        $otherTree = new \ElementTree\ElementTree();
+        $otherTree->append($header);
+
+        $this->assertEquals(array($header), $otherTree->getChildren());
+        $this->assertEquals(array($div), $elementTree->getChildren());
+
+        /**
          * `Text` can be appended to `Elements`.
          */
         $element->append($text);
