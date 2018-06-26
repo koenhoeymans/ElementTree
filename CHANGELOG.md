@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Unreleased]
+
+## [0.9.0] - 2018-06-26
 ### Changed
 - Changelog format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Minimum requirement is PHP 7.2.
