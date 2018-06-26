@@ -2,7 +2,7 @@
 
 namespace ElementTree;
 
-class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
+class ComposableComponentTest extends \PHPUnit\Framework\TestCase
 {
     public function setup()
     {
@@ -14,8 +14,8 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function addsNextSiblingToAppendable()
     {
-        $div = new \ElementTree\ElementTreeElement('div');
-        $h1 = new \ElementTree\ElementTreeElement('h1');
+        $div = new \ElementTree\Element('div');
+        $h1 = new \ElementTree\Element('h1');
         $this->composable->append($div);
         $this->composable->append($h1);
 
@@ -28,8 +28,8 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function removesNextSiblingAfterRemoveLastChild()
     {
-        $div = new \ElementTree\ElementTreeElement('div');
-        $h1 = new \ElementTree\ElementTreeElement('h1');
+        $div = new \ElementTree\Element('div');
+        $h1 = new \ElementTree\Element('h1');
         $this->composable->append($div);
         $this->composable->append($h1);
         $this->composable->remove($h1);
@@ -42,9 +42,9 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function adjustsNextSiblingAfterRemovingNotLastChild()
     {
-        $div = new \ElementTree\ElementTreeElement('div');
-        $h1 = new \ElementTree\ElementTreeElement('h1');
-        $h2 = new \ElementTree\ElementTreeElement('h2');
+        $div = new \ElementTree\Element('div');
+        $h1 = new \ElementTree\Element('h1');
+        $h2 = new \ElementTree\Element('h2');
         $this->composable->append($div);
         $this->composable->append($h1);
         $this->composable->append($h2);
@@ -58,8 +58,8 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function addsPreviousSiblingToAppendable()
     {
-        $div = new \ElementTree\ElementTreeElement('div');
-        $h1 = new \ElementTree\ElementTreeElement('h1');
+        $div = new \ElementTree\Element('div');
+        $h1 = new \ElementTree\Element('h1');
         $this->composable->append($div);
         $this->composable->append($h1);
 
@@ -71,7 +71,7 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function previousSiblingIsNullWhenThereIsNone()
     {
-        $div = new \ElementTree\ElementTreeElement('div');
+        $div = new \ElementTree\Element('div');
         $this->composable->append($div);
 
         $this->assertNull($div->getPreviousSibling());
@@ -82,8 +82,8 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function removesPreviousSiblingAfterRemoveFirstChild()
     {
-        $div = new \ElementTree\ElementTreeElement('div');
-        $h1 = new \ElementTree\ElementTreeElement('h1');
+        $div = new \ElementTree\Element('div');
+        $h1 = new \ElementTree\Element('h1');
         $this->composable->append($div);
         $this->composable->append($h1);
         $this->composable->remove($div);
@@ -96,9 +96,9 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function adjustsPreviousSiblingAfterRemovingNotFirstChild()
     {
-        $div = new \ElementTree\ElementTreeElement('div');
-        $h1 = new \ElementTree\ElementTreeElement('h1');
-        $h2 = new \ElementTree\ElementTreeElement('h2');
+        $div = new \ElementTree\Element('div');
+        $h1 = new \ElementTree\Element('h1');
+        $h2 = new \ElementTree\Element('h2');
         $this->composable->append($div);
         $this->composable->append($h1);
         $this->composable->append($h2);
@@ -112,9 +112,9 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function insertsComponentAfterOtherComponent()
     {
-        $div = new \ElementTree\ElementTreeElement('div');
-        $h1 = new \ElementTree\ElementTreeElement('h1');
-        $h2 = new \ElementTree\ElementTreeElement('h2');
+        $div = new \ElementTree\Element('div');
+        $h1 = new \ElementTree\Element('h1');
+        $h2 = new \ElementTree\Element('h2');
         $this->composable->append($div);
         $this->composable->append($h1);
         $this->composable->insertAfter($h2, $div);
@@ -127,9 +127,9 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function addsInsertedComponentAsPreviousSibling()
     {
-        $div = new \ElementTree\ElementTreeElement('div');
-        $h1 = new \ElementTree\ElementTreeElement('h1');
-        $h2 = new \ElementTree\ElementTreeElement('h2');
+        $div = new \ElementTree\Element('div');
+        $h1 = new \ElementTree\Element('h1');
+        $h2 = new \ElementTree\Element('h2');
         $this->composable->append($div);
         $this->composable->append($h1);
         $this->composable->insertAfter($h2, $div);
@@ -142,9 +142,9 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function insertsComponentBeforeOtherComponent()
     {
-        $div = new \ElementTree\ElementTreeElement('div');
-        $h1 = new \ElementTree\ElementTreeElement('h1');
-        $h2 = new \ElementTree\ElementTreeElement('h2');
+        $div = new \ElementTree\Element('div');
+        $h1 = new \ElementTree\Element('h1');
+        $h2 = new \ElementTree\Element('h2');
         $this->composable->append($div);
         $this->composable->append($h1);
         $this->composable->insertBefore($h2, $h1);
@@ -157,9 +157,9 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function removesSiblingsFromRemovedComponent()
     {
-        $div = new \ElementTree\ElementTreeElement('div');
-        $h1 = new \ElementTree\ElementTreeElement('h1');
-        $h2 = new \ElementTree\ElementTreeElement('h2');
+        $div = new \ElementTree\Element('div');
+        $h1 = new \ElementTree\Element('h1');
+        $h2 = new \ElementTree\Element('h2');
         $this->composable->append($div);
         $this->composable->append($h1);
         $this->composable->append($h2);
@@ -174,8 +174,8 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function removesComponentFromPreviousPositionBeforeAppending()
     {
-        $h1 = new \ElementTree\ElementTreeElement('h1');
-        $h2 = new \ElementTree\ElementTreeElement('h2');
+        $h1 = new \ElementTree\Element('h1');
+        $h2 = new \ElementTree\Element('h2');
         $this->composable->append($h1);
         $this->composable->append($h2);
         $this->composable->append($h1);
@@ -188,8 +188,8 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function removesComponentFromPreviousPositionBeforeInserting()
     {
-        $h1 = new \ElementTree\ElementTreeElement('h1');
-        $h2 = new \ElementTree\ElementTreeElement('h2');
+        $h1 = new \ElementTree\Element('h1');
+        $h2 = new \ElementTree\Element('h2');
         $this->composable->append($h1);
         $this->composable->append($h2);
         $this->composable->insertAfter($h1, $h2);
@@ -202,10 +202,10 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function replacesComponents()
     {
-        $h1 = new \ElementTree\ElementTreeElement('h1');
-        $h2 = new \ElementTree\ElementTreeElement('h2');
-        $h3 = new \ElementTree\ElementTreeElement('h3');
-        $h4 = new \ElementTree\ElementTreeElement('h4');
+        $h1 = new \ElementTree\Element('h1');
+        $h2 = new \ElementTree\Element('h2');
+        $h3 = new \ElementTree\Element('h3');
+        $h4 = new \ElementTree\Element('h4');
         $this->composable->append($h1);
         $this->composable->append($h4);
         $this->composable->append($h3);
@@ -219,9 +219,9 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function replaceUpdatesPreviousSibling()
     {
-        $h1 = new \ElementTree\ElementTreeElement('h1');
-        $h2 = new \ElementTree\ElementTreeElement('h2');
-        $h3 = new \ElementTree\ElementTreeElement('h3');
+        $h1 = new \ElementTree\Element('h1');
+        $h2 = new \ElementTree\Element('h2');
+        $h3 = new \ElementTree\Element('h3');
         $this->composable->append($h1);
         $this->composable->append($h2);
         $this->composable->replace($h3, $h2);
@@ -235,9 +235,9 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function replaceUpdatesNextSibling()
     {
-        $h1 = new \ElementTree\ElementTreeElement('h1');
-        $h2 = new \ElementTree\ElementTreeElement('h2');
-        $h3 = new \ElementTree\ElementTreeElement('h3');
+        $h1 = new \ElementTree\Element('h1');
+        $h2 = new \ElementTree\Element('h2');
+        $h3 = new \ElementTree\Element('h3');
         $this->composable->append($h1);
         $this->composable->append($h2);
         $this->composable->replace($h3, $h1);
@@ -251,9 +251,9 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
      */
     public function replacesWithinSubChildren()
     {
-        $h1 = new \ElementTree\ElementTreeElement('h1');
-        $h2 = new \ElementTree\ElementTreeElement('h2');
-        $h3 = new \ElementTree\ElementTreeElement('h3');
+        $h1 = new \ElementTree\Element('h1');
+        $h2 = new \ElementTree\Element('h2');
+        $h3 = new \ElementTree\Element('h3');
         $this->composable->append($h1);
         $h1->append($h2);
         $this->composable->replace($h3, $h2);
@@ -267,9 +267,9 @@ class ComposableElementTreeComponentTest extends \PHPUnit\Framework\TestCase
     public function replacingComponentIsRemovedFromOldParent()
     {
         $tree = new \ElementTree\ElementTree();
-        $h1 = new \ElementTree\ElementTreeElement('h1');
+        $h1 = new \ElementTree\Element('h1');
         $tree->append($h1);
-        $h2 = new \ElementTree\ElementTreeElement('h2');
+        $h2 = new \ElementTree\Element('h2');
         $this->composable->append($h2);
         $this->composable->replace($h1, $h2);
 

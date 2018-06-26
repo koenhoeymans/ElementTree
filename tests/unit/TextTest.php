@@ -2,14 +2,14 @@
 
 namespace ElementTree;
 
-class ElementTreeTextTest extends \PHPUnit\Framework\TestCase
+class TextTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test
      */
     public function hasValue()
     {
-        $text = new \ElementTree\ElementTreeText('foo');
+        $text = new \ElementTree\Text('foo');
 
         $this->assertEquals('foo', $text->getValue());
     }
@@ -19,7 +19,7 @@ class ElementTreeTextTest extends \PHPUnit\Framework\TestCase
      */
     public function returnsValueForXmlUse()
     {
-        $text = new \ElementTree\ElementTreeText('foo');
+        $text = new \ElementTree\Text('foo');
 
         $this->assertEquals('foo', $text->toString());
     }
@@ -29,7 +29,7 @@ class ElementTreeTextTest extends \PHPUnit\Framework\TestCase
      */
     public function hasNoChildren()
     {
-        $text = new \ElementTree\ElementTreeText('foo');
+        $text = new \ElementTree\Text('foo');
 
         $this->assertFalse($text->hasChildren());
     }

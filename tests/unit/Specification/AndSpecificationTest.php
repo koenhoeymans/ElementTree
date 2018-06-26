@@ -14,7 +14,7 @@ class AndSpecificationTest extends \PHPUnit\Framework\TestCase
             new \ElementTree\Specification\WithName('a')
         );
 
-        $this->assertTrue($andSpec->isSatisfiedBy(new \ElementTree\ElementTreeElement('a')));
+        $this->assertTrue($andSpec->isSatisfiedBy(new \ElementTree\Element('a')));
     }
 
     /**
@@ -27,6 +27,6 @@ class AndSpecificationTest extends \PHPUnit\Framework\TestCase
             new \ElementTree\Specification\WithName('b')
         );
 
-        $this->assertFalse($andSpec->isSatisfiedBy(new \ElementTree\ElementTreeElement('a')));
+        $this->assertFalse($andSpec->isSatisfiedBy(new \ElementTree\Element('a')));
     }
 }

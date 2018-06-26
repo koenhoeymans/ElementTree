@@ -2,61 +2,80 @@
 
 namespace ElementTree;
 
-interface Component
+abstract class Component
 {
-    /**
-     * Returns the ElemenTree that created the component. If there
-     * is no such ElementTree, e.i. the component was created by
-     * other ways, this will return `null`.
-     */
-    public function getOwnerTree() : ?ElementTree;
+    protected $ownerTree = null;
+
+    protected $parent = null;
+
+    protected $children = array();
+
+    protected $nextSibling = null;
+
+    protected $previousSibling = null;
 
     /**
-     * Returns the parent component of this component. Eg. when an element
-     * was appended to another element the first element is the parent
-     * of the other one. Or if a text component was added to an element
-     * this element is the parent of the text component. If there is no
-     * parent element this will return `null`.
+     * @see \ElementTree\Component::getOwnerTree()
      */
-    public function getParent() : ?Component;
+    public function getOwnerTree() : ?ElementTree
+    {
+        if ($this->hasParent()) {
+            return $this->getParent()->getOwnerTree();
+        }
+
+        return null;
+    }
 
     /**
-     * Will return `true` or `false` depending on whether the component
-     * has a parent or not.
+     * @see \ElementTree\Component::getParent()
      */
-    public function hasParent() : bool;
+    public function getParent() : ?Component
+    {
+        return $this->parent;
+    }
 
     /**
-     * Will return `true` or `false` depending on whether the component
-     * has children or not (components added to it).
+     * @see \ElementTree\Component::hasParent()
      */
-    public function hasChildren() : bool;
+    public function hasParent() : bool
+    {
+        return $this->parent ? true : false;
+    }
 
     /**
-     * An array of the child components that were appended to the current
-     * component.
+     * @see \ElementTree\Component::hasChildren()
      */
-    public function getChildren() : array;
+    public function hasChildren() : bool
+    {
+        return !empty($this->children);
+    }
 
     /**
-     * Will return the next child of the parent component or null if there
-     * is none.
+     * @see \ElementTree\Component::getChildren()
      */
-    public function getNextSibling() : ?Component;
+    public function getChildren() : array
+    {
+        return $this->children;
+    }
 
     /**
-     * Will return the previous child of the parent component or null if there
-     * is none.
+     * @see \ElementTree\Component::getNextSibling()
      */
-    public function getPreviousSibling() : ?Component;
+    public function getNextSibling() : ?Component
+    {
+        return $this->nextSibling;
+    }
 
     /**
-     * Creates an XML-style string representation of the component
-     * and its child components. Eg. if an ElementTree contains two
-     * Elements named 'div' and 'hr', with the 'div' element containing
-     * a text component, the  `toString` might return:
-     *
-     *     <div>div content</div><hr />
+     * @see \ElementTree\Component::getPreviousSibling()
      */
-    public function toString() : string;
+    public function getPreviousSibling() : ?Component
+    {
+        return $this->previousSibling;
+    }
+
+    /**
+     * @see \ElementTree\Component::toString()
+     */
+    abstract public function toString() : string;
 }

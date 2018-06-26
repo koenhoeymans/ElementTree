@@ -15,7 +15,7 @@ class ElementTreeTest extends \PHPUnit\Framework\TestCase
     public function createsElement()
     {
         $this->assertTrue(
-            $this->tree->createElement('foo') instanceof \ElementTree\ElementTreeElement
+            $this->tree->createElement('foo') instanceof \ElementTree\Element
         );
     }
 
@@ -25,7 +25,7 @@ class ElementTreeTest extends \PHPUnit\Framework\TestCase
     public function createsText()
     {
         $this->assertTrue(
-            $this->tree->createText('foo') instanceof \ElementTree\ElementTreeText
+            $this->tree->createText('foo') instanceof \ElementTree\Text
         );
     }
 
@@ -35,7 +35,7 @@ class ElementTreeTest extends \PHPUnit\Framework\TestCase
     public function createsComment()
     {
         $this->assertTrue(
-            $this->tree->createComment('foo') instanceof \ElementTree\ElementTreeComment
+            $this->tree->createComment('foo') instanceof \ElementTree\Comment
         );
     }
 
@@ -44,7 +44,7 @@ class ElementTreeTest extends \PHPUnit\Framework\TestCase
      */
     public function isParentOfAppended()
     {
-        $element = new \ElementTree\ElementTreeElement('a');
+        $element = new \ElementTree\Element('a');
         $this->tree->append($element);
 
         $this->assertEquals($this->tree, $element->getParent());
@@ -73,7 +73,7 @@ class ElementTreeTest extends \PHPUnit\Framework\TestCase
      */
     public function addsOwnerTreeToAppendedElement()
     {
-        $element = new \ElementTree\ElementTreeElement('p');
+        $element = new \ElementTree\Element('p');
         $this->tree->append($element);
 
         $this->assertEquals($this->tree, $element->getOwnerTree());
@@ -85,7 +85,7 @@ class ElementTreeTest extends \PHPUnit\Framework\TestCase
     public function canRemoveChildElement()
     {
         $parent = new \ElementTree\ElementTree();
-        $child = new \ElementTree\ElementTreeElement('a');
+        $child = new \ElementTree\Element('a');
         $parent->append($child);
         $parent->remove($child);
 
@@ -99,8 +99,8 @@ class ElementTreeTest extends \PHPUnit\Framework\TestCase
     public function canRemoveSubChildrenElements()
     {
         $parent = new \ElementTree\ElementTree();
-        $child = new \ElementTree\ElementTreeElement('a');
-        $subchild = new \ElementTree\ElementTreeElement('b');
+        $child = new \ElementTree\Element('a');
+        $subchild = new \ElementTree\Element('b');
         $parent->append($child);
         $child->append($subchild);
         $parent->remove($subchild);
@@ -117,10 +117,10 @@ class ElementTreeTest extends \PHPUnit\Framework\TestCase
     public function doesNotAskTextToRemoveChild()
     {
         $tree = new \ElementTree\ElementTree();
-        $text = new \ElementTree\ElementTreeText('text');
+        $text = new \ElementTree\Text('text');
         $tree->append($text);
 
-        $tree->remove(new \ElementTree\ElementTreeElement('b'));
+        $tree->remove(new \ElementTree\Element('b'));
 
         $this->assertEquals(array($text), $tree->getChildren());
         $this->assertEquals($tree, $text->getOwnerTree());
@@ -132,8 +132,8 @@ class ElementTreeTest extends \PHPUnit\Framework\TestCase
     public function canReplaceChild()
     {
         $a = new \ElementTree\ElementTree();
-        $b = new \ElementTree\ElementTreeElement('b');
-        $c = new \ElementTree\ElementTreeElement('c');
+        $b = new \ElementTree\Element('b');
+        $c = new \ElementTree\Element('c');
         $a->append($b);
         $a->replace($c, $b);
 

@@ -11,7 +11,7 @@ class AllTextTest extends \PHPUnit\Framework\TestCase
     {
         $allText = new \ElementTree\Specification\AllText();
         $this->assertTrue(
-            $allText->isSatisfiedBy(new \ElementTree\ElementTreeText('a'))
+            $allText->isSatisfiedBy(new \ElementTree\Text('a'))
         );
     }
 
@@ -22,7 +22,7 @@ class AllTextTest extends \PHPUnit\Framework\TestCase
     {
         $allText = new \ElementTree\Specification\AllText();
         $this->assertFalse(
-            $allText->isSatisfiedBy(new \ElementTree\ElementTreeElement('a'))
+            $allText->isSatisfiedBy(new \ElementTree\Element('a'))
         );
     }
 }

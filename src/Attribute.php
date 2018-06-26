@@ -2,41 +2,81 @@
 
 namespace ElementTree;
 
-interface Attribute extends Component
+class Attribute extends Component
 {
-    /**
-     * The attribute name.
-     */
-    public function getName() : string;
+    private const NO_QUOTES = '';
+
+    private const SINGLE_QUOTES = "'";
+
+    private const DOUBLE_QUOTES = '"';
+
+    private $name;
+
+    private $value;
+
+    private $quoteStyle = self::DOUBLE_QUOTES;
+
+    public function __construct(string $name, string $value)
+    {
+        $this->name = $name;
+        $this->value = $value;
+    }
 
     /**
-     * The attribute value.
+     * @see \ElementTree\Attribute::getName()
      */
-    public function getValue() : string;
+    public function getName() : string
+    {
+        return $this->name;
+    }
 
     /**
-     * Sets the attribute value.
+     * @see \ElementTree\Attribute::getValue()
      */
-    public function setValue(string $value);
+    public function getValue() : string
+    {
+        return $this->value;
+    }
 
     /**
-     * Don't quote the attribute value when stringified.
+     * @see \ElementTree\Attribute::setValue()
+     */
+    public function setValue(string $value)
+    {
+        $this->value = $value;
+    }
+
+    /**
+     * @see \ElementTree\Attribute::noQuotes()
+     */
+    public function noQuotes() : void
+    {
+        $this->quoteStyle = self::NO_QUOTES;
+    }
+
+    /**
+     * @see \ElementTree\Attribute:singleQuotes()
+     */
+    public function singleQuotes() : void
+    {
+        $this->quoteStyle = self::SINGLE_QUOTES;
+    }
+
+    /**
+     * @see \ElementTree\Attribute:doubleQuotes()
+     */
+    public function doubleQuotes() : void
+    {
+        $this->quoteStyle = self::DOUBLE_QUOTES;
+    }
+
+    /**
+     * `name="value"`
      *
-     *     checked=true
+     * @see ElementTree\Component::toString()
      */
-    public function noQuotes() : void;
-
-    /**
-     * Put the attribute value in single quotes when stringified.
-     *
-     *     foo='bar'
-     */
-    public function singleQuotes() : void;
-
-    /**
-     * Put the attribute value in double quotes when stringified.
-     *
-     *     foo="bar"
-     */
-    public function doubleQuotes() : void;
+    public function toString() : string
+    {
+        return $this->name . '=' . $this->quoteStyle . $this->value . $this->quoteStyle;
+    }
 }

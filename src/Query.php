@@ -4,64 +4,120 @@ namespace ElementTree;
 
 use ElementTree\Specification\ComponentSpecification;
 
-interface Query
+class Query
 {
-    /**
-     * Find all components that satisfy a given specification.
-     */
-    public function find(ComponentSpecification $specification) : array;
+    private $component;
+
+    public function __construct(Component $component)
+    {
+        $this->component = $component;
+    }
 
     /**
-     * Matches all `Element` components.
+     * @see \ElementTree\Query::find()
      */
-    public function allElements(ComponentSpecification $specification = null) : Specification\AllElements;
+    public function find(ComponentSpecification $specification) : array
+    {
+        $matches = array();
+        $this->component->getChildren();
+        if ($specification->isSatisfiedBy($this->component)) {
+            $matches[] = $this->component;
+        }
+
+        foreach ($this->component->getChildren() as $child) {
+            $childQuery = new self($child);
+            $matches = array_merge($matches, $childQuery->find($specification));
+        }
+
+        if ($this->component instanceof Element) {
+            foreach ($this->component->getAttributes() as $attr) {
+                $childQuery = new self($attr);
+                $matches = array_merge($matches, $childQuery->find($specification));
+            }
+        }
+
+        return $matches;
+    }
 
     /**
-     * Matches an element when it has an attribute (with given specification).
+     * @see \ElementTree\Query::allElements()
      */
-    public function withAttribute(ComponentSpecification $specification = null) : Specification\WithAttribute;
+    public function allElements(ComponentSpecification $specification = null) : Specification\AllElements
+    {
+        return new \ElementTree\Specification\AllElements($specification);
+    }
 
     /**
-     * Matches when the name of the element or attribute is the same.
+     * @see \ElementTree\Query::withAttribute()
      */
-    public function withName(string $name) : \ElementTree\Specification\WithName;
+    public function withAttribute(ComponentSpecification $specification = null) : Specification\WithAttribute
+    {
+        return new \ElementTree\Specification\WithAttribute($specification);
+    }
 
     /**
-     * Matches all `Attribute` components.
+     * @see \ElementTree\Query::withName()
      */
-    public function allAttributes(ComponentSpecification $specification = null) : Specification\AllAttributes;
+    public function withName($name) : Specification\WithName
+    {
+        return new \ElementTree\Specification\WithName($name);
+    }
 
     /**
-     * Selects all text components.
+     * @see \ElementTree\Query::allAttributes()
      */
-    public function allText(ComponentSpecification $specification = null) : Specification\AllText;
+    public function allAttributes(ComponentSpecification $specification = null) : Specification\AllAttributes
+    {
+        return new \ElementTree\Specification\AllAttributes($specification);
+    }
 
     /**
-     * Selects components that have a parent element.
+     * @see \ElementTree\Query::allText()
      */
-    public function withParentElement(ComponentSpecification $specification = null) : Specification\WithParentElement;
+    public function allText(ComponentSpecification $specification = null) : Specification\AllText
+    {
+        return new \ElementTree\Specification\AllText($specification);
+    }
 
     /**
-     * Combines specifications. All must succeed for the component to be
-     * selected.
+     * @see \ElementTree\Query::withParentElement()
+     */
+    public function withParentElement(ComponentSpecification $specification = null) : Specification\WithParentElement
+    {
+        return new \ElementTree\Specification\WithParentElement($specification);
+    }
+
+    /**
+     * @see \ElementTree\Query::lAnd()
      */
     public function lAnd(
         ComponentSpecification $specification1,
         ComponentSpecification $specification2
-    ) : Specification\AndSpecification;
+    ) : Specification\AndSpecification {
+        $args = func_get_args();
+        $andSpec = new \ReflectionClass('\\ElementTree\\Specification\\AndSpecification');
+
+        return $andSpec->newInstanceArgs($args);
+    }
 
     /**
-     * Combines specifications. At least one must succeed for the component to be
-     * selected.
+     * @see \ElementTree\Query::lOr()
      */
     public function lOr(
         ComponentSpecification $specification1,
         ComponentSpecification $specification2
-    ) : Specification\OrSpecification;
+    ) : Specification\OrSpecification {
+        $args = func_get_args();
+        $andSpec = new \ReflectionClass('\\ElementTree\\Specification\\OrSpecification');
+
+        return $andSpec->newInstanceArgs($args);
+    }
 
     /**
-     * The negation another specification. Selects a component if a specification
-     * does not apply.
+     * @see \ElementTree\Query::not()
      */
-    public function not(ComponentSpecification $specification) : Specification\NotSpecification;
+    public function not(ComponentSpecification $specification) : Specification\NotSpecification
+    {
+        return new \ElementTree\Specification\NotSpecification($specification);
+    }
 }

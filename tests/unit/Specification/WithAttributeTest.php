@@ -9,7 +9,7 @@ class WithAttributeTest extends \PHPUnit\Framework\TestCase
      */
     public function isSatisfiedWhenElementHasAttribute()
     {
-        $div = new \ElementTree\ElementTreeElement('div');
+        $div = new \ElementTree\Element('div');
         $div->setAttribute('id', 'foo');
 
         $withAttr = new \ElementTree\Specification\WithAttribute();
@@ -22,7 +22,7 @@ class WithAttributeTest extends \PHPUnit\Framework\TestCase
      */
     public function isNotSatisfiedWhenElementHasNoAttributes()
     {
-        $div = new \ElementTree\ElementTreeElement('div');
+        $div = new \ElementTree\Element('div');
 
         $withAttr = new \ElementTree\Specification\WithAttribute();
 
@@ -34,7 +34,7 @@ class WithAttributeTest extends \PHPUnit\Framework\TestCase
      */
     public function atLeastOneAttributeMustSatisfySubSpecification()
     {
-        $div = new \ElementTree\ElementTreeElement('div');
+        $div = new \ElementTree\Element('div');
         $div->setAttribute('id', 'foo');
         $div->setAttribute('class', 'bar');
 
@@ -54,7 +54,7 @@ class WithAttributeTest extends \PHPUnit\Framework\TestCase
      */
     public function notSatisfiedIfNoAttributeSatisfiedSubSpecification()
     {
-        $div = new \ElementTree\ElementTreeElement('div');
+        $div = new \ElementTree\Element('div');
         $div->setAttribute('id', 'foo');
         $div->setAttribute('class', 'bar');
 

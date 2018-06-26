@@ -11,7 +11,7 @@ class WithNameTest extends \PHPUnit\Framework\TestCase
     {
         $withName = new \ElementTree\Specification\WithName('foo');
         $this->assertTrue(
-            $withName->isSatisfiedBy(new \ElementTree\ElementTreeElement('foo', 'bar'))
+            $withName->isSatisfiedBy(new \ElementTree\Element('foo', 'bar'))
         );
     }
 
@@ -22,7 +22,7 @@ class WithNameTest extends \PHPUnit\Framework\TestCase
     {
         $withName = new \ElementTree\Specification\WithName('foo');
         $this->assertTrue(
-            $withName->isSatisfiedBy(new \ElementTree\ElementTreeAttribute('foo', 'bar'))
+            $withName->isSatisfiedBy(new \ElementTree\Attribute('foo', 'bar'))
         );
     }
 }

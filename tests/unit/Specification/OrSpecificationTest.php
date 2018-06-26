@@ -14,7 +14,7 @@ class OrSpecificationTest extends \PHPUnit\Framework\TestCase
             new \ElementTree\Specification\WithName('b')
         );
 
-        $this->assertTrue($orSpec->isSatisfiedBy(new \ElementTree\ElementTreeElement('a')));
+        $this->assertTrue($orSpec->isSatisfiedBy(new \ElementTree\Element('a')));
     }
 
     /**
@@ -27,6 +27,6 @@ class OrSpecificationTest extends \PHPUnit\Framework\TestCase
             new \ElementTree\Specification\WithName('c')
         );
 
-        $this->assertFalse($orSpec->isSatisfiedBy(new \ElementTree\ElementTreeElement('a')));
+        $this->assertFalse($orSpec->isSatisfiedBy(new \ElementTree\Element('a')));
     }
 }

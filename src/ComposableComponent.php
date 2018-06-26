@@ -2,7 +2,7 @@
 
 namespace ElementTree;
 
-abstract class ComposableElementTreeComponent extends ElementTreeComponent implements Composable
+abstract class ComposableComponent extends Component implements Composable
 {
     /**
      * @see \ElementTree\Composable::append()

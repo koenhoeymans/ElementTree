@@ -2,15 +2,41 @@
 
 namespace ElementTree;
 
-interface Text extends Component
+class Text extends Component implements Appendable
 {
-    /**
-     * Returns the value, e.i. the content.
-     */
-    public function getValue() : string;
+    private $value;
+
+    public function __construct(string $value)
+    {
+        $this->value = $value;
+    }
+
+    public function appendTo(Composable $composable) : void
+    {
+        $composable->append($this);
+    }
 
     /**
-     * Sets the value, e.i. the content.
+     * @see \ElementTree\Text::getValue()
      */
-    public function setValue(string $value) : void;
+    public function getValue() : string
+    {
+        return $this->value;
+    }
+
+    /**
+     * @see \ElementTree\Text::setValue()
+     */
+    public function setValue(string $value) : void
+    {
+        $this->value = $value;
+    }
+
+    /**
+     * @see \ElementTree\Component::toString()
+     */
+    public function toString() : string
+    {
+        return $this->value;
+    }
 }

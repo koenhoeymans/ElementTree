@@ -2,7 +2,7 @@
 
 namespace ElementTree;
 
-class ElementTreeQueryTest extends \PHPUnit\Framework\TestCase
+class QueryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test
@@ -22,7 +22,7 @@ class ElementTreeQueryTest extends \PHPUnit\Framework\TestCase
             ->with($elementTree)
             ->will($this->returnValue(true));
 
-        $query = new \ElementTree\ElementTreeQuery($elementTree);
+        $query = new \ElementTree\Query($elementTree);
         $query->find($specification);
     }
 
@@ -48,7 +48,7 @@ class ElementTreeQueryTest extends \PHPUnit\Framework\TestCase
             ->with($elementTree)
             ->will($this->returnValue(true));
 
-        $query = new \ElementTree\ElementTreeQuery($elementTree);
+        $query = new \ElementTree\Query($elementTree);
         $query->find($specification);
     }
 }

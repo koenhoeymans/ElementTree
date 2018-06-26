@@ -11,7 +11,7 @@ class AllAttributesTest extends \PHPUnit\Framework\TestCase
     {
         $allText = new \ElementTree\Specification\AllAttributes();
         $this->assertTrue(
-            $allText->isSatisfiedBy(new \ElementTree\ElementTreeAttribute('foo', 'bar'))
+            $allText->isSatisfiedBy(new \ElementTree\Attribute('foo', 'bar'))
         );
     }
 
@@ -22,7 +22,7 @@ class AllAttributesTest extends \PHPUnit\Framework\TestCase
     {
         $allText = new \ElementTree\Specification\AllAttributes();
         $this->assertFalse(
-            $allText->isSatisfiedBy(new \ElementTree\ElementTreeText('a'))
+            $allText->isSatisfiedBy(new \ElementTree\Text('a'))
         );
     }
 }

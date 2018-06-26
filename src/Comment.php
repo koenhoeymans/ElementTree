@@ -2,15 +2,43 @@
 
 namespace ElementTree;
 
-interface Comment extends Component
+class Comment extends Component implements Appendable
 {
-    /**
-     * The text of the comment.
-     */
-    public function getValue() : string;
+    private $value;
+
+    public function __construct(string $value)
+    {
+        $this->value = $value;
+    }
+
+    public function appendTo(Composable $composable) : void
+    {
+        $composable->append($this);
+    }
 
     /**
-     * Sets the text of the comment.
+     * @see \ElementTree\Comment::getValue()
      */
-    public function setValue(string $value) : void;
+    public function getValue() : string
+    {
+        return $this->value;
+    }
+
+    /**
+     * @see \ElementTree\Comment::setValue()
+     */
+    public function setValue(string $value) : void
+    {
+        $this->value = $value;
+    }
+
+    /**
+     * `<!-- comment -->`
+     *
+     * @see ElementTree\Component::toString()
+     */
+    public function toString() : string
+    {
+        return '<!--' . $this->value . '-->';
+    }
 }

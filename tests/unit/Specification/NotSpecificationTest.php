@@ -13,7 +13,7 @@ class NotSpecificationTest extends \PHPUnit\Framework\TestCase
             new \ElementTree\Specification\WithName('a')
         );
 
-        $this->assertTrue($notSpec->isSatisfiedBy(new \ElementTree\ElementTreeElement('b')));
+        $this->assertTrue($notSpec->isSatisfiedBy(new \ElementTree\Element('b')));
     }
 
     /**
@@ -25,6 +25,6 @@ class NotSpecificationTest extends \PHPUnit\Framework\TestCase
             new \ElementTree\Specification\WithName('a')
         );
 
-        $this->assertFalse($notSpec->isSatisfiedBy(new \ElementTree\ElementTreeElement('a')));
+        $this->assertFalse($notSpec->isSatisfiedBy(new \ElementTree\Element('a')));
     }
 }

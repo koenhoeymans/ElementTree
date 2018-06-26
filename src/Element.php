@@ -2,38 +2,106 @@
 
 namespace ElementTree;
 
-interface Element extends Component
+class Element extends ComposableComponent implements Appendable
 {
-    /**
-     * Return the name of the element. Eg, ofted used names for elements
-     * in HTML are `div`, `p` and `blink`.
-     */
-    public function getName() : string;
+    private $name;
+
+    private $attributes = array();
+
+    public function __construct(string $name)
+    {
+        $this->name = $name;
+    }
+
+    public function appendTo(Composable $composable) : void
+    {
+        $composable->append($this);
+    }
 
     /**
-     * Set an attribute with a name and a a value. Eg. in an HTML element
-     * with the name `p` an attribute `class` with the value `important`
-     * can be used to style this paragraph different from others.
+     * @see \ElementTree\Element::getName()
      */
-    public function setAttribute(string $name, string $value) : Attribute;
+    public function getName() : string
+    {
+        return $this->name;
+    }
 
     /**
-     * Remove an attribute, specified by name.
+     * @see \ElementTree\Element::setAttribute()
      */
-    public function removeAttribute(string $name) : void;
+    public function setAttribute($name, $value) : Attribute
+    {
+        $attr = new Attribute($name, $value);
+        $attr->parent = $this;
+        $this->attributes[$name] = $attr;
+
+        return $attr;
+    }
 
     /**
-     * Returns the value of an attribute.
+     * @see \ElementTree\Element::removeAttribute()
      */
-    public function getAttributeValue(string $name) : string;
+    public function removeAttribute($name) : void
+    {
+        if (isset($this->attributes[$name])) {
+            unset($this->attributes[$name]);
+        }
+    }
 
     /**
-     * Whether the element has an attribute with a given name or not.
+     * @see \ElementTree\Element::getAttributeValue()
      */
-    public function hasAttribute(string $name) : bool;
+    public function getAttributeValue($name) : string
+    {
+        return isset($this->attributes[$name])
+            ? $this->attributes[$name]->getValue()
+            : null;
+    }
 
     /**
-     * Get the list of attributes.
+     * @see \ElementTree\Element::hasAttribute()
      */
-    public function getAttributes() : array;
+    public function hasAttribute(string $name) : bool
+    {
+        return isset($this->attributes[$name]);
+    }
+
+    /**
+     * @see \ElementTree\Element::getAttributes()
+     */
+    public function getAttributes() : array
+    {
+        return array_values($this->attributes);
+    }
+
+    /**
+     * @see \ElementTree\Component::toString()
+     */
+    public function toString() : string
+    {
+        $content = '';
+        foreach ($this->children as $child) {
+            $content .= $child->toString();
+        }
+
+        $xml = '<' . $this->name . $this->getAttributesAsString();
+
+        if ($content === '') {
+            $xml .= ' />';
+        } else {
+            $xml .= '>' . $content . '</' . $this->name . '>';
+        }
+
+        return $xml;
+    }
+
+    private function getAttributesAsString() : string
+    {
+        $attr = '';
+        foreach ($this->attributes as $name => $attribute) {
+            $attr .= ' ' . $attribute->toString();
+        }
+
+        return $attr;
+    }
 }

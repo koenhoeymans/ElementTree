@@ -2,11 +2,11 @@
 
 namespace ElementTree;
 
-class ElementTreeAttributeTest extends \PHPUnit\Framework\TestCase
+class AttributeTest extends \PHPUnit\Framework\TestCase
 {
     public function setup()
     {
-        $this->attr = new \ElementTree\ElementTreeAttribute('foo', 'bar');
+        $this->attr = new \ElementTree\Attribute('foo', 'bar');
     }
 
     /**

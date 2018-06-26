@@ -2,7 +2,7 @@
 
 namespace ElementTree;
 
-class ElementTree extends ComposableElementTreeComponent implements ComponentFactory
+class ElementTree extends ComposableComponent implements ComponentFactory
 {
     /**
      * @see \ElementTree\ElementTreeComponent::getOwnerTree()
@@ -17,7 +17,7 @@ class ElementTree extends ComposableElementTreeComponent implements ComponentFac
      */
     public function createElement($name) : Element
     {
-        return new ElementTreeElement($name);
+        return new Element($name);
     }
 
     /**
@@ -25,7 +25,7 @@ class ElementTree extends ComposableElementTreeComponent implements ComponentFac
      */
     public function createText($value) : Text
     {
-        return new ElementTreeText($value);
+        return new Text($value);
     }
 
     /**
@@ -33,12 +33,12 @@ class ElementTree extends ComposableElementTreeComponent implements ComponentFac
      */
     public function createComment($value) : Comment
     {
-        return new ElementTreeComment($value);
+        return new Comment($value);
     }
 
-    public function createQuery(Component $component) : ElementTreeQuery
+    public function createQuery(Component $component) : Query
     {
-        return new \ElementTree\ElementTreeQuery($component);
+        return new Query($component);
     }
 
     public function toString() : string

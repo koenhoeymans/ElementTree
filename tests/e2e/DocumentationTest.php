@@ -202,7 +202,7 @@ class DocumentationTest extends \PHPUnit\Framework\TestCase
         /**
          * Elements can be further specified by name with `withName`.
          */
-        $query = new \ElementTree\ElementTreeQuery($elementTree);
+        $query = new \ElementTree\Query($elementTree);
         $entries = $query->find($query->allElements($query->withName('span')));
         $this->assertEquals(array($span), $entries);
 
@@ -210,7 +210,7 @@ class DocumentationTest extends \PHPUnit\Framework\TestCase
          * Another specification for elements is `withAttribute`.
          */
         $id = $div->setAttribute('id', 'footer');
-        $query = new \ElementTree\ElementTreeQuery($elementTree);
+        $query = new \ElementTree\Query($elementTree);
         $entries = $query->find($query->allElements($query->withAttribute()));
         $this->assertEquals(array($div), $entries);
 

@@ -9,8 +9,8 @@ class WithParentElementTest extends \PHPUnit\Framework\TestCase
      */
     public function isSatisfiedWhenComponentHasParentElement()
     {
-        $element = new \ElementTree\ElementTreeElement('foo');
-        $text = new \ElementTree\ElementTreeText('bar');
+        $element = new \ElementTree\Element('foo');
+        $text = new \ElementTree\Text('bar');
         $element->append($text);
 
         $withParentEl = new \ElementTree\Specification\WithParentElement();
@@ -23,7 +23,7 @@ class WithParentElementTest extends \PHPUnit\Framework\TestCase
      */
     public function isNotSatisfiedWhenComponentDoesntHaveParent()
     {
-        $text = new \ElementTree\ElementTreeText('bar');
+        $text = new \ElementTree\Text('bar');
 
         $withParentEl = new \ElementTree\Specification\WithParentElement();
 
@@ -36,7 +36,7 @@ class WithParentElementTest extends \PHPUnit\Framework\TestCase
     public function isNotSatisfiedWhenParentIsntAnElement()
     {
         $tree = new \ElementTree\ElementTree();
-        $text = new \ElementTree\ElementTreeText('bar');
+        $text = new \ElementTree\Text('bar');
         $tree->append($text);
 
         $withParentEl = new \ElementTree\Specification\WithParentElement();
@@ -49,8 +49,8 @@ class WithParentElementTest extends \PHPUnit\Framework\TestCase
      */
     public function canAcceptSubSpecification()
     {
-        $element = new \ElementTree\ElementTreeElement('foo');
-        $text = new \ElementTree\ElementTreeText('bar');
+        $element = new \ElementTree\Element('foo');
+        $text = new \ElementTree\Text('bar');
         $element->append($text);
 
         $subSpec = $this->createMock('\\ElementTree\\Specification\\ComponentSpecification');
