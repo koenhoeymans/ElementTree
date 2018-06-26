@@ -15,8 +15,8 @@ class DocumentationTest extends \PHPUnit\Framework\TestCase
          */
 
         /**
-         * The ElementTree package contains a tree of components that resemble
-         * a very basis XML layout.
+         * The ElementTree package contains components that together resemble
+         * a basic XML layout.
          */
         $elementTree = new \ElementTree\ElementTree();
 
