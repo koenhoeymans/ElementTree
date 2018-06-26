@@ -9,6 +9,10 @@
 ### Removed
 - Dev dependency on the QualityCheck library.
 - No more `@package ElementTree` in dockblocks.
+- Removed interfaces of basic components and made them classes. E.g. `ElementTreeElement`
+  class became `Element` class and removed the `Element` interface. This makes
+  the inheritance tree simpler while the interface implementation was not
+  necessary.
 
 
 ## older versions
