@@ -15,7 +15,9 @@ abstract class Component
     protected $previousSibling = null;
 
     /**
-     * @see \ElementTree\Component::getOwnerTree()
+     * Get the `OwnerTree` to which a `Component` belongs. If the component
+     * was not added to a tree, or added to another `Component` that has no
+     * `OwnerTree` this method will return `null`.
      */
     public function getOwnerTree() : ?ElementTree
     {
@@ -27,7 +29,7 @@ abstract class Component
     }
 
     /**
-     * @see \ElementTree\Component::getParent()
+     * Return the parent `Component` to which this `Component` was added to.
      */
     public function getParent() : ?Component
     {
@@ -35,7 +37,7 @@ abstract class Component
     }
 
     /**
-     * @see \ElementTree\Component::hasParent()
+     * Whether this `Component` has a parent or not.
      */
     public function hasParent() : bool
     {
@@ -43,7 +45,7 @@ abstract class Component
     }
 
     /**
-     * @see \ElementTree\Component::hasChildren()
+     * Whether this `Component` has another `Component` added to it.
      */
     public function hasChildren() : bool
     {
@@ -51,7 +53,8 @@ abstract class Component
     }
 
     /**
-     * @see \ElementTree\Component::getChildren()
+     * Returns all `Component`s that were added to this `Component`. Only
+     * direct subcomponents are returned.
      */
     public function getChildren() : array
     {
@@ -59,7 +62,8 @@ abstract class Component
     }
 
     /**
-     * @see \ElementTree\Component::getNextSibling()
+     * Get the next `Component` that was added after this `Component` to the
+     * parent.
      */
     public function getNextSibling() : ?Component
     {
@@ -67,7 +71,8 @@ abstract class Component
     }
 
     /**
-     * @see \ElementTree\Component::getPreviousSibling()
+     * Get the previous `Component` that was added after this `Component` to
+     * the parent.
      */
     public function getPreviousSibling() : ?Component
     {
@@ -75,7 +80,7 @@ abstract class Component
     }
 
     /**
-     * @see \ElementTree\Component::toString()
+     * Get a string representation.
      */
     abstract public function toString() : string;
 }

@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Unreleased]
+### Added
+- Improved documentation.
 
 ## [0.9.0] - 2018-06-26
 ### Changed

@@ -5,7 +5,7 @@ namespace ElementTree;
 class ElementTree extends ComposableComponent implements ComponentFactory
 {
     /**
-     * @see \ElementTree\ElementTreeComponent::getOwnerTree()
+     * @see \ElementTree\Component::getOwnerTree()
      */
     public function getOwnerTree() : ?ElementTree
     {
@@ -36,11 +36,19 @@ class ElementTree extends ComposableComponent implements ComponentFactory
         return new Comment($value);
     }
 
+    /**
+     * Create a `Query` object for a given `Component`. This `Query` object
+     * has methods to query the component (see the documentation for the`Query`
+     * object).
+     */
     public function createQuery(Component $component) : Query
     {
         return new Query($component);
     }
 
+    /**
+     * @see \ElementTree\ComponentFactory::toString();
+     */
     public function toString() : string
     {
         $content = '';

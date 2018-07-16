@@ -13,13 +13,16 @@ class Element extends ComposableComponent implements Appendable
         $this->name = $name;
     }
 
+    /**
+     * @see \ElementTree\Appendable::appendTo()
+     */
     public function appendTo(Composable $composable) : void
     {
         $composable->append($this);
     }
 
     /**
-     * @see \ElementTree\Element::getName()
+     * Get the name of the `Element`.
      */
     public function getName() : string
     {
@@ -27,7 +30,7 @@ class Element extends ComposableComponent implements Appendable
     }
 
     /**
-     * @see \ElementTree\Element::setAttribute()
+     * Set an attribte by name and value.
      */
     public function setAttribute($name, $value) : Attribute
     {
@@ -39,7 +42,7 @@ class Element extends ComposableComponent implements Appendable
     }
 
     /**
-     * @see \ElementTree\Element::removeAttribute()
+     * Remove an attribute by name.
      */
     public function removeAttribute($name) : void
     {
@@ -49,7 +52,7 @@ class Element extends ComposableComponent implements Appendable
     }
 
     /**
-     * @see \ElementTree\Element::getAttributeValue()
+     * Get the value of an attribute.
      */
     public function getAttributeValue($name) : string
     {
@@ -59,7 +62,7 @@ class Element extends ComposableComponent implements Appendable
     }
 
     /**
-     * @see \ElementTree\Element::hasAttribute()
+     * Whether this `Element` has an attribute known by `$name`.
      */
     public function hasAttribute(string $name) : bool
     {
@@ -67,7 +70,7 @@ class Element extends ComposableComponent implements Appendable
     }
 
     /**
-     * @see \ElementTree\Element::getAttributes()
+     * Get alle the `Attribute` objects.
      */
     public function getAttributes() : array
     {

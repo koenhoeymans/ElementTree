@@ -10,71 +10,80 @@ class DocumentationTest extends \PHPUnit\Framework\TestCase
     public function elementTreeUsage()
     {
         /**
-         * The components
-         * --------------
-         */
+         * ## The components
+         * 
+         * There are five different components:
+         * 
+         *   * `Attribute`
+         *   * `Comment`
+         *   * `Element`
+         *   * `ElementTree`
+         *   * `Text`
+         * 
+         * The `ElementTree` is the base component:
+         */ 
 
-        /**
-         * The ElementTree package contains components that together resemble
-         * a basic XML layout.
-         */
         $elementTree = new \ElementTree\ElementTree();
 
+        /**
+         * An `Element` is created through the `ElementTree`:
+         */
         $element = $elementTree->createElement('div');
-        $text = $elementTree->createText('the text content');
-        $comment = $elementTree->createComment('a comment');
 
         /**
-         * Elements and comments can be added to the tree and to eachother.
-         * As this is not a pure XML implementation there does not need
-         * to be only one root element.
+         * An `Element` can have `Attribute`s:
          */
+        $attribute = $element->setAttribute('name', 'value');
+
+        /**
+         * `Comment`s and `Text` are also created through the `ElementTree`:
+         */
+        $comment = $elementTree->createComment('this is a comment');
+        $text = $elementTree->createText('some text content');
+
+
+        /**
+         * One can append or insert (after or before) an `Attribute`, `Comment`,
+         * `Element` or `Text` to The `ElementTree` and `Element`component.
+         * An `ElementTree` cannot be appended or inserted.
+         */
+        $element->append($text);
+        $element->insertAfter($comment, $text);
         $elementTree->append($element);
-        $elementTree->append($comment);
-        $h1 = $elementTree->createElement('h1');
-        $elementTree->append($h1);
-        $h1->append($text);
-
-        $this->assertSame($comment, $element->getNextSibling());
-        $this->assertSame($element, $comment->getPreviousSibling());
 
         /**
-         * Components can also be removed from its parent.
+         * They can also be removed from its parent.
          */
+        $element->remove($text);
         $element->remove($comment);
-        $element->remove($h1);
+        $elementTree->remove($element);
 
-        $this->assertFalse($element->hasChildren());
-
-        /**
-         * Elements and comments can be inserted after others.
+        /** 
+         * ## Component methods
+         * 
+         * Every component has the following methods: `getOwnerTree`,
+         * `getParent`, `hasParent`, `hasChildren`, `getChildren`,
+         * `getNextSibling`, `getPreviousSibling`, `toString`.
          */
-        $elementTree = new \ElementTree\ElementTree();
         $h1 = $elementTree->createElement('h1');
-        $h2 = $elementTree->createElement('h2');
-        $h3 = $elementTree->createElement('h3');
         $elementTree->append($h1);
-        $elementTree->append($h3);
-        $elementTree->insertAfter($h2, $h1);
+        $text = $elementTree->createText('this is a header');
+        $h1->append($text);
+        $div = $elementTree->createElement('div');
+        $elementTree->append($div);
 
-        $this->assertSame($h2, $h1->getNextSibling());
+        $this->assertSame($elementTree, $h1->getOwnerTree());
+        $this->assertSame($h1, $text->getParent());
+        $this->assertTrue($text->hasParent());
+        $this->assertTrue($h1->hasChildren());
+        $this->assertFalse($text->hasChildren());
+        $this->assertEquals(array($text), $h1->getChildren());
+        $this->assertSame($div, $h1->getNextSibling());
+        $this->assertSame($h1, $div->getPreviousSibling());
 
         /**
-         * Or they can be inserted before another component.
-         */
-        $elementTree = new \ElementTree\ElementTree();
-        $h1 = $elementTree->createElement('h1');
-        $h2 = $elementTree->createElement('h2');
-        $h3 = $elementTree->createElement('h3');
-        $elementTree->append($h1);
-        $elementTree->append($h3);
-        $elementTree->insertBefore($h2, $h3);
-
-        $this->assertSame($h2, $h3->getPreviousSibling());
-
-        /**
-         * For each component you can get back to the `ElementTree` that
-         * created it:
+         * For each component you can get back to the `ElementTree` you
+         * appended it to with `getOwnerTree`.
          */
         $elementTree = new \ElementTree\ElementTree();
         $div = $elementTree->createElement('div');
@@ -83,9 +92,27 @@ class DocumentationTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($elementTree, $div->getOwnerTree());
 
         /**
+         * The whole tree can be xmlified to string with `toString`.
+         * Empty tags will be closed.
+         */
+        $elementTree = new \ElementTree\ElementTree();
+        $h1 = $elementTree->createElement('h1');
+        $text = $elementTree->createText('a header');
+        $elementTree->append($h1);
+        $h1->append($text);
+        $elementTree->append($elementTree->createElement('div'));
+
+        $this->assertEquals('<h1>a header</h1><div />', $elementTree->toString());
+
+        /**
+         * ## Misc
+         * 
          * If a comment, element, or text component is appended to another tree,
          * it is removed from the original tree.
          */
+        $elementTree = new \ElementTree\ElementTree();
+        $div = $elementTree->createElement('div');
+        $elementTree->append($div);
         $header = $elementTree->createElement('h1');
         $elementTree->append($header);
         $otherTree = new \ElementTree\ElementTree();
@@ -94,18 +121,7 @@ class DocumentationTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(array($header), $otherTree->getChildren());
         $this->assertEquals(array($div), $elementTree->getChildren());
 
-        /**
-         * `Text` can be appended to `Elements`.
-         */
-        $element->append($text);
-        $this->assertTrue($element->hasChildren());
-
-        /**
-         * An `Element` can also have attributes.
-         */
-        $element->setAttribute('class', 'sidebar');
-
-        /**
+       /**
          * Attribute values are quoted in double quotes by default. You can change
          * this on the attribute by using one of the following methods:
          * `noQuotes`, `singleQuotes` or `doubleQuotes`.
@@ -124,14 +140,16 @@ class DocumentationTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(array(), $div->getAttributes());
 
         /**
+         * The value of an attribute can be found with `getAttributeValue`.
+         */
+        $element = $elementTree->createElement('div');
+        $element->setAttribute('class', 'sidebar');
+        $this->assertEquals('sidebar', $element->getAttributeValue('class'));
+
+        /**
          * The name of elements can be found with `getName()`.
          */
         $this->assertEquals('div', $element->getName());
-
-        /**
-         * The value of an attribute can be found with `getAttributeValue`.
-         */
-        $this->assertEquals('sidebar', $element->getAttributeValue('class'));
 
         /**
          * Asking whether an element has a certain attribute is done with
@@ -141,42 +159,7 @@ class DocumentationTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($element->hasAttribute('style'));
 
         /**
-         * An `Element` can be composed of others.
-         */
-        $p = $elementTree->createElement('p');
-        $element->append($p);
-
-        /**
-         * The paragraph is now a child component of the div.
-         */
-        $this->assertSame($element, $p->getParent());
-        $this->assertTrue($element->hasChildren());
-
-        /**
-         * Comments and Text components have the `getValue` and `setValue`
-         * methods to manipulate them.
-         */
-        $comment->setValue('comment changed');
-        $this->assertEquals('comment changed', $comment->getValue());
-
-        $text->setValue('new content');
-        $this->assertEquals('new content', $text->getValue());
-
-        /**
-         * The whole tree can be xmlified to string. Empty tags will be closed.
-         */
-        $elementTree = new \ElementTree\ElementTree();
-        $h1 = $elementTree->createElement('h1');
-        $text = $elementTree->createText('a header');
-        $elementTree->append($h1);
-        $h1->append($text);
-        $elementTree->append($elementTree->createElement('div'));
-
-        $this->assertEquals('<h1>a header</h1><div />', $elementTree->toString());
-
-        /**
-         * Queries
-         * -------
+         * ## Queries
          */
 
         $elementTree = new \ElementTree\ElementTree();

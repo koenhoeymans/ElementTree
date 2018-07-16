@@ -11,13 +11,16 @@ class Comment extends Component implements Appendable
         $this->value = $value;
     }
 
+    /**
+     * Append this `Comment` to a `Composable` object.
+     */
     public function appendTo(Composable $composable) : void
     {
         $composable->append($this);
     }
 
     /**
-     * @see \ElementTree\Comment::getValue()
+     * Get content value of the `Comment`.
      */
     public function getValue() : string
     {
@@ -25,7 +28,7 @@ class Comment extends Component implements Appendable
     }
 
     /**
-     * @see \ElementTree\Comment::setValue()
+     * Set the content value of the `Comment`.
      */
     public function setValue(string $value) : void
     {
@@ -33,9 +36,11 @@ class Comment extends Component implements Appendable
     }
 
     /**
-     * `<!-- comment -->`
-     *
-     * @see ElementTree\Component::toString()
+     * Produces a string representation of the `Comment`.
+     * 
+     * Example:
+     * 
+     *     <!-- comment -->
      */
     public function toString() : string
     {

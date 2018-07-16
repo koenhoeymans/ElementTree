@@ -11,13 +11,16 @@ class Text extends Component implements Appendable
         $this->value = $value;
     }
 
+    /**
+     * @see \ElementTree\Appendable::appendTo();
+     */
     public function appendTo(Composable $composable) : void
     {
         $composable->append($this);
     }
 
     /**
-     * @see \ElementTree\Text::getValue()
+     * Get the text of the `Text` component.
      */
     public function getValue() : string
     {
@@ -25,7 +28,7 @@ class Text extends Component implements Appendable
     }
 
     /**
-     * @see \ElementTree\Text::setValue()
+     * Set the textual value.
      */
     public function setValue(string $value) : void
     {
