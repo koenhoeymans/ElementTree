@@ -5,8 +5,7 @@
 	"keywords": ["XML", "tree"],
 	"authors": [{
 		"name": "Koen Hoeymans",
-		"email": "koenhoeymans@gmail.com",
-		"role": "lead"
+		"email": "koenhoeymans@gmail.com"
 	}],
 	"require": {
 		"php": ">=7.2"
